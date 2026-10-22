@@ -1,7 +1,7 @@
 
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { inject, Injectable, signal } from "@angular/core";
-import { tap } from "rxjs";
+import { catchError, finalize, of, tap } from "rxjs";
 import { TOKEN_ARMAZENADO, URL_API } from "./auth.tokens";
 import { CadastroRequest, LoginRequest, TokenDto, UsuarioDto } from "./auth"
 
@@ -35,21 +35,44 @@ export class AuthService {
     readonly autenticacao =
         this._autenticacao.asReadonly();
 
+    private readonly _sessaoInicializada = signal(false);
+    readonly sessaoInicializada = this._sessaoInicializada.asReadonly();
+
     //==============================================
     // CONSTRUTOR
     //==============================================
 
     constructor() {
-        const tokenArmazenado =
-            localStorage.getItem(this.token);
+        const tokenArmazenado = localStorage.getItem(this.token);
 
         if (!tokenArmazenado) {
+            this._sessaoInicializada.set(true);
             return;
         }
 
         this._autenticacao.set(tokenArmazenado);
-    }
 
+        this.obterUsuario().pipe(
+            catchError((erro: HttpErrorResponse) => {
+                console.error(
+                    'Erro ao restaurar a sessão:',
+                    erro.status,
+                    erro.message
+                );
+
+                // Limpa a sessão somente se a API rejeitar
+                // a autenticação.
+                if (erro.status === 401 || erro.status === 403) {
+                    this.limparSessao();
+                }
+
+                return of(null);
+            }),
+            finalize(() => {
+                this._sessaoInicializada.set(true);
+            })
+        ).subscribe();
+    }
     //==============================================
     // CADASTRO
     //==============================================
@@ -104,17 +127,23 @@ export class AuthService {
     //==============================================
     // LOGOUT
     //==============================================
-
     sair() {
         return this.http.post<void>(
             `${this.urlApi}/auth/logout`,
             {}
         ).pipe(
-            tap(() => {
-                localStorage.removeItem(this.token);
-                this._autenticacao.set(null);
-                this._usuarioAutenticado.set(null);
-            })
+            finalize(() => this.limparSessao())
         );
     }
+
+    //==============================================
+    // LIMPAR SESSAO
+    //==============================================
+
+    private limparSessao(): void {
+        localStorage.removeItem(this.token);
+        this._autenticacao.set(null);
+        this._usuarioAutenticado.set(null);
+    }
+
 }

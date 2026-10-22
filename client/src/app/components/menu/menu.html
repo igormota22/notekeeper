@@ -1,18 +1,19 @@
-<!-- Menu lateral: madeira escura -->
+<!-- Menu lateral -->
 <aside
-    class="relative flex w-full flex-col overflow-hidden bg-[#29231D] px-6 py-6 text-[#E8DDC7] md:min-h-screen md:w-64 md:shrink-0 md:px-7 md:py-9">
+    class="relative flex min-h-screen w-full self-stretch flex-col overflow-hidden bg-[#29231D] px-6 py-6 text-[#E8DDC7] md:min-h-full md:w-64 md:shrink-0 md:px-7 md:py-9">
 
     <!-- Textura decorativa -->
     <div class="pointer-events-none absolute inset-0 opacity-20"
         style="background: repeating-linear-gradient(90deg, transparent 0px, transparent 35px, #766047 36px, transparent 38px);">
     </div>
 
-    <div class="relative z-10 flex h-full flex-col">
+    <div class="relative z-10 flex flex-1 flex-col">
 
         <!-- Identidade -->
-        <a href="#inicio" class="flex items-center gap-3 border-b border-[#79664A]/50 pb-8">
+        <a routerLink="/home" class="flex items-center gap-3 border-b border-[#79664A]/50 pb-8">
+
             <div
-                class="flex h-12 w-10 items-center justify-center border border-[#B89A65] font-serif text-2xl text-[#D7BB83]">
+                class="flex h-12 w-10 shrink-0 items-center justify-center border border-[#B89A65] font-serif text-2xl text-[#D7BB83]">
                 N
             </div>
 
@@ -20,6 +21,7 @@
                 <h1 class="font-serif text-2xl tracking-wide text-[#F1E5CF]">
                     NoteKeeper
                 </h1>
+
                 <p class="mt-1 text-[9px] uppercase tracking-[0.22em] text-[#B89A65]">
                     The Personal Archive
                 </p>
@@ -28,40 +30,39 @@
 
         <!-- Navegação -->
         <div class="mb-3 mt-9 text-[10px] uppercase tracking-[0.24em] text-[#A18A67]">
-            Sua biblioteca
+            Seu arquivo
         </div>
 
         <nav class="flex flex-col gap-1">
 
-            <a href="#inicio"
-                class="flex items-center gap-3 border-l-2 border-[#C4A66C] bg-[#514332]/60 px-4 py-3.5 text-sm text-[#F5EAD6]">
+            <a routerLink="/home"
+                class="flex items-center gap-3 border-l-2 border-[#C4A66C] bg-[#514332]/60 px-4 py-3.5 text-sm text-[#F5EAD6] transition hover:bg-[#514332]">
                 <span class="text-lg text-[#D2B77E]">⌂</span>
                 Sala de leitura
             </a>
 
-            <a href="#categorias"
-                class="flex items-center gap-3 border-l-2 border-transparent px-4 py-3.5 text-sm text-[#C9BDA8] transition hover:bg-white/5 hover:text-white">
+            <a routerLink="/categorias"
+                class="flex items-center gap-3 border-l-2 border-transparent px-4 py-3.5 text-sm text-[#C9BDA8] transition hover:border-[#B89A65] hover:bg-white/5 hover:text-white">
                 <span class="text-lg">▤</span>
                 Estantes
             </a>
 
-            <a href="#notas"
-                class="flex items-center gap-3 border-l-2 border-transparent px-4 py-3.5 text-sm text-[#C9BDA8] transition hover:bg-white/5 hover:text-white">
+            <a routerLink="/notas"
+                class="flex items-center gap-3 border-l-2 border-transparent px-4 py-3.5 text-sm text-[#C9BDA8] transition hover:border-[#B89A65] hover:bg-white/5 hover:text-white">
                 <span class="text-lg">▧</span>
                 Catálogo de notas
             </a>
 
         </nav>
 
-        <!-- Separador decorativo -->
+        <!-- Frase decorativa -->
         <div class="my-8 flex items-center gap-3">
             <div class="h-px flex-1 bg-[#79664A]/60"></div>
             <span class="text-xs text-[#B89A65]">✦</span>
             <div class="h-px flex-1 bg-[#79664A]/60"></div>
         </div>
 
-        <!-- Frase -->
-        <div class="mt-auto hidden md:block">
+        <div class="mb-8">
             <p class="text-[10px] uppercase tracking-[0.2em] text-[#B89A65]">
                 Da biblioteca
             </p>
@@ -73,13 +74,49 @@
             <p class="mt-5 text-[10px] uppercase tracking-[0.15em] text-[#92816A]">
                 Conhecimento para preservar
             </p>
+        </div>
 
-            <div class="mt-7 border-t border-[#79664A]/50 pt-5">
+        <!-- Área do usuário -->
+        <section class="mt-auto border-t border-[#79664A]/60 pt-6">
+
+            <p class="mb-4 text-[10px] uppercase tracking-[0.2em] text-[#B89A65]">
+                Área do usuário
+            </p>
+
+            <div class="flex items-center gap-3">
+                <!-- Avatar -->
+                <div
+                    class="flex h-11 w-11 shrink-0 items-center justify-center border border-[#B89A65] bg-[#514332] font-serif text-lg text-[#D7BB83]">
+                    {{ nomeUsuario().charAt(0).toUpperCase() || 'U' }}
+                </div>
+
+                <!-- Dados do usuário -->
+                <div class="min-w-0 flex-1">
+                    <p class="truncate text-sm font-medium text-[#F1E5CF]">
+                        {{ nomeUsuario() }}
+                    </p>
+
+                    <p class="mt-1 truncate text-xs text-[#B6A58D]">
+                        {{ emailUsuario() }}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Sair -->
+            <button type="button" (click)="sair()"
+                class="mt-5 flex w-full items-center gap-3 border border-[#79664A]/60 px-4 py-3 text-sm text-[#C9BDA8] transition hover:border-[#A76A5D] hover:bg-[#75453B]/20 hover:text-[#F1E5CF]">
+
+                <span class="text-base" aria-hidden="true">↪</span>
+                Sair da conta
+            </button>
+
+            <div class="mt-5 border-t border-[#79664A]/40 pt-4">
                 <p class="text-xs text-[#B6A58D]">
                     Seu arquivo. Sua história.
                 </p>
             </div>
-        </div>
+
+        </section>
 
     </div>
 </aside>

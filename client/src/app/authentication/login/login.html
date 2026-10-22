@@ -1,0 +1,87 @@
+<section class="w-full">
+
+    <!-- Cabeçalho do formulário -->
+    <header class="mb-8">
+        <p class="text-[10px] uppercase tracking-[0.22em] text-[#856B47]">
+            Bem-vindo de volta
+        </p>
+
+        <h2 class="mt-3 font-serif text-4xl leading-tight text-[#30271F]">
+            Acesse seu arquivo
+        </h2>
+
+        <p class="mt-3 text-sm leading-6 text-[#786A56]">
+            Entre na sua conta para acessar suas notas e categorias.
+        </p>
+    </header>
+
+    <!-- Mensagem de erro -->
+    @if (mensagemErro()) {
+    <div role="alert"
+        class="mb-6 border border-[#75453B]/30 bg-[#75453B]/10 px-4 py-3 text-sm leading-6 text-[#75453B]">
+        {{ mensagemErro() }}
+    </div>
+    }
+
+    <!-- Formulário -->
+    <form (ngSubmit)="enviarFormulario()" class="space-y-5">
+
+        <!-- E-mail -->
+        <div>
+            <label for="email" class="mb-2 block text-xs font-medium uppercase tracking-wider text-[#554838]">
+                E-mail
+            </label>
+
+            <input id="email" name="email" type="email" autocomplete="email" required [value]="formulario().email"
+                (input)="atualizarCampo('email', $any($event.target).value)" placeholder="voce@exemplo.com"
+                class="w-full border border-[#CDBB9D] bg-[#FAF6ED] px-4 py-3 text-sm text-[#30271F] outline-none transition placeholder:text-[#A99A82] focus:border-[#856B47] focus:ring-1 focus:ring-[#856B47]" />
+        </div>
+
+        <!-- Senha -->
+        <div>
+            <label for="senha" class="mb-2 block text-xs font-medium uppercase tracking-wider text-[#554838]">
+                Senha
+            </label>
+
+            <div class="relative">
+                <input id="senha" name="senha" [type]="mostrarSenha() ? 'text' : 'password'"
+                    autocomplete="current-password" required [value]="formulario().senha"
+                    (input)="atualizarCampo('senha', $any($event.target).value)" placeholder="Digite sua senha"
+                    class="w-full border border-[#CDBB9D] bg-[#FAF6ED] px-4 py-3 pr-20 text-sm text-[#30271F] outline-none transition placeholder:text-[#A99A82] focus:border-[#856B47] focus:ring-1 focus:ring-[#856B47]" />
+
+                <button type="button" (click)="alternarVisibilidadeSenha()"
+                    [attr.aria-label]="mostrarSenha() ? 'Ocultar senha' : 'Mostrar senha'"
+                    class="absolute inset-y-0 right-3 text-xs text-[#786A56] transition hover:text-[#354638]">
+                    {{ mostrarSenha() ? 'Ocultar' : 'Mostrar' }}
+                </button>
+            </div>
+        </div>
+
+        <!-- Acessar -->
+        <button type="submit" [disabled]="carregando()"
+            class="mt-2 flex w-full items-center justify-center gap-3 bg-[#354638] px-5 py-3.5 text-sm font-medium text-[#F4EAD8] transition hover:bg-[#263A30] disabled:cursor-not-allowed disabled:opacity-60">
+
+            @if (carregando()) {
+            <span class="h-4 w-4 animate-spin rounded-full border-2 border-[#F4EAD8] border-t-transparent">
+            </span>
+            Entrando...
+            } @else {
+            Acessar meu arquivo
+            <span aria-hidden="true">→</span>
+            }
+        </button>
+    </form>
+
+    <!-- Link para cadastro -->
+    <div class="my-7 border-t border-[#D8C8AD]"></div>
+
+    <p class="text-center text-sm leading-6 text-[#786A56]">
+        Ainda não possui uma conta?
+
+        <a routerLink="/cadastro"
+            class="ml-1 font-medium text-[#354638] underline decoration-[#B89A65] underline-offset-4 transition hover:text-[#856B47]">
+            Criar conta
+        </a>
+    </p>
+
+</section>
