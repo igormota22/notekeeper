@@ -24,6 +24,12 @@ export class CategoriaService {
         return this.http.get<CategoriaResponse[]>(`${this.urlApi}/categorias`);
     }
 
+    obterPorId(categoriaId: string): Observable<CategoriaResponse> {
+        return this.http.get<CategoriaResponse>(
+            `${this.urlApi}/categorias/${categoriaId}`
+        );
+    }
+
     cadastrar(categoria: CategoriaRequest) {
         const request: CategoriaRequest = {
             ...categoria
@@ -31,6 +37,20 @@ export class CategoriaService {
 
         return this.http.post<CategoriaResponse>(
             `${this.urlApi}/categorias`,
+            request
+        );
+
+
+    }
+
+
+    editar(categoria: CategoriaRequest, categoriaId: string) {
+        const request: CategoriaRequest = {
+            ...categoria
+        };
+
+        return this.http.put<CategoriaResponse>(
+            `${this.urlApi}/categorias/${categoriaId}`,
             request
         );
 

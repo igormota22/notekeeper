@@ -30,7 +30,15 @@ export const routes: Routes = [
                 loadComponent: () =>
                     import('./components/categoria/cadastro/categoria-cadastro')
                         .then(m => m.CategoriaCadastro)
+            },
+            {
+                path: 'edicao/:id',
+                loadComponent: () =>
+                    import('./components/categoria/edicao/categoria-edicao')
+                        .then(m => m.CategoriaEdicao)
             }
+
+
         ]
     },
     {

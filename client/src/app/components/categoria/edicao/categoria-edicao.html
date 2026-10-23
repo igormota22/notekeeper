@@ -1,0 +1,202 @@
+<section class="catalog-page mx-auto max-w-4xl">
+
+    <!-- Cabeçalho -->
+    <header class="catalog-intro mb-8">
+        <div class="mb-4 flex items-center gap-3">
+            <span class="h-px w-10 bg-[#B89A5A]"></span>
+            <span class="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#8B7547]">
+                NoteKeeper / Arquivo pessoal
+            </span>
+        </div>
+
+        <div class="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+            <div>
+                <h2 class="font-serif text-3xl font-semibold text-[#4A382A] sm:text-4xl">
+                    Editar categoria
+                </h2>
+
+                <p class="mt-3 max-w-xl text-sm leading-7 text-[#756657]">
+                    Atualize os dados desta ficha do seu arquivo. Ajuste o nome do assunto
+                    para manter suas ideias organizadas.
+                </p>
+            </div>
+
+            <div class="catalog-stamp hidden sm:flex" aria-hidden="true">
+                <span>EDIT</span>
+                <span>RECORD</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Prancheta de madeira -->
+    <div class="catalog-board">
+
+        <div class="board-heading flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    class="h-5 w-5 text-[#D8BB82]" aria-hidden="true">
+                    <path d="M5 3h11l3 3v15H5z" />
+                    <path d="M14 3v5h5M8 12h8M8 16h8" />
+                </svg>
+
+                <div>
+                    <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#E8C98E]">
+                        Departamento de catalogação
+                    </p>
+                    <p class="mt-1 text-xs text-[#C5B69C]">
+                        Atualização de uma ficha existente
+                    </p>
+                </div>
+            </div>
+
+            <span class="board-number">FORM. 002</span>
+        </div>
+
+        <!-- Área do formulário -->
+        <div class="catalog-paper">
+
+            @if (carregando()) {
+            <div class="py-12 text-center">
+                <p class="font-serif text-xl text-[#493527]">
+                    Consultando os registros...
+                </p>
+                <p class="mt-2 text-sm text-[#756657]">
+                    Aguarde enquanto carregamos os dados da categoria.
+                </p>
+            </div>
+            } @else {
+            <div class="paper-top flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-[10px] font-bold uppercase tracking-[0.22em] text-[#8B704E]">
+                        Ficha de classificação
+                    </p>
+                    <h3 class="mt-2 font-serif text-2xl font-semibold text-[#493527] sm:text-3xl">
+                        Atualização de assunto
+                    </h3>
+                    <p class="mt-2 text-sm leading-6 text-[#756657]">
+                        Modifique o nome abaixo para atualizar sua categoria.
+                    </p>
+                </div>
+
+                <div class="paper-symbol hidden sm:flex" aria-hidden="true">
+                    §
+                </div>
+            </div>
+
+            <div class="paper-divider"></div>
+
+            <form (submit)="enviarFormulario($event)" class="space-y-7">
+
+                <!-- Campo principal -->
+                <div class="catalog-field">
+                    <div class="mb-3 flex items-center justify-between gap-3">
+                        <label for="titulo" class="text-xs font-bold uppercase tracking-[0.14em] text-[#514033]">
+                            Nome da categoria
+                            <span class="text-[#9A5141]">*</span>
+                        </label>
+
+                        <span class="text-[10px] uppercase tracking-wider text-[#9A8C7B]">
+                            Campo 01
+                        </span>
+                    </div>
+
+                    <div class="catalog-input-wrap">
+                        <span class="input-mark" aria-hidden="true">✳</span>
+
+                        <input id="titulo" name="titulo" type="text" autocomplete="off"
+                            placeholder="Ex.: Estudos, Projetos, Ideias..." [value]="formulario.titulo().value()"
+                            (input)="formulario.titulo().value.set($any($event.target).value)" [disabled]="salvando()"
+                            class="catalog-input" />
+                    </div>
+
+                    @if (formulario.titulo().invalid() && formulario.titulo().touched()) {
+                    <p class="mt-3 flex items-start gap-2 text-sm text-[#9A5141]" role="alert">
+                        <span aria-hidden="true">!</span>
+                        {{ formulario.titulo().errors()[0].message }}
+                    </p>
+                    }
+
+                    <p class="mt-3 text-xs leading-6 text-[#756657]">
+                        Escolha um nome fácil de reconhecer. A alteração será aplicada
+                        à categoria existente.
+                    </p>
+                </div>
+
+                <!-- Prévia visual da ficha -->
+                <div class="catalog-preview">
+                    <div class="preview-topline">
+                        <span>PRÉVIA DA FICHA</span>
+                        <span>NOTEKEEPER ARCHIVE</span>
+                    </div>
+
+                    <div class="preview-content">
+                        <div class="preview-index" aria-hidden="true">01</div>
+
+                        <div class="min-w-0 flex-1">
+                            <p class="text-[9px] font-bold uppercase tracking-[0.2em] text-[#8B704E]">
+                                ASSUNTO CLASSIFICADO
+                            </p>
+
+                            <p class="preview-title mt-1 break-words">
+                                {{ formulario.titulo().value().trim() || 'Nome da categoria' }}
+                            </p>
+                        </div>
+
+                        <div class="preview-seal" aria-hidden="true">
+                            NK
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Erro da API -->
+                @if (mensagemErro()) {
+                <div role="alert" class="border border-[#D8B7AC] bg-[#FBF1ED] px-4 py-3">
+                    <p class="text-sm leading-6 text-[#75453B]">
+                        {{ mensagemErro() }}
+                    </p>
+                </div>
+                }
+
+                <!-- Ações -->
+                <div class="flex flex-col-reverse gap-3 border-t border-[#D8C9A8] pt-6 sm:flex-row sm:justify-end">
+
+                    <button type="button" (click)="cancelar()" [disabled]="salvando()" class="catalog-cancel">
+                        <span aria-hidden="true">←</span>
+                        Voltar ao arquivo
+                    </button>
+
+                    <button type="submit" [disabled]="salvando()" class="catalog-submit group">
+                        <span class="submit-plus" aria-hidden="true">✎</span>
+                        <span>
+                            {{ salvando() ? 'Salvando alterações...' : 'Salvar alterações' }}
+                        </span>
+                        <span class="submit-arrow" aria-hidden="true">↗</span>
+                    </button>
+
+                </div>
+            </form>
+            }
+
+            <!-- Erro ao carregar a categoria -->
+            @if (mensagemErro() && carregando() === false && !categoriaId) {
+            <div role="alert" class="mt-4 border border-[#D8B7AC] bg-[#FBF1ED] px-4 py-3">
+                <p class="text-sm leading-6 text-[#75453B]">
+                    {{ mensagemErro() }}
+                </p>
+
+                <button type="button" (click)="cancelar()" class="mt-3 text-sm font-semibold text-[#75453B] underline">
+                    Voltar ao arquivo
+                </button>
+            </div>
+            }
+        </div>
+
+        <!-- Rodapé da prancheta -->
+        <div class="board-footer">
+            <span class="footer-rule"></span>
+            <p>Todo assunto merece seu próprio lugar.</p>
+            <span class="footer-rule"></span>
+        </div>
+    </div>
+
+</section>
