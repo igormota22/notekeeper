@@ -72,8 +72,8 @@ export class NotaCadastro {
                 message: 'O título deve ter no máximo 200 caracteres.'
             });
 
-            maxLength(caminho.descricao, 2000, {
-                message: 'A descrição deve ter no máximo 2000 caracteres.'
+            maxLength(caminho.descricao, 300, {
+                message: 'A descrição deve ter no máximo 300 caracteres.'
             });
         }
     );
