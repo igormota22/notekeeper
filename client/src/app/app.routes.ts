@@ -24,6 +24,12 @@ export const routes: Routes = [
                 loadComponent: () =>
                     import('./components/categoria/listagem/categoria-listagem')
                         .then(m => m.CategoriaListagem)
+            },
+            {
+                path: 'cadastro',
+                loadComponent: () =>
+                    import('./components/categoria/cadastro/categoria-cadastro')
+                        .then(m => m.CategoriaCadastro)
             }
         ]
     },
