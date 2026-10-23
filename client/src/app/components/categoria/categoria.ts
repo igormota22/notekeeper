@@ -3,5 +3,6 @@ export interface CategoriaRequest {
 }
 
 export interface CategoriaResponse {
+    id: string;
     titulo: string;
 }

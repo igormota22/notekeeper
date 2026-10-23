@@ -37,5 +37,11 @@ export class CategoriaService {
 
     }
 
+    excluir(categoriaId: string) {
+        return this.http.delete<void>(
+            `${this.urlApi}/categorias/${categoriaId}`
+        );
+    }
+
 
 }

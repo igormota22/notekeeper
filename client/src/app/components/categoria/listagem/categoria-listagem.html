@@ -177,11 +177,12 @@
                     </button>
 
                     <!-- Botão Excluir -->
-                    <button type="button" title="Excluir categoria" aria-label="Excluir categoria"
-                        class="drawer-action drawer-delete">
+                    <button type="button" (click)="confirmarExclusao(categoria)" title="Excluir categoria"
+                        [attr.aria-label]="'Excluir categoria ' + categoria.titulo" class="drawer-action drawer-delete">
 
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
                             stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" aria-hidden="true">
+
                             <path d="M3 6h18" />
                             <path d="M8 6V4h8v2" />
                             <path d="m19 6-1 14H6L5 6" />
@@ -199,8 +200,6 @@
             <div class="drawer-side" aria-hidden="true"></div>
         </article>
         }
-
-
         <div class="cabinet-bottom mt-5 flex items-center justify-center gap-3 py-3">
             <span class="h-px w-8 bg-[#8B704E]"></span>
             <span class="font-serif text-xs italic text-[#D8BB82]">
@@ -210,5 +209,84 @@
         </div>
     </div>
     }
+
+    @if (categoriaSelecionada(); as categoria) {
+    <div class="archive-modal-backdrop" (click)="cancelarExclusao()">
+
+        <section class="archive-modal" role="dialog" aria-modal="true" aria-labelledby="modal-titulo"
+            (click)="$event.stopPropagation()">
+
+            <div class="modal-topline">
+                <span>NOTEKEEPER · ARQUIVO</span>
+                <span class="modal-reference">REGISTRO</span>
+            </div>
+
+            <div class="modal-symbol" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" class="h-7 w-7">
+
+                    <path d="M4 7.5h16v12H4z" />
+                    <path d="M3 4.5h18v3H3z" />
+                    <path d="M9 12h6" />
+                </svg>
+            </div>
+
+            <p class="modal-eyebrow">Confirmação de descarte</p>
+
+            <h2 id="modal-titulo" class="modal-title">
+                Excluir esta categoria?
+            </h2>
+
+            <p class="modal-description">
+                Você está prestes a retirar esta ficha do seu arquivo.
+                Confira os dados antes de continuar.
+            </p>
+
+            <div class="modal-record">
+                <span class="record-label">CATEGORIA SELECIONADA</span>
+
+                <p class="record-title">{{ categoria.titulo }}</p>
+
+                <div class="record-divider"></div>
+
+                <div class="flex items-center justify-between gap-3">
+                    <span class="record-label">IDENTIFICADOR</span>
+                    <span class="record-id">{{ categoria.id }}</span>
+                </div>
+            </div>
+
+            <p class="modal-warning">
+                <span aria-hidden="true">!</span>
+                Esta ação não poderá ser desfeita.
+            </p>
+
+            @if (mensagemErroExclusao()) {
+            <p class="modal-error" role="alert">
+                {{ mensagemErroExclusao() }}
+            </p>
+            }
+
+            <div class="modal-actions">
+                <button type="button" class="modal-cancel" [disabled]="excluindo()" (click)="cancelarExclusao()">
+                    Cancelar
+                </button>
+
+                <button type="button" class="modal-confirm" [disabled]="excluindo()" (click)="excluirCategoria()">
+
+                    @if (excluindo()) {
+                    Excluindo...
+                    } @else {
+                    <span aria-hidden="true">×</span>
+                    Excluir categoria
+                    }
+                </button>
+            </div>
+
+            <div class="modal-footer">
+                Every thought has a place.
+            </div>
+        </section>
+    </div>
+    }
+
 
 </section>
