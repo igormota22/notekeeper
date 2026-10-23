@@ -1,103 +1,175 @@
-<section class="mx-auto max-w-3xl">
+<section class="catalog-page mx-auto max-w-4xl">
 
     <!-- Cabeçalho -->
-    <div class="mb-8">
-        <div class="mb-4 flex items-center gap-2">
-            <span class="h-px w-8 bg-[#B89A5A]"></span>
-            <span class="text-xs font-medium uppercase tracking-[0.22em] text-[#8B7547]">
-                Organização do arquivo
+    <header class="catalog-intro mb-8">
+        <div class="mb-4 flex items-center gap-3">
+            <span class="h-px w-10 bg-[#B89A5A]"></span>
+            <span class="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#8B7547]">
+                NoteKeeper / Arquivo pessoal
             </span>
         </div>
 
-        <h2 class="font-serif text-3xl font-semibold text-[#4A382A] sm:text-4xl">
-            Nova categoria
-        </h2>
+        <div class="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+            <div>
+                <h2 class="font-serif text-3xl font-semibold text-[#4A382A] sm:text-4xl">
+                    Nova categoria
+                </h2>
 
-        <p class="mt-3 text-sm leading-7 text-[#756657] sm:text-base">
-            Crie uma categoria para organizar suas anotações e manter seu arquivo pessoal em ordem.
-        </p>
-    </div>
+                <p class="mt-3 max-w-xl text-sm leading-7 text-[#756657]">
+                    Prepare uma nova ficha para seu arquivo. Dê um nome ao assunto
+                    que deseja organizar e encontre um lugar para suas ideias.
+                </p>
+            </div>
 
-    <!-- Formulário -->
-    <div class="border border-[#E8E0D0] bg-white/80 shadow-sm">
+            <div class="catalog-stamp hidden sm:flex" aria-hidden="true">
+                <span>NEW</span>
+                <span>RECORD</span>
+            </div>
+        </div>
+    </header>
 
-        <div class="border-b border-[#E8E0D0] bg-[#F0E7D8] px-6 py-5 sm:px-8">
-            <div class="flex items-center gap-4">
-                <div
-                    class="flex h-12 w-12 shrink-0 items-center justify-center border border-[#B89A5A]/60 bg-[#514033] font-serif text-2xl text-[#D8BB82]">
-                    +
-                </div>
+    <!-- Prancheta de madeira -->
+    <div class="catalog-board">
+
+        <div class="board-heading flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    class="h-5 w-5 text-[#D8BB82]" aria-hidden="true">
+                    <path d="M5 3h11l3 3v15H5z" />
+                    <path d="M14 3v5h5M8 12h8M8 16h8" />
+                </svg>
 
                 <div>
-                    <h3 class="font-serif text-xl font-semibold text-[#4A382A]">
-                        Detalhes da categoria
-                    </h3>
-                    <p class="mt-1 text-sm text-[#756657]">
-                        Preencha as informações abaixo.
+                    <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#E8C98E]">
+                        Departamento de catalogação
+                    </p>
+                    <p class="mt-1 text-xs text-[#C5B69C]">
+                        Registro de uma nova ficha
                     </p>
                 </div>
             </div>
+
+            <span class="board-number">FORM. 001</span>
         </div>
 
-        <form (submit)="enviarFormulario($event)" class="space-y-6 px-6 py-7 sm:px-8 sm:py-8">
+        <!-- Área do formulário -->
+        <div class="catalog-paper">
 
-            <!-- Título -->
-            <div>
-                <label for="titulo" class="mb-2 block text-sm font-medium text-[#514033]">
-                    Título da categoria
-                    <span class="text-[#75453B]">*</span>
-                </label>
+            <div class="paper-top flex items-start justify-between gap-4">
+                <div>
+                    <p class="text-[10px] font-bold uppercase tracking-[0.22em] text-[#8B704E]">
+                        Ficha de classificação
+                    </p>
+                    <h3 class="mt-2 font-serif text-2xl font-semibold text-[#493527] sm:text-3xl">
+                        Registro de assunto
+                    </h3>
+                    <p class="mt-2 text-sm leading-6 text-[#756657]">
+                        Preencha o campo abaixo para identificar sua nova categoria.
+                    </p>
+                </div>
 
-                <input id="titulo" type="text" placeholder="Ex.: Estudos, Projetos, Ideias..."
-                    [value]="formulario.titulo().value()"
-                    (input)="formulario.titulo().value.set($any($event.target).value)"
-                    class="w-full border border-[#DCD3C1] bg-[#FAF8F2] px-4 py-3 text-sm text-[#4A382A] outline-none transition placeholder:text-[#9A8C7B] focus:border-[#A78352] focus:ring-2 focus:ring-[#A78352]/20" />
+                <div class="paper-symbol hidden sm:flex" aria-hidden="true">
+                    §
+                </div>
+            </div>
 
-                @if (formulario.titulo().invalid() && formulario.titulo().touched()) {
-                <p class="mt-2 text-sm text-[#75453B]">
-                    {{ formulario.titulo().errors()[0].message }}
-                </p>
+            <div class="paper-divider"></div>
+
+            <form (submit)="enviarFormulario($event)" class="space-y-7">
+
+                <!-- Campo principal -->
+                <div class="catalog-field">
+                    <div class="mb-3 flex items-center justify-between gap-3">
+                        <label for="titulo" class="text-xs font-bold uppercase tracking-[0.14em] text-[#514033]">
+                            Nome da categoria
+                            <span class="text-[#9A5141]">*</span>
+                        </label>
+
+                        <span class="text-[10px] uppercase tracking-wider text-[#9A8C7B]">
+                            Campo 01
+                        </span>
+                    </div>
+
+                    <div class="catalog-input-wrap">
+                        <span class="input-mark" aria-hidden="true">✳</span>
+
+                        <input id="titulo" name="titulo" type="text" autocomplete="off"
+                            placeholder="Ex.: Estudos, Projetos, Ideias..." [value]="formulario.titulo().value()"
+                            (input)="formulario.titulo().value.set($any($event.target).value)" class="catalog-input" />
+                    </div>
+
+                    @if (formulario.titulo().invalid() && formulario.titulo().touched()) {
+                    <p class="mt-3 flex items-start gap-2 text-sm text-[#9A5141]" role="alert">
+                        <span aria-hidden="true">!</span>
+                        {{ formulario.titulo().errors()[0].message }}
+                    </p>
+                    }
+
+                    <p class="mt-3 text-xs leading-6 text-[#756657]">
+                        Escolha um nome fácil de reconhecer. Você poderá usar essa categoria
+                        para agrupar anotações do mesmo assunto.
+                    </p>
+                </div>
+
+                <!-- Prévia visual da ficha -->
+                <div class="catalog-preview">
+                    <div class="preview-topline">
+                        <span>PRÉVIA DA FICHA</span>
+                        <span>NOTEKEEPER ARCHIVE</span>
+                    </div>
+
+                    <div class="preview-content">
+                        <div class="preview-index" aria-hidden="true">01</div>
+
+                        <div class="min-w-0 flex-1">
+                            <p class="text-[9px] font-bold uppercase tracking-[0.2em] text-[#8B704E]">
+                                ASSUNTO CLASSIFICADO
+                            </p>
+
+                            <p class="preview-title mt-1 break-words">
+                                {{ formulario.titulo().value().trim() || 'Nome da categoria' }}
+                            </p>
+                        </div>
+
+                        <div class="preview-seal" aria-hidden="true">
+                            NK
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Erro da API -->
+                @if (mensagemErro()) {
+                <div role="alert" class="border border-[#D8B7AC] bg-[#FBF1ED] px-4 py-3">
+                    <p class="text-sm leading-6 text-[#75453B]">
+                        {{ mensagemErro() }}
+                    </p>
+                </div>
                 }
 
-                <p class="mt-2 text-xs leading-5 text-[#756657]">
-                    Escolha um título claro para identificar o assunto das suas anotações.
-                </p>
-            </div>
+                <!-- Ações -->
+                <div class="flex flex-col-reverse gap-3 border-t border-[#D8C9A8] pt-6 sm:flex-row sm:justify-end">
 
-            <!-- Mensagem de erro -->
-            @if (mensagemErro()) {
-            <div role="alert" class="border border-[#D8B7AC] bg-[#FBF1ED] px-4 py-3">
-                <p class="text-sm leading-6 text-[#75453B]">
-                    {{ mensagemErro() }}
-                </p>
-            </div>
-            }
+                    <button type="button" (click)="cancelar()" class="catalog-cancel">
+                        <span aria-hidden="true">←</span>
+                        Voltar ao arquivo
+                    </button>
 
-            <!-- Ações -->
-            <div class="flex flex-col-reverse gap-3 border-t border-[#E8E0D0] pt-6 sm:flex-row sm:justify-end">
+                    <button type="submit" class="catalog-submit group">
+                        <span class="submit-plus" aria-hidden="true">+</span>
+                        <span>Registrar categoria</span>
+                        <span class="submit-arrow" aria-hidden="true">↗</span>
+                    </button>
 
-                <button type="button" (click)="cancelar()"
-                    class="border border-[#D2C3AD] px-5 py-3 text-sm font-medium text-[#756657] transition hover:border-[#A78352] hover:bg-[#F0E7D8] hover:text-[#4A382A]">
-                    Cancelar
-                </button>
+                </div>
+            </form>
+        </div>
 
-                <button type="submit" (click)="enviarFormulario($event)"
-                    class="inline-flex items-center justify-center gap-2 border border-[#A78352] bg-[#514033] px-6 py-3 text-sm font-medium text-[#F5EAD6] transition hover:bg-[#68513C]">
-                    <span aria-hidden="true">+</span>
-                    Cadastrar categoria
-                </button>
-
-            </div>
-        </form>
-    </div>
-
-    <!-- Nota decorativa -->
-    <div class="mt-6 flex items-center justify-center gap-3">
-        <span class="h-px w-8 bg-[#D8C9A8]"></span>
-        <p class="font-serif text-sm italic text-[#8B7547]">
-            Cada assunto encontra seu lugar.
-        </p>
-        <span class="h-px w-8 bg-[#D8C9A8]"></span>
+        <!-- Rodapé da prancheta -->
+        <div class="board-footer">
+            <span class="footer-rule"></span>
+            <p>Todo assunto merece seu próprio lugar.</p>
+            <span class="footer-rule"></span>
+        </div>
     </div>
 
 </section>
