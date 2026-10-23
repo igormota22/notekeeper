@@ -35,26 +35,32 @@
 
         <nav class="flex flex-col gap-1">
 
-            <a routerLink="/home"
-                class="flex items-center gap-3 border-l-2 border-[#C4A66C] bg-[#514332]/60 px-4 py-3.5 text-sm text-[#F5EAD6] transition hover:bg-[#514332]">
-                <span class="text-lg text-[#D2B77E]">⌂</span>
-                Inicio
+            <!-- Início -->
+            <a routerLink="/home" routerLinkActive="bg-[#514332]/60 text-[#F5EAD6] border-[#C4A66C]"
+                [routerLinkActiveOptions]="{ exact: true }"
+                class="flex items-center gap-3 border-l-2 border-transparent px-4 py-3.5 text-sm text-[#C9BDA8] transition hover:border-[#B89A65] hover:bg-[#514332] hover:text-white">
+
+                <span class="text-lg">⌂</span>
+                Início
             </a>
 
-            <a routerLink="/categorias"
-                class="flex items-center gap-3 border-l-2 border-transparent px-4 py-3.5 text-sm text-[#C9BDA8] transition hover:border-[#B89A65] hover:bg-white/5 hover:text-white">
+            <!-- Categorias -->
+            <a routerLink="/categorias/listagem" routerLinkActive="bg-[#514332]/60 text-[#F5EAD6] border-[#C4A66C]"
+                class="flex items-center gap-3 border-l-2 border-transparent px-4 py-3.5 text-sm text-[#C9BDA8] transition hover:border-[#B89A65] hover:bg-[#514332] hover:text-white">
+
                 <span class="text-lg">▤</span>
                 Categorias
             </a>
 
-            <a routerLink="/notas"
-                class="flex items-center gap-3 border-l-2 border-transparent px-4 py-3.5 text-sm text-[#C9BDA8] transition hover:border-[#B89A65] hover:bg-white/5 hover:text-white">
+            <!-- Catálogo de notas -->
+            <a routerLink="/notas" routerLinkActive="bg-[#514332]/60 text-[#F5EAD6] border-[#C4A66C]"
+                class="flex items-center gap-3 border-l-2 border-transparent px-4 py-3.5 text-sm text-[#C9BDA8] transition hover:border-[#B89A65] hover:bg-[#514332] hover:text-white">
+
                 <span class="text-lg">▧</span>
                 Catálogo de notas
             </a>
 
         </nav>
-
         <!-- Frase decorativa -->
         <div class="my-8 flex items-center gap-3">
             <div class="h-px flex-1 bg-[#79664A]/60"></div>

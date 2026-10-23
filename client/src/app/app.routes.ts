@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { AuthShell } from './authentication/shell/auth-shell';
 import { E_ANONIMOGUARD } from './authentication/auth.guard';
+import { CategoriaShell } from './components/categoria/shell/categoria-shell';
 
 export const routes: Routes = [
     {
@@ -13,6 +14,18 @@ export const routes: Routes = [
         loadComponent: () =>
             import('./components/home/home')
                 .then(m => m.Home)
+    },
+    {
+        path: 'categorias',
+        component: CategoriaShell,
+        children: [
+            {
+                path: 'listagem',
+                loadComponent: () =>
+                    import('./components/categoria/listagem/categoria-listagem')
+                        .then(m => m.CategoriaListagem)
+            }
+        ]
     },
     {
         path: 'cadastro',
@@ -33,7 +46,6 @@ export const routes: Routes = [
         canActivateChild: [E_ANONIMOGUARD],
         children: [
             {
-
                 path: '',
                 loadComponent: () =>
                     import('./authentication/login/login')

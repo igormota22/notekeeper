@@ -1,0 +1,39 @@
+<div class="flex min-h-screen bg-[#FAF8F2] text-[#334155]">
+
+    <!-- Menu -->
+    <app-menu></app-menu>
+
+    <!-- Área principal -->
+    <div class="flex min-w-0 flex-1 flex-col">
+
+        <!-- Cabeçalho -->
+        <header class="border-b border-[#E8E0D0] bg-[#F5F0E5]">
+            <div class="flex min-h-[76px] items-center justify-between gap-4 px-5 sm:px-8 lg:px-10">
+
+                <div>
+                    <p class="text-[10px] font-medium uppercase tracking-[0.2em] text-[#8B7547]">
+                        NoteKeeper / Organização
+                    </p>
+                    <p class="mt-1 font-serif text-lg font-semibold text-[#172F25]">
+                        Seu arquivo pessoal
+                    </p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Conteúdo da rota filha -->
+        <main class="w-full flex-1 px-5 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12">
+            <div class="mx-auto w-full max-w-7xl">
+                <router-outlet></router-outlet>
+            </div>
+        </main>
+
+        <!-- Rodapé -->
+        <footer class="border-t border-[#E8E0D0] px-5 py-5 sm:px-8 lg:px-10">
+            <p class="text-center font-serif text-sm italic text-[#8B7547]">
+                Every thought has a place.
+            </p>
+        </footer>
+
+    </div>
+</div>

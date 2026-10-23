@@ -1,13 +1,13 @@
 
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 import { AuthService } from '../../authentication/auth.service';
 
 @Component({
     selector: 'app-menu',
     standalone: true,
-    imports: [RouterLink],
+    imports: [RouterLink, RouterLinkActive],
     templateUrl: './menu.html'
 })
 export class Menu implements OnInit {
