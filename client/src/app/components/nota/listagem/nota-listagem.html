@@ -372,4 +372,9 @@
 
     <!-- Modal de detalhes e modal de exclusão serão adicionados aqui -->
 
+    @if (notaParaExcluir(); as nota) {
+    <app-modal-nota-exclusao [nota]="nota" [mensagemErro]="mensagemErro()" [carregando]="carregando()"
+        (cancelar)="cancelarExclusao()" (confirmar)="excluirNota()" />
+    }
+
 </section>

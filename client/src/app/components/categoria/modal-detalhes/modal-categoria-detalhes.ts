@@ -11,7 +11,7 @@ import { CategoriaResponse } from '../categoria';
 export class ModalCategoriaDetalhes {
     private readonly categoriaService = inject(CategoriaService);
 
-    readonly categoriaId = input.required<string>();
+    readonly categoria = input.required<CategoriaResponse>();
     readonly fechar = output<void>();
 
     protected fecharModal(): void {

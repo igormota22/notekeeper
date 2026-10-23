@@ -216,9 +216,10 @@
     <app-modal-exclusao [categoria]="categoria" [carregando]="excluindo()" [mensagemErro]="mensagemErroExclusao()"
         (cancelar)="cancelarExclusao()" (confirmar)="excluirCategoria()" />
     }
-
     @if (categoriaDetalheId(); as categoriaId) {
-    <app-modal-categoria-detalhes [categoriaId]="categoriaId" (fechar)="fecharDetalhes()" />
+    @if (categorias().find(c => c.id === categoriaId); as categoria) {
+    <app-modal-categoria-detalhes [categoria]="categoria" (fechar)="fecharDetalhes()" />
+    }
     }
 
 </section>

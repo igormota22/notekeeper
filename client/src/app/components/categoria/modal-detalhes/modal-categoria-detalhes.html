@@ -31,8 +31,21 @@
             Consulte os dados registrados nesta ficha do seu arquivo pessoal.
         </p>
 
-        <div class="record-divider"></div>
+        <div class="modal-record">
+            <span class="record-label">CATEGORIA SELECIONADA</span>
 
+            <p class="record-title">
+                {{ categoria().titulo }}
+            </p>
+
+            <div class="record-divider"></div>
+
+            <div class="record-identifier">
+                <span class="record-label">IDENTIFICADOR</span>
+                <span class="record-id">{{ categoria().id }}</span>
+            </div>
+
+        </div>
 
         <!-- Rodapé -->
         <div class="modal-footer">

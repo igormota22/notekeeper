@@ -1,0 +1,108 @@
+<div class="archive-modal-backdrop" (click)="cancelar.emit()">
+
+    <section class="archive-modal" role="dialog" aria-modal="true" aria-labelledby="modal-titulo"
+        (click)="$event.stopPropagation()">
+
+        <div class="modal-topline">
+            <span>NOTEKEEPER · ARQUIVO</span>
+            <span class="modal-reference">REGISTRO</span>
+        </div>
+
+        <div class="modal-symbol" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" class="h-7 w-7">
+
+                <path d="M4 7.5h16v12H4z" />
+                <path d="M3 4.5h18v3H3z" />
+                <path d="M9 12h6" />
+            </svg>
+        </div>
+
+        <p class="modal-eyebrow">Confirmação de descarte</p>
+
+        <h2 id="modal-titulo" class="modal-title">
+            Excluir esta nota?
+        </h2>
+
+        <p class="modal-description">
+            Confira os dados da anotação antes de continuar.
+        </p>
+
+        <div class="modal-record">
+            <span class="record-label">NOTA SELECIONADA</span>
+
+            <p class="record-title">
+                {{ nota().titulo }}
+            </p>
+
+            <div class="record-divider"></div>
+
+            <span class="record-label">DESCRIÇÃO</span>
+            <p class="record-title">
+                {{ nota().descricao }}
+            </p>
+
+            <div class="record-divider"></div>
+
+
+            <div class="record-categories">
+                <span class="record-label">CATEGORIAS</span>
+                @for (categoria of nota().categorias; track categoria.id) {
+                <span class="record-title">
+                    {{ categoria.titulo }}
+                </span>
+                } @empty {
+                <span class="record-title">
+                    Sem categoria
+                </span>
+                }
+            </div>
+
+            <div class="record-divider"></div>
+
+
+            <p class="record-title">
+                <span class="record-label">STATUS</span>
+                {{ nota().status }}
+            </p>
+
+            <div class="record-divider"></div>
+
+
+
+            <div class="record-identifier">
+                <span class="record-label">IDENTIFICADOR</span>
+                <span class="record-id">{{ nota().id }}</span>
+            </div>
+        </div>
+
+        <p class="modal-warning">
+            <span aria-hidden="true">!</span>
+            Esta ação não poderá ser desfeita.
+        </p>
+
+        @if (mensagemErro()) {
+        <p class="modal-error" role="alert">
+            {{ mensagemErro() }}
+        </p>
+        }
+
+        <div class="modal-actions">
+            <button type="button" class="modal-cancel" [disabled]="carregando()" (click)="cancelar.emit()">
+                Cancelar
+            </button>
+
+            <button type="button" class="modal-confirm" [disabled]="carregando()" (click)="confirmar.emit()">
+
+                @if (carregando()) {
+                Excluindo...
+                } @else {
+                Excluir nota
+                }
+            </button>
+        </div>
+
+        <div class="modal-footer">
+            Every thought has a place.
+        </div>
+    </section>
+</div>

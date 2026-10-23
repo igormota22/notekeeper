@@ -15,11 +15,12 @@ import { NotaResponse } from '../nota';
 
 import { CategoriaService } from '../../categoria/categoria.service';
 import { CategoriaResponse } from '../../categoria/categoria';
+import { ModalNotaExclusao } from '../modal-exclusao/modal-nota-exclusao';
 
 @Component({
     selector: 'app-nota-listagem',
     standalone: true,
-    imports: [RouterLink],
+    imports: [RouterLink, ModalNotaExclusao],
     templateUrl: './nota-listagem.html',
 })
 export class NotaListagem implements OnInit {
