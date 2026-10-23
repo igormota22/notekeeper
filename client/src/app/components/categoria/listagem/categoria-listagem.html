@@ -211,82 +211,8 @@
     }
 
     @if (categoriaSelecionada(); as categoria) {
-    <div class="archive-modal-backdrop" (click)="cancelarExclusao()">
-
-        <section class="archive-modal" role="dialog" aria-modal="true" aria-labelledby="modal-titulo"
-            (click)="$event.stopPropagation()">
-
-            <div class="modal-topline">
-                <span>NOTEKEEPER · ARQUIVO</span>
-                <span class="modal-reference">REGISTRO</span>
-            </div>
-
-            <div class="modal-symbol" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" class="h-7 w-7">
-
-                    <path d="M4 7.5h16v12H4z" />
-                    <path d="M3 4.5h18v3H3z" />
-                    <path d="M9 12h6" />
-                </svg>
-            </div>
-
-            <p class="modal-eyebrow">Confirmação de descarte</p>
-
-            <h2 id="modal-titulo" class="modal-title">
-                Excluir esta categoria?
-            </h2>
-
-            <p class="modal-description">
-                Você está prestes a retirar esta ficha do seu arquivo.
-                Confira os dados antes de continuar.
-            </p>
-
-            <div class="modal-record">
-                <span class="record-label">CATEGORIA SELECIONADA</span>
-
-                <p class="record-title">{{ categoria.titulo }}</p>
-
-                <div class="record-divider"></div>
-
-                <div class="flex items-center justify-between gap-3">
-                    <span class="record-label">IDENTIFICADOR</span>
-                    <span class="record-id">{{ categoria.id }}</span>
-                </div>
-            </div>
-
-            <p class="modal-warning">
-                <span aria-hidden="true">!</span>
-                Esta ação não poderá ser desfeita.
-            </p>
-
-            @if (mensagemErroExclusao()) {
-            <p class="modal-error" role="alert">
-                {{ mensagemErroExclusao() }}
-            </p>
-            }
-
-            <div class="modal-actions">
-                <button type="button" class="modal-cancel" [disabled]="excluindo()" (click)="cancelarExclusao()">
-                    Cancelar
-                </button>
-
-                <button type="button" class="modal-confirm" [disabled]="excluindo()" (click)="excluirCategoria()">
-
-                    @if (excluindo()) {
-                    Excluindo...
-                    } @else {
-                    <span aria-hidden="true">×</span>
-                    Excluir categoria
-                    }
-                </button>
-            </div>
-
-            <div class="modal-footer">
-                Every thought has a place.
-            </div>
-        </section>
-    </div>
+    <app-modal-exclusao [categoria]="categoria" [carregando]="excluindo()" [mensagemErro]="mensagemErroExclusao()"
+        (cancelar)="cancelarExclusao()" (confirmar)="excluirCategoria()" />
     }
-
 
 </section>

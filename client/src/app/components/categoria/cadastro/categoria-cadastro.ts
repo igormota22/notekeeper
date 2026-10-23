@@ -1,8 +1,8 @@
 import { Component, inject, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { CategoriaService } from "../categoria.service";
-import { form, required, submit } from "@angular/forms/signals";
-import { firstValueFrom } from "rxjs";
+import { form, required, minLength, submit, maxLength } from "@angular/forms/signals";
+import { firstValueFrom, min } from "rxjs";
 
 interface CategoriaForm {
     titulo: string;
@@ -36,8 +36,16 @@ export class CategoriaCadastro {
         this.modelo,
         (caminho) => {
             required(caminho.titulo, {
-                message: 'Informe o titulo da categoria.'
+                message: 'Informe o título da categoria.'
             });
+
+            minLength(caminho.titulo, 2, {
+                message: 'O título deve ter no mínimo 2 caracteres.'
+            });
+
+            maxLength(caminho.titulo, 100, {
+                message: 'O título deve ter no maximo 100 caracteres.'
+            })
         }
     );
 
@@ -66,7 +74,7 @@ export class CategoriaCadastro {
 
 
     cancelar(): void {
-        void this.router.navigateByUrl('/categoria/listagem');
+        void this.router.navigateByUrl('/categorias/listagem');
     }
 }
 
