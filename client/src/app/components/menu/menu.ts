@@ -50,7 +50,7 @@ export class Menu implements OnInit {
             },
             error: () => {
                 // Mesmo se a API falhar, encerra a sessão local.
-                void this.router.navigateByUrl('/login');
+                void this.router.navigateByUrl('/home');
             }
         });
     }

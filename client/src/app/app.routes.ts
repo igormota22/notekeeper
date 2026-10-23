@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { AuthShell } from './authentication/shell/auth-shell';
+import { E_ANONIMOGUARD } from './authentication/auth.guard';
 
 export const routes: Routes = [
     {
@@ -28,6 +29,8 @@ export const routes: Routes = [
     {
         path: 'login',
         component: AuthShell,
+        canActivate: [E_ANONIMOGUARD],
+        canActivateChild: [E_ANONIMOGUARD],
         children: [
             {
 

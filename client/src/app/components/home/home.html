@@ -23,7 +23,7 @@
             </a>
 
             <nav class="flex items-center gap-3 sm:gap-6">
-                <a href="#sobre" class="hidden text-sm text-[#6E5A42] transition hover:text-[#263A30] sm:block">
+                <a href="/home#sobre" class="hidden text-sm text-[#6E5A42] transition hover:text-[#263A30] sm:block">
                     Sobre
                 </a>
                 <a routerLink="/login" class="px-3 py-2 text-sm text-[#5B4834] transition hover:text-[#263A30] sm:px-4">
@@ -85,51 +85,89 @@
                     </div>
                 </div>
 
-                <!-- Livros decorativos -->
+
+                <!-- Fichas de arquivo decorativas -->
                 <div class="relative mx-auto w-full max-w-md py-8">
                     <div class="absolute inset-x-6 bottom-4 top-0 border border-[#92754C]/40"></div>
 
-                    <div class="relative flex h-80 items-end justify-center gap-2 px-5 sm:h-96">
-                        <div class="h-48 w-12 border-l-4 border-[#B48A58] bg-[#743F35] shadow-xl">
-                            <div class="mx-auto mt-5 h-px w-7 bg-[#D8BB82]"></div>
-                            <div class="mx-auto mt-4 h-16 w-px bg-[#D8BB82]"></div>
-                            <div class="mx-auto mt-4 h-px w-7 bg-[#D8BB82]"></div>
-                        </div>
-
-                        <div class="h-64 w-14 border-x-2 border-[#C9AA72] bg-[#B99A63] shadow-xl">
-                            <div class="mx-auto mt-5 h-px w-8 bg-[#E8D8AF]"></div>
+                    <div class="relative flex h-80 items-center justify-center px-5 sm:h-96">
+                        <!-- Ficha traseira -->
+                        <div
+                            class="absolute left-10 top-12 h-52 w-44 rotate-[-12deg] border border-[#8B704B] bg-[#B99A63] p-3 shadow-xl sm:left-16">
+                            <div class="flex items-center justify-between border-b border-[#8B704B]/60 pb-2">
+                                <span class="font-serif text-xs tracking-widest text-[#59432F]">ARQUIVO Nº 01</span>
+                                <span class="text-xs text-[#59432F]">✦</span>
+                            </div>
+                            <div class="mt-4 space-y-2">
+                                <div class="h-px w-full bg-[#8B704B]/60"></div>
+                                <div class="h-px w-4/5 bg-[#8B704B]/60"></div>
+                                <div class="h-px w-5/6 bg-[#8B704B]/60"></div>
+                                <div class="h-px w-3/5 bg-[#8B704B]/60"></div>
+                            </div>
                             <div
-                                class="mx-auto mt-5 flex h-24 items-center justify-center border-y border-[#E8D8AF] font-serif text-2xl text-[#F2E5C8]">
-                                N
+                                class="mt-5 border-t border-[#8B704B]/60 pt-2 text-right font-serif text-[10px] italic text-[#705438]">
+                                Anotações pessoais
                             </div>
-                            <div class="mx-auto mt-5 h-px w-8 bg-[#E8D8AF]"></div>
                         </div>
 
-                        <div class="h-72 w-14 border-x-2 border-[#789078] bg-[#354E3D] shadow-xl">
-                            <div class="mx-auto mt-5 h-px w-8 bg-[#D8BB82]"></div>
+                        <!-- Ficha verde -->
+                        <div
+                            class="absolute right-8 top-16 h-56 w-40 rotate-[10deg] border border-[#789078] bg-[#354E3D] p-3 shadow-xl sm:right-14">
                             <div
-                                class="mx-auto mt-5 flex h-24 items-center justify-center border-y border-[#D8BB82] text-xl text-[#D8BB82]">
-                                ✦
+                                class="border-b border-[#D8BB82]/60 pb-2 text-center font-serif text-[10px] tracking-[0.2em] text-[#D8BB82]">
+                                NOTAS
                             </div>
-                            <div class="mx-auto mt-5 h-px w-8 bg-[#D8BB82]"></div>
+                            <div class="mt-5 flex h-20 items-center justify-center border-y border-[#D8BB82]/60">
+                                <span class="font-serif text-4xl text-[#D8BB82]">✦</span>
+                            </div>
+                            <div class="mt-4 space-y-2">
+                                <div class="h-px w-full bg-[#D8BB82]/50"></div>
+                                <div class="h-px w-4/5 bg-[#D8BB82]/50"></div>
+                                <div class="h-px w-3/5 bg-[#D8BB82]/50"></div>
+                            </div>
                         </div>
 
-                        <div class="h-56 w-12 border-x-2 border-[#B49A79] bg-[#D6C4A3] shadow-xl">
-                            <div class="mx-auto mt-5 h-px w-7 bg-[#8B704B]"></div>
-                            <div class="mx-auto mt-5 flex h-20 items-center justify-center border-y border-[#A78A61] font-serif text-xs text-[#705438]"
-                                style="writing-mode: vertical-rl;">
-                                CONHECIMENTO
+                        <!-- Ficha principal -->
+                        <div
+                            class="relative z-10 h-64 w-52 border border-[#B49A79] bg-[#F0E4C9] p-4 shadow-2xl sm:h-72 sm:w-56">
+                            <!-- Aba da ficha -->
+                            <div
+                                class="absolute -top-4 left-5 h-4 w-20 border border-b-0 border-[#B49A79] bg-[#F0E4C9]">
                             </div>
-                            <div class="mx-auto mt-5 h-px w-7 bg-[#8B704B]"></div>
+
+                            <div class="flex items-center justify-between border-b-2 border-[#B49A79] pb-3">
+                                <span class="font-serif text-xs tracking-[0.15em] text-[#705438]">NOTEKEEPER</span>
+                                <span class="font-serif text-xs text-[#8B704B]">Nº 001</span>
+                            </div>
+
+                            <div class="mt-5 border-l-2 border-[#B48A58] pl-3">
+                                <p class="font-serif text-lg text-[#354E3D]">Ideias &amp; pensamentos</p>
+                                <p class="mt-1 text-[10px] uppercase tracking-widest text-[#8B704B]">
+                                    Arquivo pessoal
+                                </p>
+                            </div>
+
+                            <div class="mt-5 space-y-3">
+                                <div class="h-px w-full bg-[#B49A79]/70"></div>
+                                <div class="h-px w-5/6 bg-[#B49A79]/70"></div>
+                                <div class="h-px w-full bg-[#B49A79]/70"></div>
+                                <div class="h-px w-2/3 bg-[#B49A79]/70"></div>
+                            </div>
+
+                            <div
+                                class="absolute bottom-4 left-4 right-4 flex items-center justify-between border-t border-[#B49A79]/70 pt-2">
+                                <span class="font-serif text-[10px] italic text-[#705438]">Preservar conhecimento</span>
+                                <span class="text-sm text-[#B48A58]">✦</span>
+                            </div>
                         </div>
 
-                        <div class="h-44 w-11 border-l-4 border-[#C5A66F] bg-[#59432F] shadow-xl">
-                            <div class="mx-auto mt-5 h-px w-6 bg-[#D8BB82]"></div>
-                            <div class="mx-auto mt-4 h-12 w-px bg-[#D8BB82]"></div>
-                            <div class="mx-auto mt-4 h-px w-6 bg-[#D8BB82]"></div>
+                        <!-- Clipe decorativo -->
+                        <div
+                            class="absolute bottom-10 right-12 z-20 h-12 w-5 rotate-[25deg] rounded-full border-2 border-[#B89A5A] sm:right-20">
                         </div>
                     </div>
 
+                    <!-- Base de madeira -->
                     <div class="relative mx-3 h-5 border-y-2 border-[#BA925D] bg-[#6B4B30] shadow-xl"></div>
                     <div class="mx-3 h-4 bg-[#3D2B20]"></div>
 
