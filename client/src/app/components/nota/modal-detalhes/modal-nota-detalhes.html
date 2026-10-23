@@ -1,0 +1,91 @@
+<div class="archive-modal-backdrop" (click)="fechar.emit()">
+
+    <section class="archive-modal" role="dialog" aria-modal="true" aria-labelledby="modal-titulo"
+        (click)="$event.stopPropagation()">
+
+        <div class="modal-topline">
+            <span>NOTEKEEPER · ARQUIVO</span>
+            <span class="modal-reference">CONSULTA</span>
+        </div>
+
+        <div class="modal-symbol" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" class="h-7 w-7">
+
+                <path d="M4 4.5h16v15H4z" />
+                <path d="M8 8h8" />
+                <path d="M8 12h8" />
+                <path d="M8 16h5" />
+            </svg>
+        </div>
+
+        <p class="modal-eyebrow">Registro arquivado</p>
+
+        <h2 id="modal-titulo" class="modal-title">
+            Detalhes da nota
+        </h2>
+
+        <p class="modal-description">
+            Consulte as informações completas desta anotação.
+        </p>
+
+        <div class="modal-record">
+
+            <span class="record-label">TÍTULO DA NOTA</span>
+
+            <p class="record-title">
+                {{ nota().titulo }}
+            </p>
+
+            <div class="record-divider"></div>
+
+            <span class="record-label">DESCRIÇÃO</span>
+
+            <p class="record-title record-description">
+                {{ nota().descricao || 'Nenhuma descrição informada.' }}
+            </p>
+
+            <div class="record-divider"></div>
+
+            <span class="record-label">CATEGORIAS</span>
+
+            <div class="record-categories">
+                @for (categoria of nota().categorias; track categoria.id) {
+                <span class="record-title">
+                    {{ categoria.titulo }}
+                </span>
+                } @empty {
+                <span class="record-title">
+                    Nenhuma categoria associada.
+                </span>
+                }
+            </div>
+
+            <div class="record-divider"></div>
+
+            <span class="record-label">STATUS</span>
+
+            <p class="record-title">
+                {{ nota().status }}
+            </p>
+
+            <div class="record-divider"></div>
+
+            <div class="record-identifier">
+                <span class="record-label">IDENTIFICADOR</span>
+                <span class="record-id">{{ nota().id }}</span>
+            </div>
+
+        </div>
+
+        <div class="modal-actions">
+            <button type="button" class="modal-cancel" (click)="fechar.emit()">
+                Fechar consulta
+            </button>
+        </div>
+
+        <div class="modal-footer">
+            Every thought has a place.
+        </div>
+
+    </section>
+</div>
