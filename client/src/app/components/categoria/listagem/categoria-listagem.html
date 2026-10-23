@@ -191,9 +191,11 @@
                     </button>
 
                     <!-- Puxador decorativo -->
-                    <div class="drawer-handle" aria-hidden="true">
-                        <span></span>
-                    </div>
+                    <button type="button" class="drawer-handle" (click)="abrirDetalhes(categoria)"
+                        [attr.aria-label]="'Ver detalhes da categoria ' + categoria.titulo" title="Ver detalhes">
+
+                        <span class="drawer-handle-inner" aria-hidden="true"></span>
+                    </button>
                 </div>
             </div>
 
@@ -213,6 +215,10 @@
     @if (categoriaSelecionada(); as categoria) {
     <app-modal-exclusao [categoria]="categoria" [carregando]="excluindo()" [mensagemErro]="mensagemErroExclusao()"
         (cancelar)="cancelarExclusao()" (confirmar)="excluirCategoria()" />
+    }
+
+    @if (categoriaDetalheId(); as categoriaId) {
+    <app-modal-categoria-detalhes [categoriaId]="categoriaId" (fechar)="fecharDetalhes()" />
     }
 
 </section>

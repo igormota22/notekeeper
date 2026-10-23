@@ -1097,3 +1097,22 @@ body {
         transition: none;
     }
 }
+
+.drawer-handle {
+    cursor: pointer;
+    transition: transform 180ms ease, filter 180ms ease;
+
+    &:hover {
+        transform: scale(1.08);
+        filter: brightness(1.15);
+    }
+
+    &:focus-visible {
+        outline: 2px solid #B89A5A;
+        outline-offset: 4px;
+    }
+
+    &:active {
+        transform: scale(0.96);
+    }
+}

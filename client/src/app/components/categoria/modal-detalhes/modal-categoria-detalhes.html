@@ -1,0 +1,116 @@
+<!-- Fundo do modal -->
+<div class="archive-modal-backdrop" (click)="fecharModal()">
+
+    <!-- Modal de detalhes -->
+    <section class="archive-modal" role="dialog" aria-modal="true" aria-labelledby="modal-titulo"
+        (click)="$event.stopPropagation()">
+
+        <!-- Cabeçalho -->
+        <div class="modal-topline">
+            <span>NOTEKEEPER / ARQUIVO PESSOAL</span>
+
+            <button type="button" class="modal-close" aria-label="Fechar detalhes" (click)="fecharModal()">
+                ×
+            </button>
+        </div>
+
+        <!-- Símbolo -->
+        <div class="modal-symbol" aria-hidden="true">
+            §
+        </div>
+
+        <p class="modal-eyebrow">
+            Departamento de catalogação
+        </p>
+
+        <h2 id="modal-titulo" class="modal-title">
+            Detalhes da categoria
+        </h2>
+
+        <p class="modal-description">
+            Consulte os dados registrados nesta ficha do seu arquivo pessoal.
+        </p>
+
+        <div class="record-divider"></div>
+
+        <!-- Carregamento -->
+        @if (carregando()) {
+        <div class="py-10 text-center">
+            <p class="font-serif text-lg text-[#493527]">
+                Consultando os registros...
+            </p>
+
+            <p class="mt-2 text-sm text-[#756657]">
+                Aguarde enquanto carregamos os detalhes.
+            </p>
+        </div>
+        }
+
+        <!-- Erro -->
+        @else if (mensagemErro()) {
+        <div class="modal-error" role="alert">
+
+            <span aria-hidden="true">!</span>
+
+            <p>{{ mensagemErro() }}</p>
+        </div>
+        }
+
+        <!-- Dados da categoria -->
+        @else if (categoria(); as dados) {
+        <div class="modal-record">
+
+            <div class="record-label">
+                <span>01</span>
+                <span>IDENTIFICAÇÃO DO REGISTRO</span>
+            </div>
+
+            <div class="record-content">
+                <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#8B704E]">
+                    Nome da categoria
+                </p>
+
+                <h3 class="record-title">
+                    {{ dados.titulo }}
+                </h3>
+            </div>
+
+            <div class="record-divider"></div>
+
+            <div class="record-content">
+                <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#8B704E]">
+                    Identificador
+                </p>
+
+                <p class="record-id break-all">
+                    {{ dados.id }}
+                </p>
+            </div>
+
+            <div class="record-footer">
+                <span>NOTEKEEPER ARCHIVE</span>
+
+                <span class="preview-seal" aria-hidden="true">
+                    NK
+                </span>
+            </div>
+        </div>
+        }
+
+        <!-- Rodapé -->
+        <div class="modal-footer">
+            <p>
+                Todo assunto merece seu próprio lugar.
+            </p>
+        </div>
+
+        <!-- Ações -->
+        <div class="modal-actions">
+            <button type="button" class="modal-cancel" (click)="fecharModal()">
+                <span aria-hidden="true">←</span>
+                Voltar ao arquivo
+            </button>
+        </div>
+
+    </section>
+</div>

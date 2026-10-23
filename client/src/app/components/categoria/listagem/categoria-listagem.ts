@@ -4,9 +4,10 @@ import { CategoriaResponse } from "../categoria";
 import { RouterLink } from "@angular/router";
 import { firstValueFrom } from "rxjs";
 import { ModalExclusao } from "../modal-exclusao/modal-exclusao";
+import { ModalCategoriaDetalhes } from "../modal-detalhes/modal-categoria-detalhes";
 
 @Component({
-    imports: [ModalExclusao, RouterLink],
+    imports: [ModalCategoriaDetalhes, ModalExclusao, RouterLink],
     selector: 'app-categoria-listagem',
     templateUrl: './categoria-listagem.html'
 })
@@ -31,6 +32,8 @@ export class CategoriaListagem {
 
     protected readonly excluindo = signal(false);
     protected readonly mensagemErroExclusao = signal<string | null>(null);
+    protected readonly categoriaDetalheId = signal<string | null>(null);
+
 
     //========================================
     // CICLO DE VIDA
@@ -100,5 +103,12 @@ export class CategoriaListagem {
         } finally {
             this.excluindo.set(false);
         }
+    }
+    protected abrirDetalhes(categoria: CategoriaResponse): void {
+        this.categoriaDetalheId.set(categoria.id);
+    }
+
+    protected fecharDetalhes(): void {
+        this.categoriaDetalheId.set(null);
     }
 }
