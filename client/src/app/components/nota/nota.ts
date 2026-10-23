@@ -11,10 +11,18 @@ export interface AtualizarNotaRequest {
     categoriaIds: string[] | null;
 }
 
+
 export interface NotaResponse {
     id: string;
     titulo: string;
     descricao: string;
     status: string;
-    categoriaIds: string[];
+    categorias: CategoriaNotaResponse[];
+    criadoEm: string;
+    atualizadoEm: string;
+}
+
+export interface CategoriaNotaResponse {
+    id: string;
+    titulo: string;
 }

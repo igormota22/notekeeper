@@ -1858,3 +1858,952 @@ body {
         transform: none;
     }
 }
+
+
+/* ==========================================================
+   NOTEKEEPER — FICHA DE CATALOGAÇÃO
+   Formulário de cadastro de anotações
+   ========================================================== */
+
+.note-catalog-page {
+    --catalog-paper: #fffcf5;
+    --catalog-background: #faf8f2;
+    --catalog-ink: #4a382a;
+    --catalog-muted: #756657;
+    --catalog-gold: #b89a5a;
+    --catalog-border: #d8c9a8;
+    --catalog-line: #e9dfcb;
+
+    min-height: 100vh;
+    padding: 0 28px 32px;
+    color: var(--catalog-ink);
+    background:
+        radial-gradient(ellipse at 8% 5%, rgb(184 154 90 / 8%), transparent 28%),
+        var(--catalog-background);
+    font-family: "DM Sans", sans-serif;
+}
+
+.note-catalog-page *,
+.note-catalog-page *::before,
+.note-catalog-page *::after {
+    box-sizing: border-box;
+}
+
+/* Cabeçalho */
+
+.note-catalog-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 25px 0;
+    border-bottom: 1px solid var(--catalog-border);
+}
+
+.note-catalog-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--catalog-muted);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 180ms ease;
+}
+
+.note-catalog-back span {
+    font-size: 21px;
+    line-height: 1;
+    transition: transform 180ms ease;
+}
+
+.note-catalog-back:hover {
+    color: var(--catalog-ink);
+}
+
+.note-catalog-back:hover span {
+    transform: translateX(-3px);
+}
+
+.note-catalog-brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.note-catalog-brand-icon {
+    display: grid;
+    width: 43px;
+    height: 43px;
+    place-items: center;
+    border: 1px solid var(--catalog-gold);
+    color: var(--catalog-ink);
+    background: var(--catalog-paper);
+    font-family: "Playfair Display", serif;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.note-catalog-brand>div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.note-catalog-brand-name {
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.note-catalog-brand-subtitle {
+    color: var(--catalog-muted);
+    font-size: 9px;
+    letter-spacing: 1.8px;
+}
+
+/* Introdução editorial */
+
+.note-catalog-main {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.note-catalog-intro {
+    max-width: 700px;
+    padding: 48px 0 31px;
+}
+
+.note-catalog-eyebrow,
+.note-catalog-overline,
+.note-catalog-small-label {
+    color: #8b7547;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.note-catalog-intro h1 {
+    margin: 13px 0 10px;
+    color: var(--catalog-ink);
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: clamp(36px, 5vw, 52px);
+    font-weight: 500;
+    letter-spacing: -1.8px;
+    line-height: 1.15;
+}
+
+.note-catalog-intro h1>span {
+    color: var(--catalog-gold);
+}
+
+.note-catalog-intro>p {
+    max-width: 570px;
+    margin: 0;
+    color: var(--catalog-muted);
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+/* Ficha principal */
+
+.note-catalog-card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--catalog-border);
+    background:
+        linear-gradient(90deg, rgb(184 154 90 / 2%), transparent 15%),
+        var(--catalog-paper);
+    box-shadow:
+        0 3px 8px rgb(74 56 42 / 3%),
+        0 18px 48px rgb(74 56 42 / 5%);
+}
+
+.note-catalog-card::before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 4px;
+    background: var(--catalog-gold);
+    content: "";
+}
+
+.note-catalog-card-top {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 30px 34px;
+}
+
+.note-catalog-card-symbol {
+    display: grid;
+    flex: 0 0 51px;
+    width: 51px;
+    height: 51px;
+    place-items: center;
+    border: 1px solid var(--catalog-border);
+    color: #8b7547;
+    background: #f8f1e2;
+    font-size: 25px;
+}
+
+.note-catalog-card-heading {
+    min-width: 0;
+    flex: 1;
+}
+
+.note-catalog-card-heading h2 {
+    margin: 6px 0;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 23px;
+    font-weight: 500;
+}
+
+.note-catalog-card-heading>p {
+    margin: 0;
+    color: var(--catalog-muted);
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.note-catalog-stamp {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 11px 15px;
+    border: 1px solid #c8b487;
+    color: #8b7547;
+    transform: rotate(2deg);
+}
+
+.note-catalog-stamp span {
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.note-catalog-stamp strong {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+
+.note-catalog-rule {
+    height: 1px;
+    margin: 0 34px;
+    background: var(--catalog-line);
+}
+
+/* Formulário */
+
+.note-catalog-form {
+    padding: 30px 34px 34px;
+}
+
+.note-catalog-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 27px;
+    padding: 14px 16px;
+    border: 1px solid #e5b9ae;
+    color: #853d32;
+    background: #fff4f0;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.note-catalog-alert>span {
+    display: grid;
+    flex: 0 0 21px;
+    width: 21px;
+    height: 21px;
+    place-items: center;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.note-catalog-section-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 21px;
+}
+
+.note-catalog-section-label>span {
+    display: grid;
+    flex: 0 0 29px;
+    width: 29px;
+    height: 29px;
+    place-items: center;
+    border: 1px solid var(--catalog-border);
+    color: #8b7547;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 12px;
+}
+
+.note-catalog-section-label h3 {
+    margin: 0;
+    color: var(--catalog-ink);
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 19px;
+    font-weight: 500;
+}
+
+.note-catalog-section-label>div {
+    height: 1px;
+    flex: 1;
+    background: var(--catalog-line);
+}
+
+.note-catalog-field {
+    margin-bottom: 30px;
+}
+
+.note-catalog-field>label,
+.note-catalog-description-heading>label,
+.note-catalog-status-panel>label {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--catalog-ink);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.note-catalog-field input[type="text"] {
+    display: block;
+    width: 100%;
+    min-height: 51px;
+    padding: 13px 15px;
+    border: 1px solid var(--catalog-border);
+    border-radius: 0;
+    outline: none;
+    color: var(--catalog-ink);
+    background: #fffdf8;
+    font-family: inherit;
+    font-size: 14px;
+    transition:
+        border-color 180ms ease,
+        box-shadow 180ms ease,
+        background 180ms ease;
+}
+
+.note-catalog-field input[type="text"]::placeholder,
+.note-catalog-paper textarea::placeholder {
+    color: #aa9b87;
+    opacity: 1;
+}
+
+.note-catalog-field input[type="text"]:focus,
+.note-catalog-paper:focus-within {
+    border-color: var(--catalog-gold);
+    box-shadow: 0 0 0 3px rgb(184 154 90 / 13%);
+}
+
+.note-catalog-field-hint {
+    display: block;
+    margin-top: 9px;
+    color: #8a7b69;
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+.note-catalog-field-error {
+    display: block;
+    margin-top: 8px;
+    color: #a13d32;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* Área de escrita */
+
+.note-catalog-writing-label {
+    margin-top: 8px;
+}
+
+.note-catalog-description-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.note-catalog-description-heading>label {
+    margin-bottom: 10px;
+}
+
+.note-catalog-description-heading>span {
+    padding-bottom: 10px;
+    color: #98866d;
+    font-size: 11px;
+    font-variant-numeric: tabular-nums;
+}
+
+.note-catalog-paper {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    min-height: 245px;
+    border: 1px solid var(--catalog-border);
+    background-color: #fffdf8;
+    transition:
+        border-color 180ms ease,
+        box-shadow 180ms ease;
+}
+
+.note-catalog-paper-margin {
+    z-index: 1;
+    flex: 0 0 43px;
+    border-right: 1px solid #e7c5b7;
+    background: rgb(248 241 226 / 65%);
+}
+
+.note-catalog-paper textarea {
+    display: block;
+    width: 100%;
+    min-height: 245px;
+    padding: 13px 17px 18px;
+    resize: vertical;
+    border: 0;
+    border-radius: 0;
+    outline: none;
+    color: var(--catalog-ink);
+    background-color: transparent;
+    background-image: repeating-linear-gradient(to bottom,
+            transparent 0,
+            transparent 31px,
+            #e9dfcb 32px);
+    background-position: 0 9px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 13px;
+    line-height: 32px;
+}
+
+.note-catalog-paper textarea:focus {
+    outline: none;
+}
+
+/* Classificação */
+
+.note-catalog-classification-label {
+    margin-top: 36px;
+}
+
+.note-catalog-classification {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: 20px;
+    align-items: stretch;
+}
+
+.note-catalog-status-panel,
+.note-catalog-categories-panel {
+    min-width: 0;
+    padding: 23px;
+    border: 1px solid var(--catalog-border);
+}
+
+.note-catalog-status-panel {
+    background:
+        linear-gradient(145deg, rgb(184 154 90 / 8%), transparent 75%),
+        #fbf7ed;
+}
+
+.note-catalog-categories-panel {
+    background: #fffdf8;
+}
+
+.note-catalog-small-label {
+    display: block;
+    margin-bottom: 17px;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    line-height: 1.6;
+}
+
+.note-catalog-status-panel>label {
+    margin-bottom: 11px;
+}
+
+.note-catalog-status-panel select {
+    display: block;
+    width: 100%;
+    min-height: 45px;
+    padding: 10px 32px 10px 12px;
+    border: 1px solid var(--catalog-border);
+    border-radius: 0;
+    outline: none;
+    color: var(--catalog-ink);
+    background-color: var(--catalog-paper);
+    font-family: inherit;
+    font-size: 12px;
+}
+
+.note-catalog-status-panel select:focus {
+    border-color: var(--catalog-gold);
+    box-shadow: 0 0 0 3px rgb(184 154 90 / 13%);
+}
+
+.note-catalog-status-panel>p {
+    margin: 13px 0 0;
+    color: var(--catalog-muted);
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+.note-catalog-categories-panel h4 {
+    margin: -7px 0 7px;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 21px;
+    font-weight: 500;
+}
+
+.note-catalog-category-description {
+    margin: 0 0 17px;
+    color: var(--catalog-muted);
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+.note-catalog-category-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.note-catalog-category-option {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 100%;
+    min-height: 36px;
+    padding: 7px 11px;
+    border: 1px solid var(--catalog-border);
+    color: var(--catalog-muted);
+    background: #fffdf8;
+    cursor: pointer;
+    transition:
+        color 180ms ease,
+        border-color 180ms ease,
+        background 180ms ease;
+}
+
+.note-catalog-category-option:hover {
+    border-color: var(--catalog-gold);
+    color: var(--catalog-ink);
+}
+
+.note-catalog-category-option.is-selected {
+    border-color: #b89a5a;
+    color: #5d482c;
+    background: #f5edda;
+}
+
+.note-catalog-category-option input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    opacity: 0;
+}
+
+.note-catalog-category-check {
+    display: grid;
+    flex: 0 0 15px;
+    width: 15px;
+    height: 15px;
+    place-items: center;
+    border: 1px solid #c9b995;
+    background: #fffdf8;
+}
+
+.note-catalog-category-option.is-selected .note-catalog-category-check {
+    border-color: #9d8045;
+    background: #9d8045;
+}
+
+.note-catalog-category-option.is-selected .note-catalog-category-check::after {
+    width: 7px;
+    height: 4px;
+    border-bottom: 1.5px solid white;
+    border-left: 1.5px solid white;
+    content: "";
+    transform: translateY(-1px) rotate(-45deg);
+}
+
+.note-catalog-category-option:focus-within {
+    outline: 2px solid var(--catalog-gold);
+    outline-offset: 3px;
+}
+
+.note-catalog-category-name {
+    overflow-wrap: anywhere;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.note-catalog-no-categories {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 17px;
+    border: 1px dashed var(--catalog-border);
+    background: #fbf7ed;
+}
+
+.note-catalog-no-categories>span {
+    color: var(--catalog-gold);
+    font-size: 23px;
+}
+
+.note-catalog-no-categories p {
+    margin: 8px 0;
+    color: var(--catalog-muted);
+    font-size: 12px;
+}
+
+.note-catalog-no-categories a {
+    color: #8b7547;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* Ações e rodapé */
+
+.note-catalog-bottom-rule {
+    height: 1px;
+    margin: 32px 0 23px;
+    background: var(--catalog-line);
+}
+
+.note-catalog-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.note-catalog-actions>p {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin: 0;
+    color: var(--catalog-muted);
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 12px;
+    font-style: italic;
+    line-height: 1.7;
+}
+
+.note-catalog-actions>p span {
+    color: var(--catalog-gold);
+    font-style: normal;
+}
+
+.note-catalog-buttons {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 10px;
+}
+
+.note-catalog-button-cancel,
+.note-catalog-button-save {
+    display: inline-flex;
+    min-height: 45px;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 0 19px;
+    border: 1px solid transparent;
+    border-radius: 0;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        color 180ms ease,
+        background 180ms ease,
+        border-color 180ms ease,
+        transform 180ms ease;
+}
+
+.note-catalog-button-cancel {
+    border-color: var(--catalog-border);
+    color: var(--catalog-muted);
+    background: transparent;
+}
+
+.note-catalog-button-cancel:hover {
+    border-color: #a8946b;
+    color: var(--catalog-ink);
+    background: #f8f1e2;
+}
+
+.note-catalog-button-save {
+    border-color: #4a382a;
+    color: #fffdf8;
+    background: #4a382a;
+}
+
+.note-catalog-button-save>span {
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.note-catalog-button-save:hover {
+    border-color: #72583e;
+    background: #72583e;
+    transform: translateY(-1px);
+}
+
+.note-catalog-button-cancel:focus-visible,
+.note-catalog-button-save:focus-visible {
+    outline: 3px solid rgb(184 154 90 / 55%);
+    outline-offset: 3px;
+}
+
+.note-catalog-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 25px 0 0;
+    color: #8a7b69;
+}
+
+.note-catalog-footer span:first-child,
+.note-catalog-footer span:last-child {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.note-catalog-footer span:nth-child(2) {
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 12px;
+    font-style: italic;
+    text-align: center;
+}
+
+/* Responsividade */
+
+@media (max-width: 760px) {
+    .note-catalog-page {
+        padding: 0 18px 25px;
+    }
+
+    .note-catalog-header {
+        padding: 19px 0;
+    }
+
+    .note-catalog-brand-icon {
+        width: 37px;
+        height: 37px;
+    }
+
+    .note-catalog-intro {
+        padding: 36px 0 25px;
+    }
+
+    .note-catalog-intro h1 {
+        font-size: clamp(34px, 8vw, 44px);
+    }
+
+    .note-catalog-card-top {
+        flex-wrap: wrap;
+        padding: 24px;
+    }
+
+    .note-catalog-card-symbol {
+        flex-basis: 43px;
+        width: 43px;
+        height: 43px;
+    }
+
+    .note-catalog-card-heading {
+        flex-basis: calc(100% - 65px);
+    }
+
+    .note-catalog-card-heading h2 {
+        font-size: 20px;
+    }
+
+    .note-catalog-stamp {
+        margin-left: 61px;
+        padding: 7px 11px;
+    }
+
+    .note-catalog-rule {
+        margin: 0 24px;
+    }
+
+    .note-catalog-form {
+        padding: 26px 24px;
+    }
+
+    .note-catalog-classification {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .note-catalog-status-panel,
+    .note-catalog-categories-panel {
+        padding: 20px;
+    }
+
+    .note-catalog-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .note-catalog-buttons {
+        width: 100%;
+    }
+
+    .note-catalog-button-cancel,
+    .note-catalog-button-save {
+        flex: 1;
+    }
+}
+
+@media (max-width: 480px) {
+    .note-catalog-page {
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+
+    .note-catalog-header {
+        gap: 10px;
+    }
+
+    .note-catalog-back {
+        gap: 5px;
+        font-size: 11px;
+    }
+
+    .note-catalog-brand {
+        gap: 7px;
+    }
+
+    .note-catalog-brand-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 17px;
+    }
+
+    .note-catalog-brand-name {
+        font-size: 10px;
+        letter-spacing: 1.3px;
+    }
+
+    .note-catalog-brand-subtitle {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+
+    .note-catalog-eyebrow {
+        font-size: 9px;
+        letter-spacing: 1.4px;
+    }
+
+    .note-catalog-intro>p {
+        font-size: 13px;
+    }
+
+    .note-catalog-card-top {
+        gap: 12px;
+        padding: 20px 17px;
+    }
+
+    .note-catalog-card-heading h2 {
+        font-size: 18px;
+    }
+
+    .note-catalog-card-heading>p {
+        font-size: 11px;
+    }
+
+    .note-catalog-stamp {
+        margin-left: 55px;
+    }
+
+    .note-catalog-rule {
+        margin: 0 17px;
+    }
+
+    .note-catalog-form {
+        padding: 23px 17px;
+    }
+
+    .note-catalog-section-label {
+        gap: 9px;
+    }
+
+    .note-catalog-section-label h3 {
+        font-size: 16px;
+    }
+
+    .note-catalog-section-label>span {
+        flex-basis: 26px;
+        width: 26px;
+        height: 26px;
+    }
+
+    .note-catalog-paper-margin {
+        flex-basis: 29px;
+    }
+
+    .note-catalog-paper textarea {
+        padding-right: 10px;
+        padding-left: 11px;
+        font-size: 12px;
+    }
+
+    .note-catalog-status-panel,
+    .note-catalog-categories-panel {
+        padding: 17px;
+    }
+
+    .note-catalog-buttons {
+        flex-direction: column-reverse;
+    }
+
+    .note-catalog-button-cancel,
+    .note-catalog-button-save {
+        width: 100%;
+        flex: auto;
+    }
+
+    .note-catalog-footer {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .note-catalog-footer span:nth-child(2) {
+        order: 3;
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .note-catalog-page *,
+    .note-catalog-page *::before,
+    .note-catalog-page *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}

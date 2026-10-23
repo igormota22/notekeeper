@@ -66,7 +66,9 @@ export class NotaListagem implements OnInit {
 
             const correspondeCategoria =
                 categoriaId === 'todas' ||
-                (nota.categoriaIds ?? []).includes(categoriaId);
+                (nota.categorias ?? []).some(
+                    categoria => categoria.id === categoriaId
+                );
 
             return correspondePesquisa && correspondeCategoria;
         });
@@ -96,7 +98,13 @@ export class NotaListagem implements OnInit {
 
             this.notas.set(notas);
             this.categorias.set(categorias);
-        } catch {
+
+            console.log('Notas retornadas pela API:', notas);
+            console.log('Categorias retornadas pela API:', categorias);
+
+        } catch (erro) {
+            console.error('Erro ao carregar notas e categorias:', erro);
+
             this.mensagemErro.set(
                 'Não foi possível carregar as notas. Tente novamente.'
             );
@@ -130,16 +138,6 @@ export class NotaListagem implements OnInit {
 
     protected contarPorStatus(status: string): number {
         return this.notasPorStatus(status).length;
-    }
-
-    //========================================
-    // CATEGORIAS
-    //========================================
-
-    protected nomeCategoria(categoriaId: string): string | undefined {
-        return this.categorias().find(
-            categoria => categoria.id === categoriaId
-        )?.titulo;
     }
 
     //========================================
@@ -183,7 +181,10 @@ export class NotaListagem implements OnInit {
             this.notaParaExcluir.set(null);
 
             await this.carregarDados();
-        } catch {
+
+        } catch (erro) {
+            console.error('Erro ao excluir nota:', erro);
+
             this.mensagemErro.set(
                 'Não foi possível excluir a nota. Tente novamente.'
             );

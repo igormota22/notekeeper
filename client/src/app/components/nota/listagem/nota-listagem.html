@@ -76,7 +76,6 @@
 
                 <select id="filtroCategoria" [value]="categoriaFiltro()"
                     (change)="categoriaFiltro.set($any($event.target).value)" class="notes-select">
-
                     <option value="todas">Todas as categorias</option>
 
                     @for (categoria of categorias(); track categoria.id) {
@@ -195,13 +194,16 @@
                             {{ nota.descricao || 'Esta anotação ainda não possui uma descrição.' }}
                         </p>
 
+                        <!-- Categorias da nota -->
                         <div class="note-card-categories">
-                            @for (categoriaId of nota.categoriaIds; track categoriaId) {
-                            @if (nomeCategoria(categoriaId); as nome) {
+                            @for (categoria of nota.categorias; track categoria.id) {
                             <span class="note-category-tag">
-                                {{ nome }}
+                                {{ categoria.titulo }}
                             </span>
-                            }
+                            } @empty {
+                            <span class="note-category-tag">
+                                Sem categoria
+                            </span>
                             }
                         </div>
 
@@ -284,13 +286,16 @@
                             {{ nota.descricao || 'Esta anotação ainda não possui uma descrição.' }}
                         </p>
 
+                        <!-- Categorias da nota -->
                         <div class="note-card-categories">
-                            @for (categoriaId of nota.categoriaIds; track categoriaId) {
-                            @if (nomeCategoria(categoriaId); as nome) {
+                            @for (categoria of nota.categorias; track categoria.id) {
                             <span class="note-category-tag">
-                                {{ nome }}
+                                {{ categoria.titulo }}
                             </span>
-                            }
+                            } @empty {
+                            <span class="note-category-tag">
+                                Sem categoria
+                            </span>
                             }
                         </div>
 
@@ -362,6 +367,7 @@
             <p>Uma ideia registrada nunca se perde.</p>
             <span class="footer-rule"></span>
         </footer>
+
     </section>
 
     <!-- Modal de detalhes e modal de exclusão serão adicionados aqui -->

@@ -57,6 +57,12 @@ export const routes: Routes = [
                     import('./components/nota/listagem/nota-listagem')
                         .then(m => m.NotaListagem)
             },
+            {
+                path: 'cadastro',
+                loadComponent: () =>
+                    import('./components/nota/cadastro/nota-cadastro')
+                        .then(m => m.NotaCadastro)
+            }
         ]
     },
     {
