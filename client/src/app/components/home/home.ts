@@ -2,9 +2,10 @@ import { Component, computed, inject } from "@angular/core";
 import { Menu } from "../menu/menu";
 import { AuthService } from "../../authentication/auth.service";
 import { RouterLink } from "@angular/router";
+import { AmbienteCinematografico } from "../../ambiente-cinematografico/ambiente-cinematografico";
 
 @Component({
-    imports: [RouterLink, Menu],
+    imports: [RouterLink, Menu, AmbienteCinematografico],
     selector: 'app-home',
     templateUrl: './home.html'
 })

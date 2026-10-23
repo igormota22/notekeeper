@@ -1,7 +1,8 @@
 @if (!sessaoInicializada()) {
-<div class="flex min-h-screen items-center justify-center">
-    <p>Restaurando sua sessão...</p>
-</div>}
+<div class="flex min-h-screen items-center justify-center bg-[#E9DFC9] text-[#30271F]">
+    <p class="font-serif text-lg">Restaurando sua sessão...</p>
+</div>
+}
 
 @else if (!autenticado()) {
 <div class="min-h-screen bg-[#E9DFC9] text-[#30271F]">
@@ -14,6 +15,7 @@
                     class="flex h-11 w-9 items-center justify-center border border-[#967448] font-serif text-2xl text-[#725331]">
                     N
                 </div>
+
                 <div>
                     <h1 class="font-serif text-2xl tracking-wide">NoteKeeper</h1>
                     <p class="text-[9px] uppercase tracking-[0.22em] text-[#8B704B]">
@@ -23,12 +25,14 @@
             </a>
 
             <nav class="flex items-center gap-3 sm:gap-6">
-                <a href="/home#sobre" class="hidden text-sm text-[#6E5A42] transition hover:text-[#263A30] sm:block">
+                <a href="#sobre" class="hidden text-sm text-[#6E5A42] transition hover:text-[#263A30] sm:block">
                     Sobre
                 </a>
+
                 <a routerLink="/login" class="px-3 py-2 text-sm text-[#5B4834] transition hover:text-[#263A30] sm:px-4">
                     Entrar
                 </a>
+
                 <a routerLink="/cadastro"
                     class="border border-[#B89A65] bg-[#514332] px-4 py-2.5 text-sm text-[#F4EAD8] transition hover:bg-[#62523D] sm:px-5">
                     Criar minha conta
@@ -38,14 +42,15 @@
     </header>
 
     <main>
-        <!-- Apresentação -->
+        <!-- Apresentação pública -->
         <section class="relative overflow-hidden bg-[#29231D] px-6 py-7 text-[#C9BDA8]">
             <div class="pointer-events-none absolute inset-0 opacity-20"
                 style="background: repeating-linear-gradient(90deg, transparent 0px, transparent 65px, #A18A67 66px, transparent 68px);">
             </div>
 
             <div
-                class="relative mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 sm:py-20 lg:grid-cols-2 lg:px-10 lg:py-24">
+                class="relative mx-auto grid max-w-7xl items-center gap-12 px-2 py-16 sm:py-20 lg:grid-cols-2 lg:px-10 lg:py-24">
+
                 <div>
                     <div class="mb-7 flex items-center gap-3">
                         <div class="h-px w-9 bg-[#C6A66D]"></div>
@@ -68,7 +73,7 @@
                         <a routerLink="/cadastro"
                             class="inline-flex items-center gap-4 bg-[#C6A66D] px-6 py-3.5 text-sm font-medium text-[#292A21] transition hover:bg-[#D9BB84]">
                             Começar meu arquivo
-                            <span>→</span>
+                            <span aria-hidden="true">→</span>
                         </a>
 
                         <a href="#sobre"
@@ -85,41 +90,42 @@
                     </div>
                 </div>
 
-
-                <!-- Fichas de arquivo decorativas -->
+                <!-- Fichas decorativas da apresentação pública -->
                 <div class="relative mx-auto w-full max-w-md py-8">
                     <div class="absolute inset-x-6 bottom-4 top-0 border border-[#92754C]/40"></div>
 
                     <div class="relative flex h-80 items-center justify-center px-5 sm:h-96">
-                        <!-- Ficha traseira -->
                         <div
                             class="absolute left-10 top-12 h-52 w-44 rotate-[-12deg] border border-[#8B704B] bg-[#B99A63] p-3 shadow-xl sm:left-16">
                             <div class="flex items-center justify-between border-b border-[#8B704B]/60 pb-2">
                                 <span class="font-serif text-xs tracking-widest text-[#59432F]">ARQUIVO Nº 01</span>
                                 <span class="text-xs text-[#59432F]">✦</span>
                             </div>
+
                             <div class="mt-4 space-y-2">
                                 <div class="h-px w-full bg-[#8B704B]/60"></div>
                                 <div class="h-px w-4/5 bg-[#8B704B]/60"></div>
                                 <div class="h-px w-5/6 bg-[#8B704B]/60"></div>
                                 <div class="h-px w-3/5 bg-[#8B704B]/60"></div>
                             </div>
+
                             <div
                                 class="mt-5 border-t border-[#8B704B]/60 pt-2 text-right font-serif text-[10px] italic text-[#705438]">
                                 Anotações pessoais
                             </div>
                         </div>
 
-                        <!-- Ficha verde -->
                         <div
                             class="absolute right-8 top-16 h-56 w-40 rotate-[10deg] border border-[#789078] bg-[#354E3D] p-3 shadow-xl sm:right-14">
                             <div
                                 class="border-b border-[#D8BB82]/60 pb-2 text-center font-serif text-[10px] tracking-[0.2em] text-[#D8BB82]">
                                 NOTAS
                             </div>
+
                             <div class="mt-5 flex h-20 items-center justify-center border-y border-[#D8BB82]/60">
                                 <span class="font-serif text-4xl text-[#D8BB82]">✦</span>
                             </div>
+
                             <div class="mt-4 space-y-2">
                                 <div class="h-px w-full bg-[#D8BB82]/50"></div>
                                 <div class="h-px w-4/5 bg-[#D8BB82]/50"></div>
@@ -127,10 +133,8 @@
                             </div>
                         </div>
 
-                        <!-- Ficha principal -->
                         <div
                             class="relative z-10 h-64 w-52 border border-[#B49A79] bg-[#F0E4C9] p-4 shadow-2xl sm:h-72 sm:w-56">
-                            <!-- Aba da ficha -->
                             <div
                                 class="absolute -top-4 left-5 h-4 w-20 border border-b-0 border-[#B49A79] bg-[#F0E4C9]">
                             </div>
@@ -161,13 +165,11 @@
                             </div>
                         </div>
 
-                        <!-- Clipe decorativo -->
                         <div
                             class="absolute bottom-10 right-12 z-20 h-12 w-5 rotate-[25deg] rounded-full border-2 border-[#B89A5A] sm:right-20">
                         </div>
                     </div>
 
-                    <!-- Base de madeira -->
                     <div class="relative mx-3 h-5 border-y-2 border-[#BA925D] bg-[#6B4B30] shadow-xl"></div>
                     <div class="mx-3 h-4 bg-[#3D2B20]"></div>
 
@@ -184,9 +186,11 @@
                 <p class="text-[10px] uppercase tracking-[0.24em] text-[#856B47]">
                     Mais que anotações
                 </p>
+
                 <h2 class="mt-4 font-serif text-4xl leading-tight sm:text-5xl">
                     Um lugar para o conhecimento criar raízes.
                 </h2>
+
                 <p class="mt-5 text-sm leading-7 text-[#786A56] sm:text-base">
                     Nem toda ideia precisa ficar perdida entre arquivos e
                     lembretes. O NoteKeeper nasceu para transformar suas
@@ -232,15 +236,16 @@
                     <p class="text-[10px] uppercase tracking-[0.2em] text-[#856B47]">
                         Sua próxima página começa aqui
                     </p>
+
                     <h2 class="mt-2 font-serif text-3xl">
-                        Construa seu próprio arquivo com suas ideias,pensamentos e reflexoes.
+                        Construa seu próprio arquivo de ideias, pensamentos e reflexões.
                     </h2>
                 </div>
 
                 <a routerLink="/cadastro"
-                    class="inline-flex items-center gap-3 bg-[#514332] px-6 py-3.5 text-sm text-[#F4EAD8] transition hover:bg-[#62523D]">
+                    class="inline-flex shrink-0 items-center gap-3 bg-[#514332] px-6 py-3.5 text-sm text-[#F4EAD8] transition hover:bg-[#62523D]">
                     Criar minha conta
-                    <span>→</span>
+                    <span aria-hidden="true">→</span>
                 </a>
             </div>
         </section>
@@ -255,164 +260,228 @@
                     The Personal Archive
                 </p>
             </div>
+
             <p class="text-xs">Um lugar para guardar o que importa.</p>
         </div>
     </footer>
 </div>
 }
+
 @else {
 <!-- Arquivo do usuário autenticado -->
-<div class="min-h-screen bg-[#E9DFC9] md:flex">
+<div class="arquivo-layout min-h-screen md:flex">
+
+    <!-- Menu lateral independente -->
     <app-menu></app-menu>
 
-    <main class="min-w-0 flex-1 px-5 py-8 sm:px-8 lg:px-12">
+    <!-- Área principal com a máquina de escrever como fundo -->
+    <main class="arquivo-main min-w-0 flex-1">
 
-        <!-- Cabeçalho do arquivo -->
-        <header class="flex flex-col justify-between gap-5 border-b border-[#CDBB9D] pb-5 sm:flex-row sm:items-center">
-            <div>
-                <p class="text-[10px] uppercase tracking-[0.2em] text-[#856B47]">
-                    Seu espaço pessoal
-                </p>
-                <h1 class="mt-2 font-serif text-3xl text-[#30271F]">
-                    Seu arquivo
-                </h1>
-                <p class="mt-2 text-sm text-[#786A56]">
-                    Suas ideias, seus conhecimentos e tudo aquilo que merece ser preservado.
-                </p>
-            </div>
+        <!-- Fundo cinematográfico -->
+        <app-ambiente-cinematografico class="arquivo-background">
+        </app-ambiente-cinematografico>
 
-            <div class="flex flex-wrap items-center gap-3">
-                <a routerLink="/notas/cadastro"
-                    class="inline-flex min-h-12 items-center justify-center gap-3  border-[#B89A65] bg-[#514332] px-5 py-3 text-sm text-[#F4EAD8] transition-colors duration-200 hover:border-[#D0B47A] hover:bg-[#62523D]">
-                    <span class="text-lg leading-none">+</span>
-                    <span>Nova nota</span>
-                </a>
+        <!-- Conteúdo sobreposto ao fundo -->
+        <div class="arquivo-content px-4 py-6 sm:px-6 sm:py-8 lg:px-10 xl:px-12">
 
-                <a routerLink="/categorias/cadastro"
-                    class="inline-flex min-h-12 items-center justify-center gap-3  border-[#B89A65] bg-[#514332] px-5 py-3 text-sm text-[#F4EAD8] transition-colors duration-200 hover:border-[#D0B47A] hover:bg-[#62523D]">
-                    <span class="text-lg leading-none">+</span>
-                    <span>Nova categoria</span>
-                </a>
-            </div>
-        </header>
-
-        <!-- Boas-vindas -->
-        <section class="relative mt-8 overflow-hidden border border-[#C5B18E] bg-[#F4EAD8] p-7 sm:p-10">
-            <div class="pointer-events-none absolute right-0 top-0 h-full w-1.5 bg-[#B89A65]"></div>
-
-            <p class="text-[10px] uppercase tracking-[0.2em] text-[#856B47]">
-                Um espaço para suas ideias
-            </p>
-
-            <h2 class="mt-3 max-w-2xl font-serif text-3xl leading-tight text-[#30271F] sm:text-4xl">
-                Todo conhecimento tem uma história. Preserve a sua.
-            </h2>
-
-            <p class="mt-4 max-w-xl text-sm leading-7 text-[#786A56]">
-                Organize suas anotações, encontre seus registros e continue
-                construindo sua coleção pessoal de conhecimento.
-            </p>
-        </section>
-
-        <!-- Acesso às notas e categorias -->
-        <section class="mt-10">
-            <p class="text-[10px] uppercase tracking-[0.2em] text-[#856B47]">
-                Explore seu arquivo
-            </p>
-
-            <h2 class="mt-2 font-serif text-3xl text-[#30271F]">
-                Acesse suas coleções
-            </h2>
-
-            <div class="mt-5 grid gap-5 md:grid-cols-2">
-
-                <!-- Notas -->
-                <article class="flex flex-col border border-[#CDBB9D] bg-[#F4EAD8] p-6 sm:p-8">
-                    <div
-                        class="flex h-12 w-12 items-center justify-center border border-[#C6B28F] bg-[#E9DFC9] font-serif text-2xl text-[#725331]">
-                        N
-                    </div>
-
-                    <h3 class="mt-5 font-serif text-2xl text-[#30271F]">
-                        Suas notas
-                    </h3>
-
-                    <p class="mt-3 flex-1 text-sm leading-6 text-[#786A56]">
-                        Consulte suas anotações, retome ideias anteriores
-                        e mantenha seus conhecimentos organizados.
-                    </p>
-
-                    <a routerLink="/notas/listagem"
-                        class="mt-7 inline-flex w-full items-center justify-center gap-3 border  border-[#B89A65] bg-[#514332] px-5 py-3 text-sm text-[#F4EAD8] transition-colors duration-200 hover:border-[#D0B47A] hover:bg-[#62523D]">
-                        Acessar notas
-                        <span aria-hidden="true">→</span>
-                    </a>
-                </article>
-
-                <!-- Categorias -->
-                <article class="flex flex-col border border-[#CDBB9D] bg-[#F4EAD8] p-6 sm:p-8">
-                    <div
-                        class="flex h-12 w-12 items-center justify-center border border-[#C6B28F] bg-[#E9DFC9] font-serif text-2xl text-[#725331]">
-                        C
-                    </div>
-
-                    <h3 class="mt-5 font-serif text-2xl text-[#30271F]">
-                        Suas categorias
-                    </h3>
-
-                    <p class="mt-3 flex-1 text-sm leading-6 text-[#786A56]">
-                        Explore suas categorias e encontre uma maneira
-                        organizada de separar os assuntos do seu arquivo.
-                    </p>
-
-                    <a routerLink="/categorias/listagem"
-                        class="mt-7 inline-flex w-full items-center justify-center gap-3 border  border-[#B89A65] bg-[#514332] px-5 py-3 text-sm text-[#F4EAD8] transition-colors duration-200 hover:border-[#D0B47A] hover:bg-[#62523D]">
-                        Acessar categorias
-                        <span aria-hidden="true">→</span>
-                    </a>
-                </article>
-
-            </div>
-        </section>
-
-        <!-- Ação para criar uma nota -->
-        <section class="mt-8 border-t border-[#CDBB9D] pt-7">
-            <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <!-- Cabeçalho do arquivo -->
+            <header
+                class="flex flex-col justify-between gap-5 border-b border-[#CDBB9D] pb-5 sm:flex-row sm:items-center">
                 <div>
-                    <h2 class="font-serif text-2xl text-[#30271F]">
-                        Uma nova ideia para registrar?
-                    </h2>
-                    <p class="mt-2 text-sm leading-6 text-[#786A56]">
-                        Adicione uma anotação ao seu arquivo e preserve seu próximo aprendizado.
+                    <p class="text-[10px] uppercase tracking-[0.2em] text-[#856B47]">
+                        Seu espaço pessoal
+                    </p>
+
+                    <h1 class="mt-2 font-serif text-3xl text-[#30271F]">
+                        Seu arquivo
+                    </h1>
+
+                    <p class="mt-2 max-w-2xl text-sm leading-6 text-[#786A56]">
+                        Suas ideias, seus conhecimentos e tudo aquilo que merece ser preservado.
                     </p>
                 </div>
 
-                <a routerLink="/notas/cadastro"
-                    class="inline-flex shrink-0 items-center justify-center gap-3border-[#B89A65] bg-[#514332] px-5 py-3 text-sm text-[#F4EAD8] transition-colors duration-200 hover:border-[#D0B47A] hover:bg-[#62523D]">
-                    Criar nota
-                </a>
-            </div>
-        </section>
+                <div class="flex flex-wrap items-center gap-3">
+                    <a routerLink="/notas/cadastro"
+                        class="inline-flex min-h-12 items-center justify-center gap-3 border border-[#B89A65] bg-[#514332] px-5 py-3 text-sm text-[#F4EAD8] transition-colors duration-200 hover:border-[#D0B47A] hover:bg-[#62523D]">
+                        <span class="text-lg leading-none" aria-hidden="true">+</span>
+                        <span>Nova nota</span>
+                    </a>
 
-        <!-- Ação para criar uma categoria -->
-        <section class="mt-8 border-t border-[#CDBB9D] pt-7">
-            <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                    <a routerLink="/categorias/cadastro"
+                        class="inline-flex min-h-12 items-center justify-center gap-3 border border-[#B89A65] bg-[#514332] px-5 py-3 text-sm text-[#F4EAD8] transition-colors duration-200 hover:border-[#D0B47A] hover:bg-[#62523D]">
+                        <span class="text-lg leading-none" aria-hidden="true">+</span>
+                        <span>Nova categoria</span>
+                    </a>
+                </div>
+            </header>
+
+            <!-- Introdução ao arquivo -->
+            <section
+                class="mt-8 flex flex-col gap-3 border-l-2 border-[#B89A5A] py-2 pl-5 sm:flex-row sm:items-end sm:justify-between">
                 <div>
-                    <h2 class="font-serif text-2xl text-[#30271F]">
-                        Um novo fichario para guardar suas ideias?
+                    <p class="text-[10px] uppercase tracking-[0.2em] text-[#856B47]">
+                        Suas coleções
+                    </p>
+
+                    <h2 class="mt-2 font-serif text-3xl text-[#30271F]">
+                        Continue de onde parou.
                     </h2>
-                    <p class="mt-2 text-sm leading-6 text-[#786A56]">
-                        Adicione uma categoria ao seu arquivo e preserve seu próximo aprendizado.
+
+                    <p class="mt-2 max-w-2xl text-sm leading-6 text-[#786A56]">
+                        Acesse suas notas e categorias para consultar, organizar e preservar suas ideias.
                     </p>
                 </div>
 
-                <a routerLink="/categorias/cadastro"
-                    class="inline-flex shrink-0 items-center justify-center gap-3 border-[#B89A65] bg-[#514332] px-5 py-3 text-sm text-[#F4EAD8] transition-colors duration-200 hover:border-[#D0B47A] hover:bg-[#62523D]">
-                    Criar categoria
-                </a>
-            </div>
-        </section>
+                <span class="hidden font-serif text-2xl italic text-[#A58A5D] sm:block">
+                    N.
+                </span>
+            </section>
 
+            <!-- Acesso às notas e categorias -->
+            <section class="mt-5">
+                <div class="grid gap-5 md:grid-cols-2">
+
+                    <!-- Notas -->
+                    <article
+                        class="group flex flex-col border border-[#CDBB9D] bg-[#F4EAD8] p-6 transition duration-300 hover:-translate-y-1 hover:border-[#B89A65] hover:shadow-lg sm:p-8">
+                        <div
+                            class="flex h-12 w-12 items-center justify-center border border-[#C6B28F] bg-[#E9DFC9] font-serif text-2xl text-[#725331] transition duration-300 group-hover:bg-[#514332] group-hover:text-[#F4EAD8]">
+                            N
+                        </div>
+
+                        <h3 class="mt-5 font-serif text-2xl text-[#30271F]">
+                            Suas notas
+                        </h3>
+
+                        <p class="mt-3 flex-1 text-sm leading-6 text-[#786A56]">
+                            Consulte suas anotações, retome ideias anteriores
+                            e mantenha seus conhecimentos organizados.
+                        </p>
+
+                        <a routerLink="/notas/listagem"
+                            class="mt-7 inline-flex min-h-12 w-full items-center justify-center gap-3 border border-[#B89A65] bg-[#514332] px-5 py-3 text-sm text-[#F4EAD8] transition-colors duration-200 hover:border-[#D0B47A] hover:bg-[#62523D]">
+                            Acessar notas
+                            <span aria-hidden="true">→</span>
+                        </a>
+                    </article>
+
+                    <!-- Categorias -->
+                    <article
+                        class="group flex flex-col border border-[#CDBB9D] bg-[#F4EAD8] p-6 transition duration-300 hover:-translate-y-1 hover:border-[#B89A65] hover:shadow-lg sm:p-8">
+                        <div
+                            class="flex h-12 w-12 items-center justify-center border border-[#C6B28F] bg-[#E9DFC9] font-serif text-2xl text-[#725331] transition duration-300 group-hover:bg-[#514332] group-hover:text-[#F4EAD8]">
+                            C
+                        </div>
+
+                        <h3 class="mt-5 font-serif text-2xl text-[#30271F]">
+                            Suas categorias
+                        </h3>
+
+                        <p class="mt-3 flex-1 text-sm leading-6 text-[#786A56]">
+                            Explore suas categorias e encontre uma maneira
+                            organizada de separar os assuntos do seu arquivo.
+                        </p>
+
+                        <a routerLink="/categorias/listagem"
+                            class="mt-7 inline-flex min-h-12 w-full items-center justify-center gap-3 border border-[#B89A65] bg-[#514332] px-5 py-3 text-sm text-[#F4EAD8] transition-colors duration-200 hover:border-[#D0B47A] hover:bg-[#62523D]">
+                            Acessar categorias
+                            <span aria-hidden="true">→</span>
+                        </a>
+                    </article>
+
+                </div>
+            </section>
+
+
+            <section class="mt-8 grid gap-5 border-t border-[#CDBB9D] pt-7 lg:grid-cols-2">
+
+                <!-- Dica para registrar ideias -->
+                <article class="flex flex-col gap-4 border border-[#D5C6A9] bg-[#F0E5D0] p-5 sm:p-6">
+
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="flex h-11 w-11 shrink-0 items-center justify-center border border-[#B89A65] text-xl text-[#856B47]">
+                            <div
+                                class="flex h-12 w-12 items-center justify-center border border-[#C6B28F] bg-[#E9DFC9] font-serif text-2xl text-[#725331] transition duration-300 group-hover:bg-[#514332] group-hover:text-[#F4EAD8]">
+                                N
+                            </div>
+                        </div>
+
+                        <div>
+                            <p class="text-[9px] uppercase tracking-[0.18em] text-[#856B47]">
+                                Um lembrete para hoje
+                            </p>
+
+                            <h2 class="mt-2 font-serif text-xl text-[#30271F]">
+                                Toda grande ideia começa com um registro.
+                            </h2>
+
+                            <p class="mt-2 text-sm leading-6 text-[#786A56]">
+                                Anote pensamentos, aprendizados e pequenas descobertas.
+                                Até uma observação simples pode se tornar algo importante no futuro.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-[#D5C6A9] pt-3">
+                        <p class="font-serif text-sm italic text-[#856B47]">
+                            “O que vale a pena aprender, vale a pena preservar.”
+                        </p>
+                    </div>
+                </article>
+
+                <!-- Dica para organizar o arquivo -->
+                <article class="flex flex-col gap-4 border border-[#D5C6A9] bg-[#F0E5D0] p-5 sm:p-6">
+
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="flex h-11 w-11 shrink-0 items-center justify-center border border-[#B89A65] text-xl text-[#856B47]">
+                            <div
+                                class="flex h-12 w-12 items-center justify-center border border-[#C6B28F] bg-[#E9DFC9] font-serif text-2xl text-[#725331] transition duration-300 group-hover:bg-[#514332] group-hover:text-[#F4EAD8]">
+                                C
+                            </div>
+                        </div>
+
+                        <div>
+                            <p class="text-[9px] uppercase tracking-[0.18em] text-[#856B47]">
+                                A arte de organizar
+                            </p>
+
+                            <h2 class="mt-2 font-serif text-xl text-[#30271F]">
+                                Cada pensamento merece seu lugar.
+                            </h2>
+
+                            <p class="mt-2 text-sm leading-6 text-[#786A56]">
+                                Agrupe suas anotações por temas, projetos ou áreas de interesse.
+                                Um arquivo bem organizado torna mais fácil reencontrar aquilo que importa.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-[#D5C6A9] pt-3">
+                        <p class="font-serif text-sm italic text-[#856B47]">
+                            Um arquivo organizado transforma lembranças em conhecimento acessível.
+                        </p>
+                    </div>
+                </article>
+
+
+            </section>
+
+            <!-- Assinatura do arquivo -->
+            <footer
+                class="mt-10 flex flex-col gap-2 border-t border-[#CDBB9D] py-6 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
+                <p class="font-serif text-lg text-[#725331]">
+                    NoteKeeper
+                </p>
+
+                <p class="text-[10px] uppercase tracking-[0.16em] text-[#856B47]">
+                    Uma ideia registrada nunca se perde.
+                </p>
+            </footer>
+
+        </div>
     </main>
 </div>
 }

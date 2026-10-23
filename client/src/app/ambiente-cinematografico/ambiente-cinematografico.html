@@ -1,0 +1,287 @@
+<section class="cinematic-scene" aria-label="Ambiente de escrita do NoteKeeper">
+
+    <!-- Iluminação ambiente -->
+    <div class="scene-light scene-light-primary"></div>
+    <div class="scene-light scene-light-secondary"></div>
+    <div class="scene-vignette"></div>
+
+    <!-- Partículas de poeira -->
+    <div class="dust-layer" aria-hidden="true">
+        <span class="dust dust-1"></span>
+        <span class="dust dust-2"></span>
+        <span class="dust dust-3"></span>
+        <span class="dust dust-4"></span>
+        <span class="dust dust-5"></span>
+        <span class="dust dust-6"></span>
+        <span class="dust dust-7"></span>
+        <span class="dust dust-8"></span>
+        <span class="dust dust-9"></span>
+        <span class="dust dust-10"></span>
+        <span class="dust dust-11"></span>
+        <span class="dust dust-12"></span>
+    </div>
+
+    <!-- Apresentação -->
+    <div class="scene-content">
+
+        <div class="scene-eyebrow">
+            <span class="eyebrow-line"></span>
+            <span>SEU ARQUIVO PESSOAL</span>
+            <span class="eyebrow-line"></span>
+        </div>
+
+        <h1 class="scene-title">
+            Toda grande ideia
+            <span>começa com uma palavra.</span>
+        </h1>
+
+        <p class="scene-description">
+            Registre seus pensamentos. Preserve suas ideias.
+            Encontre inspiração nas pequenas coisas.
+        </p>
+
+    </div>
+
+    <!-- Máquina de escrever -->
+    <div class="typewriter-stage" aria-hidden="true">
+
+        <div class="typewriter-glow"></div>
+
+        <svg class="typewriter-illustration" viewBox="0 0 760 470" xmlns="http://www.w3.org/2000/svg"
+            role="presentation">
+
+            <defs>
+                <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#71604A" />
+                    <stop offset="35%" stop-color="#30271F" />
+                    <stop offset="70%" stop-color="#171512" />
+                    <stop offset="100%" stop-color="#57432D" />
+                </linearGradient>
+
+                <linearGradient id="metalHighlight" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#A98A59" />
+                    <stop offset="45%" stop-color="#55432E" />
+                    <stop offset="100%" stop-color="#241E18" />
+                </linearGradient>
+
+                <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#FFFDF5" />
+                    <stop offset="100%" stop-color="#DCC9A6" />
+                </linearGradient>
+
+                <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#765237" />
+                    <stop offset="100%" stop-color="#2D1D14" />
+                </linearGradient>
+
+                <linearGradient id="keycap" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#78634A" />
+                    <stop offset="40%" stop-color="#30271F" />
+                    <stop offset="100%" stop-color="#171411" />
+                </linearGradient>
+
+                <radialGradient id="sceneGlow">
+                    <stop offset="0%" stop-color="#D5A85F" stop-opacity=".28" />
+                    <stop offset="100%" stop-color="#D5A85F" stop-opacity="0" />
+                </radialGradient>
+
+                <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="12" />
+                </filter>
+            </defs>
+
+            <!-- Halo atrás da máquina -->
+            <ellipse cx="380" cy="305" rx="300" ry="145" fill="url(#sceneGlow)" />
+
+            <!-- Sombra sobre a mesa -->
+            <ellipse cx="380" cy="415" rx="280" ry="28" fill="#000000" opacity=".65" filter="url(#softShadow)" />
+
+            <!-- Mesa de madeira -->
+            <path d="M50 386 Q380 350 710 386 L735 430 Q380 466 25 430 Z" fill="url(#wood)" stroke="#8B6942"
+                stroke-width="2" />
+
+            <path d="M42 402 Q380 374 718 402" fill="none" stroke="#B18A58" stroke-opacity=".35" stroke-width="2" />
+
+            <path d="M30 422 Q380 446 730 422" fill="none" stroke="#130D09" stroke-opacity=".7" stroke-width="3" />
+
+            <!-- Folha -->
+            <g class="paper-sheet">
+
+                <path d="M245 53 L510 53 L526 305 L232 305 Z" fill="#100B07" opacity=".4" transform="translate(5 8)" />
+
+                <path d="M245 45 L510 45 L526 297 L232 297 Z" fill="url(#paper)" stroke="#B89A68" stroke-width="1.5" />
+
+                <!-- Textura e linhas da folha -->
+                <path d="M255 90 L495 90 M255 115 L495 115 M255 140 L495 140
+                       M255 165 L495 165 M255 190 L495 190 M255 215 L495 215
+                       M255 240 L495 240 M255 265 L495 265" stroke="#9B8868" stroke-opacity=".2" stroke-width="1" />
+
+                <text x="268" y="80" fill="#8B7547" font-family="Georgia, serif" font-size="10" letter-spacing="3">
+                    NOTEKEEPER
+                </text>
+
+                <path d="M268 89 H474" stroke="#B89A5A" stroke-width="1" opacity=".8" />
+
+                <!-- Texto que aparece letra por letra -->
+                <g class="typed-message">
+                    <text x="268" y="124" fill="#4A382A" font-family="Georgia, serif" font-size="14">
+                        Uma ideia registrada
+                    </text>
+
+                    <text x="268" y="148" fill="#4A382A" font-family="Georgia, serif" font-size="14">
+                        nunca se perde.
+                    </text>
+
+                    <rect class="paper-cursor" x="268" y="163" width="7" height="15" rx="1" fill="#8B7547" />
+                </g>
+
+                <text x="268" y="278" fill="#8B7547" font-family="Georgia, serif" font-size="8" letter-spacing="2"
+                    opacity=".7">
+                    REGISTRO Nº 001
+                </text>
+
+            </g>
+
+            <!-- Estrutura superior -->
+            <g class="typewriter-body">
+
+                <!-- Cilindro traseiro -->
+                <rect x="178" y="240" width="404" height="30" rx="12" fill="url(#metalHighlight)" stroke="#A78A59"
+                    stroke-width="2" />
+
+                <ellipse cx="178" cy="255" rx="10" ry="15" fill="#2A2118" />
+                <ellipse cx="582" cy="255" rx="10" ry="15" fill="#78603C" />
+
+                <path d="M205 248 H555" stroke="#D2B47A" stroke-opacity=".45" stroke-width="2" />
+
+                <!-- Haste do carro -->
+                <rect x="215" y="218" width="330" height="13" rx="6" fill="url(#metal)" stroke="#A78A59"
+                    stroke-width="1.5" />
+
+                <!-- Alavanca móvel -->
+                <g class="typewriter-lever">
+                    <path d="M540 222 L595 185" stroke="#B89A5A" stroke-width="7" stroke-linecap="round" />
+                    <circle cx="598" cy="182" r="11" fill="#30271F" stroke="#B89A5A" stroke-width="3" />
+                    <circle cx="598" cy="182" r="4" fill="#D2B47A" />
+                </g>
+
+                <!-- Corpo principal -->
+                <path d="M145 275 Q380 248 615 275 L670 370
+                       Q380 405 90 370 Z" fill="url(#metal)" stroke="#A98A59" stroke-width="2" />
+
+                <path d="M120 357 Q380 388 640 357" fill="none" stroke="#B89A5A" stroke-opacity=".65"
+                    stroke-width="3" />
+
+                <!-- Painel frontal -->
+                <path d="M180 338 Q380 357 580 338 L595 367
+                       Q380 390 165 367 Z" fill="#211B15" stroke="#78603C" stroke-width="1.5" />
+
+                <text x="380" y="363" text-anchor="middle" fill="#C6A66B" font-family="Georgia, serif" font-size="12"
+                    letter-spacing="5">
+                    NOTEKEEPER
+                </text>
+
+                <!-- Teclado -->
+                <g class="keyboard">
+
+                    <!-- Fileira superior -->
+                    <g class="key-row key-row-one">
+                        <g transform="translate(225 285)">
+                            <rect width="31" height="24" rx="5" fill="#120F0C" />
+                            <rect x="2" y="1" width="27" height="18" rx="4" fill="url(#keycap)" stroke="#8B7547" />
+                            <text x="15" y="14" text-anchor="middle" font-size="8" fill="#D6BE91">Q</text>
+                        </g>
+                        <g transform="translate(261 283)">
+                            <rect width="31" height="24" rx="5" fill="#120F0C" />
+                            <rect x="2" y="1" width="27" height="18" rx="4" fill="url(#keycap)" stroke="#8B7547" />
+                            <text x="15" y="14" text-anchor="middle" font-size="8" fill="#D6BE91">W</text>
+                        </g>
+                        <g transform="translate(297 281)">
+                            <rect width="31" height="24" rx="5" fill="#120F0C" />
+                            <rect x="2" y="1" width="27" height="18" rx="4" fill="url(#keycap)" stroke="#8B7547" />
+                            <text x="15" y="14" text-anchor="middle" font-size="8" fill="#D6BE91">E</text>
+                        </g>
+                        <g transform="translate(333 280)">
+                            <rect width="31" height="24" rx="5" fill="#120F0C" />
+                            <rect x="2" y="1" width="27" height="18" rx="4" fill="url(#keycap)" stroke="#8B7547" />
+                            <text x="15" y="14" text-anchor="middle" font-size="8" fill="#D6BE91">R</text>
+                        </g>
+                        <g transform="translate(369 280)">
+                            <rect width="31" height="24" rx="5" fill="#120F0C" />
+                            <rect x="2" y="1" width="27" height="18" rx="4" fill="url(#keycap)" stroke="#8B7547" />
+                            <text x="15" y="14" text-anchor="middle" font-size="8" fill="#D6BE91">T</text>
+                        </g>
+                        <g transform="translate(405 281)">
+                            <rect width="31" height="24" rx="5" fill="#120F0C" />
+                            <rect x="2" y="1" width="27" height="18" rx="4" fill="url(#keycap)" stroke="#8B7547" />
+                            <text x="15" y="14" text-anchor="middle" font-size="8" fill="#D6BE91">Y</text>
+                        </g>
+                        <g transform="translate(441 283)">
+                            <rect width="31" height="24" rx="5" fill="#120F0C" />
+                            <rect x="2" y="1" width="27" height="18" rx="4" fill="url(#keycap)" stroke="#8B7547" />
+                            <text x="15" y="14" text-anchor="middle" font-size="8" fill="#D6BE91">U</text>
+                        </g>
+                        <g transform="translate(477 285)">
+                            <rect width="31" height="24" rx="5" fill="#120F0C" />
+                            <rect x="2" y="1" width="27" height="18" rx="4" fill="url(#keycap)" stroke="#8B7547" />
+                            <text x="15" y="14" text-anchor="middle" font-size="8" fill="#D6BE91">I</text>
+                        </g>
+                    </g>
+
+                    <!-- Fileira inferior -->
+                    <g class="key-row key-row-two">
+                        <g transform="translate(250 311)">
+                            <rect width="34" height="23" rx="5" fill="#120F0C" />
+                            <rect x="2" y="1" width="30" height="17" rx="4" fill="url(#keycap)" stroke="#8B7547" />
+                        </g>
+                        <g transform="translate(289 310)">
+                            <rect width="34" height="23" rx="5" fill="#120F0C" />
+                            <rect x="2" y="1" width="30" height="17" rx="4" fill="url(#keycap)" stroke="#8B7547" />
+                        </g>
+                        <g transform="translate(328 309)">
+                            <rect width="34" height="23" rx="5" fill="#120F0C" />
+                            <rect x="2" y="1" width="30" height="17" rx="4" fill="url(#keycap)" stroke="#8B7547" />
+                        </g>
+                        <g transform="translate(367 309)">
+                            <rect width="34" height="23" rx="5" fill="#120F0C" />
+                            <rect x="2" y="1" width="30" height="17" rx="4" fill="url(#keycap)" stroke="#8B7547" />
+                        </g>
+                        <g transform="translate(406 310)">
+                            <rect width="34" height="23" rx="5" fill="#120F0C" />
+                            <rect x="2" y="1" width="30" height="17" rx="4" fill="url(#keycap)" stroke="#8B7547" />
+                        </g>
+                        <g transform="translate(445 311)">
+                            <rect width="34" height="23" rx="5" fill="#120F0C" />
+                            <rect x="2" y="1" width="30" height="17" rx="4" fill="url(#keycap)" stroke="#8B7547" />
+                        </g>
+                    </g>
+
+                    <!-- Barra de espaço -->
+                    <rect x="290" y="337" width="180" height="12" rx="6" fill="#100D0A" />
+                    <rect x="294" y="337" width="172" height="8" rx="4" fill="url(#keycap)" stroke="#8B7547" />
+
+                </g>
+
+                <!-- Parafusos decorativos -->
+                <circle cx="158" cy="293" r="4" fill="#C3A36B" />
+                <circle cx="602" cy="293" r="4" fill="#C3A36B" />
+                <circle cx="120" cy="362" r="3" fill="#C3A36B" />
+                <circle cx="640" cy="362" r="3" fill="#C3A36B" />
+
+            </g>
+
+        </svg>
+
+        <!-- Reflexo abaixo da máquina -->
+        <div class="machine-reflection"></div>
+
+    </div>
+
+    <!-- Assinatura visual -->
+    <div class="scene-caption">
+        <span class="caption-line"></span>
+        <span>IDEIAS QUE MERECEM SER PRESERVADAS</span>
+        <span class="caption-line"></span>
+    </div>
+
+</section>
