@@ -1,0 +1,203 @@
+<div class="note-catalog-page">
+    <header class="note-catalog-header">
+        <div class="note-catalog-brand">
+            <span class="note-catalog-brand-icon" aria-hidden="true">N.</span>
+            <div>
+                <span class="note-catalog-brand-name">NOTEKEEPER</span>
+                <span class="note-catalog-brand-subtitle">ARQUIVO PESSOAL</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="note-catalog-main">
+        <div class="note-catalog-intro">
+            <span class="note-catalog-eyebrow">CADERNO DE REGISTROS / EDIÇÃO DE FICHA</span>
+            <h1>Revise sua ideia<span>.</span></h1>
+            <p>
+                Atualize suas anotações, reorganize suas referências
+                e mantenha seu arquivo pessoal sempre em ordem.
+            </p>
+        </div>
+
+        <section class="note-catalog-card">
+            <div class="note-catalog-card-top">
+                <div class="note-catalog-card-symbol" aria-hidden="true">✳</div>
+
+                <div class="note-catalog-card-heading">
+                    <span class="note-catalog-overline">FICHA DE ARQUIVO</span>
+                    <h2>Edição de anotação</h2>
+                    <p>Altere os dados necessários para atualizar este registro.</p>
+                </div>
+
+                <div class="note-catalog-stamp">
+                    <span>REGISTRO</span>
+                    <strong>EDIÇÃO</strong>
+                </div>
+            </div>
+
+            <div class="note-catalog-rule"></div>
+
+            <form (submit)="enviarFormulario($event)" class="note-catalog-form">
+                @if (mensagemErro()) {
+                <div class="note-catalog-alert" role="alert">
+                    <span aria-hidden="true">!</span>
+                    {{ mensagemErro() }}
+                </div>
+                }
+
+                <div class="note-catalog-section-label">
+                    <span>01</span>
+                    <h3>Identificação</h3>
+                    <div></div>
+                </div>
+
+                <div class="note-catalog-field">
+                    <label for="titulo">Título da anotação</label>
+                    <input id="titulo" type="text" [formField]="formulario.titulo"
+                        placeholder="Ex.: Ideias para um novo projeto" autocomplete="off" />
+
+                    @if (formulario.titulo().touched() && formulario.titulo().invalid()) {
+                    <span class="note-catalog-field-error">
+                        @for (erro of formulario.titulo().errors(); track $index) {
+                        {{ erro.message }}
+                        }
+                    </span>
+                    }
+
+                    <span class="note-catalog-field-hint">
+                        Atualize o nome que identifica esta anotação.
+                    </span>
+                </div>
+
+                <div class="note-catalog-section-label note-catalog-writing-label">
+                    <span>02</span>
+                    <h3>Conteúdo do registro</h3>
+                    <div></div>
+                </div>
+
+                <div class="note-catalog-field">
+                    <div class="note-catalog-description-heading">
+                        <label for="descricao">Anotações e observações</label>
+                        <span>{{ modelo().descricao.length }}/300</span>
+                    </div>
+
+                    <div class="note-catalog-paper">
+                        <div class="note-catalog-paper-margin" aria-hidden="true"></div>
+                        <textarea id="descricao" [formField]="formulario.descricao"
+                            placeholder="Atualize os detalhes, referências ou pensamentos que deseja preservar."
+                            rows="8"></textarea>
+                    </div>
+
+                    @if (formulario.descricao().touched() && formulario.descricao().invalid()) {
+                    <span class="note-catalog-field-error">
+                        @for (erro of formulario.descricao().errors(); track $index) {
+                        {{ erro.message }}
+                        }
+                    </span>
+                    }
+                </div>
+
+                <div class="note-catalog-section-label note-catalog-classification-label">
+                    <span>03</span>
+                    <h3>Classificação do arquivo</h3>
+                    <div></div>
+                </div>
+
+                <div class="note-catalog-classification">
+                    <div class="note-catalog-categories-panel">
+                        <span class="note-catalog-small-label">ÍNDICE TEMÁTICO</span>
+                        <h4>Categorias</h4>
+                        <p class="note-catalog-category-description">
+                            Atualize os assuntos relacionados a esta anotação.
+                        </p>
+
+                        @if (categorias().length > 0) {
+                        <div class="note-catalog-category-list">
+                            @for (categoria of categorias(); track categoria.id) {
+                            <label class="note-catalog-category-option"
+                                [class.is-selected]="modelo().categoriaIds.includes(categoria.id)">
+                                <input type="checkbox" [checked]="modelo().categoriaIds.includes(categoria.id)"
+                                    (change)="modelo.update(atual => ({
+                                                ...atual,
+                                                categoriaIds: $any($event.target).checked
+                                                    ? (atual.categoriaIds.includes(categoria.id)
+                                                        ? atual.categoriaIds
+                                                        : [...atual.categoriaIds, categoria.id])
+                                                    : atual.categoriaIds.filter(id => id !== categoria.id)
+                                            }))" />
+                                <span class="note-catalog-category-check" aria-hidden="true"></span>
+                                <span class="note-catalog-category-name">
+                                    {{ categoria.titulo }}
+                                </span>
+                            </label>
+                            }
+                        </div>
+                        } @else {
+                        <div class="note-catalog-no-categories">
+                            <span aria-hidden="true">＋</span>
+                            <p>Nenhuma categoria disponível.</p>
+                            <a routerLink="/categorias/cadastro">Criar uma categoria</a>
+                        </div>
+                        }
+                    </div>
+
+                    <div class="note-catalog-categories-panel note-catalog-status-panel">
+                        <span class="note-catalog-small-label">SITUAÇÃO DO REGISTRO</span>
+                        <h4>Status da anotação</h4>
+                        <p class="note-catalog-category-description">
+                            Defina se esta anotação continua ativa ou se deve ser arquivada.
+                        </p>
+
+                        <div class="note-catalog-category-list">
+                            <label class="note-catalog-category-option"
+                                [class.is-selected]="modelo().status === 'Ativa'">
+                                <input type="radio" name="status" [checked]="modelo().status === 'Ativa'" (change)="modelo.update(atual => ({
+                                        ...atual,
+                                        status: 'Ativa'
+                                    }))" />
+                                <span class="note-catalog-category-check" aria-hidden="true"></span>
+                                <span class="note-catalog-category-name">Ativa</span>
+                            </label>
+
+                            <label class="note-catalog-category-option"
+                                [class.is-selected]="modelo().status === 'Arquivada'">
+                                <input type="radio" name="status" [checked]="modelo().status === 'Arquivada'" (change)="modelo.update(atual => ({
+                                        ...atual,
+                                        status: 'Arquivada'
+                                    }))" />
+                                <span class="note-catalog-category-check" aria-hidden="true"></span>
+                                <span class="note-catalog-category-name">Arquivada</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="note-catalog-bottom-rule"></div>
+
+                <div class="note-catalog-actions">
+                    <p>
+                        <span aria-hidden="true">✦</span>
+                        Toda boa ideia merece um lugar no arquivo.
+                    </p>
+
+                    <div class="note-catalog-buttons">
+                        <button type="button" class="note-catalog-button-cancel" (click)="cancelar()">
+                            Cancelar
+                        </button>
+
+                        <button type="submit" class="note-catalog-button-save">
+                            <span aria-hidden="true">✎</span>
+                            Salvar alterações
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <footer class="note-catalog-footer">
+            <span>NOTEKEEPER</span>
+            <span>Uma ideia registrada nunca se perde.</span>
+            <span>ARQUIVO PESSOAL</span>
+        </footer>
+    </main>
+</div>

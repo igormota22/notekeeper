@@ -62,7 +62,14 @@ export const routes: Routes = [
                 loadComponent: () =>
                     import('./components/nota/cadastro/nota-cadastro')
                         .then(m => m.NotaCadastro)
+            },
+            {
+                path: 'edicao/:id',
+                loadComponent: () =>
+                    import('./components/nota/edicao/nota-edicao')
+                        .then(m => m.NotaEdicao)
             }
+
         ]
     },
     {
