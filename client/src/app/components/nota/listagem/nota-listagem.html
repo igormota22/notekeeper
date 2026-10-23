@@ -1,0 +1,369 @@
+<section class="notes-page mx-auto max-w-7xl">
+
+    <!-- Cabeçalho -->
+    <header class="notes-intro mb-8">
+        <div class="mb-4 flex items-center gap-3">
+            <span class="h-px w-10 bg-[#B89A5A]"></span>
+            <span class="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#8B7547]">
+                NoteKeeper / Arquivo pessoal
+            </span>
+        </div>
+
+        <div class="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+            <div>
+                <h2 class="font-serif text-3xl font-semibold text-[#4A382A] sm:text-4xl">
+                    Minhas notas
+                </h2>
+
+                <p class="mt-3 max-w-xl text-sm leading-7 text-[#756657]">
+                    Suas ideias, lembretes e descobertas organizados em um só lugar.
+                    Cada anotação tem seu espaço no arquivo.
+                </p>
+            </div>
+
+            <a routerLink="/notas/cadastro" class="notes-new-button">
+                <span aria-hidden="true">+</span>
+                <span>Nova nota</span>
+                <span aria-hidden="true">↗</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- Painel de organização -->
+    <section class="notes-board">
+
+        <!-- Cabeçalho do quadro -->
+        <div class="notes-board-heading">
+            <div class="flex items-center gap-3">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                    class="h-6 w-6 text-[#D8BB82]" aria-hidden="true">
+                    <path d="M4 4h16v16H4z" />
+                    <path d="M8 8h8M8 12h8M8 16h5" />
+                </svg>
+
+                <div>
+                    <p class="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#E8C98E]">
+                        Quadro de anotações
+                    </p>
+                    <p class="mt-1 text-xs text-[#C5B69C]">
+                        Organização por estado
+                    </p>
+                </div>
+            </div>
+
+            <span class="notes-board-stamp">
+                PERSONAL ARCHIVE
+            </span>
+        </div>
+
+        <!-- Pesquisa e filtros -->
+        <div class="notes-toolbar">
+
+            <div class="notes-search">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+                    class="h-5 w-5 shrink-0 text-[#8B704E]" aria-hidden="true">
+                    <circle cx="10.8" cy="10.8" r="6.8" />
+                    <path d="m16 16 4 4" />
+                </svg>
+
+                <input type="search" placeholder="Pesquisar notas..." aria-label="Pesquisar notas"
+                    [value]="termoPesquisa()" (input)="termoPesquisa.set($any($event.target).value)"
+                    class="notes-search-input" />
+            </div>
+
+            <div class="notes-category-filter">
+                <label for="filtroCategoria">Categoria</label>
+
+                <select id="filtroCategoria" [value]="categoriaFiltro()"
+                    (change)="categoriaFiltro.set($any($event.target).value)" class="notes-select">
+
+                    <option value="todas">Todas as categorias</option>
+
+                    @for (categoria of categorias(); track categoria.id) {
+                    <option [value]="categoria.id">
+                        {{ categoria.titulo }}
+                    </option>
+                    }
+                </select>
+            </div>
+
+            <button type="button" class="notes-clear-filters" (click)="limparFiltros()">
+                Limpar filtros
+            </button>
+        </div>
+
+        <!-- Resumo -->
+        <div class="notes-summary">
+            <div class="summary-item">
+                <span class="summary-number">
+                    {{ notasFiltradas().length }}
+                </span>
+                <span class="summary-label">Notas encontradas</span>
+            </div>
+
+            <div class="summary-divider"></div>
+
+            <div class="summary-item">
+                <span class="summary-number">
+                    {{ contarPorStatus('Ativa') }}
+                </span>
+                <span class="summary-label">Ativas</span>
+            </div>
+
+            <div class="summary-divider"></div>
+
+            <div class="summary-item">
+                <span class="summary-number">
+                    {{ contarPorStatus('Arquivada') }}
+                </span>
+                <span class="summary-label">Arquivadas</span>
+            </div>
+        </div>
+
+        <!-- Carregamento -->
+        @if (carregando()) {
+        <div class="notes-state" role="status">
+            <div class="notes-loading-mark" aria-hidden="true">§</div>
+
+            <h3>Consultando o arquivo...</h3>
+
+            <p>
+                Aguarde enquanto suas anotações são carregadas.
+            </p>
+        </div>
+        }
+
+        <!-- Erro -->
+        @else if (mensagemErro()) {
+        <div class="notes-state notes-state-error" role="alert">
+            <div class="notes-loading-mark" aria-hidden="true">!</div>
+
+            <h3>Não foi possível consultar as notas</h3>
+
+            <p>{{ mensagemErro() }}</p>
+
+            <button type="button" class="notes-retry-button" (click)="listarNotas()">
+                Tentar novamente
+            </button>
+        </div>
+        }
+
+        <!-- Lista de notas -->
+        @else if (notasFiltradas().length > 0) {
+        <div class="notes-kanban">
+
+            <!-- Coluna: Arquivadas -->
+            <section class="notes-column notes-column-pending">
+
+                <header class="notes-column-heading">
+                    <div class="column-title-group">
+                        <span class="column-status-icon" aria-hidden="true">
+                            ◷
+                        </span>
+
+                        <div>
+                            <h3>Arquivadas</h3>
+                            <p>Aguardando atenção</p>
+                        </div>
+                    </div>
+
+                    <span class="column-count">
+                        {{ notasPorStatus('Arquivada').length }}
+                    </span>
+                </header>
+
+                <div class="notes-column-content">
+
+                    @for (nota of notasPorStatus('Arquivada'); track nota.id) {
+                    <article class="note-card">
+
+                        <div class="note-card-topline">
+                            <span class="note-card-index">
+                                REG. {{ nota.id.slice(0, 8) }}
+                            </span>
+
+                            <span class="note-status-badge status-pending">
+                                Arquivada
+                            </span>
+                        </div>
+
+                        <h4 class="note-card-title">
+                            {{ nota.titulo }}
+                        </h4>
+
+                        <p class="note-card-description">
+                            {{ nota.descricao || 'Esta anotação ainda não possui uma descrição.' }}
+                        </p>
+
+                        <div class="note-card-categories">
+                            @for (categoriaId of nota.categoriaIds; track categoriaId) {
+                            @if (nomeCategoria(categoriaId); as nome) {
+                            <span class="note-category-tag">
+                                {{ nome }}
+                            </span>
+                            }
+                            }
+                        </div>
+
+                        <div class="note-card-footer">
+                            <span class="note-card-label">
+                                ARQUIVO PESSOAL
+                            </span>
+
+                            <div class="note-card-actions">
+                                <button type="button" class="note-action note-action-details"
+                                    (click)="abrirDetalhes(nota)" [attr.aria-label]="'Ver detalhes de ' + nota.titulo"
+                                    title="Detalhes">
+                                    <span aria-hidden="true">⌕</span>
+                                </button>
+
+                                <a [routerLink]="['/notas/edicao', nota.id]" class="note-action note-action-edit"
+                                    [attr.aria-label]="'Editar ' + nota.titulo" title="Editar">
+                                    <span aria-hidden="true">✎</span>
+                                </a>
+
+                                <button type="button" class="note-action note-action-delete"
+                                    (click)="confirmarExclusao(nota)" [attr.aria-label]="'Excluir ' + nota.titulo"
+                                    title="Excluir">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </article>
+                    } @empty {
+                    <div class="notes-column-empty">
+                        <span aria-hidden="true">◇</span>
+                        <p>Nenhuma nota arquivada.</p>
+                    </div>
+                    }
+
+                </div>
+            </section>
+
+            <!-- Coluna: Ativas -->
+            <section class="notes-column notes-column-progress">
+
+                <header class="notes-column-heading">
+                    <div class="column-title-group">
+                        <span class="column-status-icon" aria-hidden="true">
+                            ◷
+                        </span>
+
+                        <div>
+                            <h3>Ativas</h3>
+                            <p>Ideias em desenvolvimento</p>
+                        </div>
+                    </div>
+
+                    <span class="column-count">
+                        {{ notasPorStatus('Ativa').length }}
+                    </span>
+                </header>
+
+                <div class="notes-column-content">
+
+                    @for (nota of notasPorStatus('Ativa'); track nota.id) {
+                    <article class="note-card">
+
+                        <div class="note-card-topline">
+                            <span class="note-card-index">
+                                REG. {{ nota.id.slice(0, 8) }}
+                            </span>
+
+                            <span class="note-status-badge status-progress">
+                                Ativa
+                            </span>
+                        </div>
+
+                        <h4 class="note-card-title">
+                            {{ nota.titulo }}
+                        </h4>
+
+                        <p class="note-card-description">
+                            {{ nota.descricao || 'Esta anotação ainda não possui uma descrição.' }}
+                        </p>
+
+                        <div class="note-card-categories">
+                            @for (categoriaId of nota.categoriaIds; track categoriaId) {
+                            @if (nomeCategoria(categoriaId); as nome) {
+                            <span class="note-category-tag">
+                                {{ nome }}
+                            </span>
+                            }
+                            }
+                        </div>
+
+                        <div class="note-card-footer">
+                            <span class="note-card-label">
+                                ARQUIVO PESSOAL
+                            </span>
+
+                            <div class="note-card-actions">
+                                <button type="button" class="note-action note-action-details"
+                                    (click)="abrirDetalhes(nota)" [attr.aria-label]="'Ver detalhes de ' + nota.titulo"
+                                    title="Detalhes">
+                                    <span aria-hidden="true">⌕</span>
+                                </button>
+
+                                <a [routerLink]="['/notas/edicao', nota.id]" class="note-action note-action-edit"
+                                    [attr.aria-label]="'Editar ' + nota.titulo" title="Editar">
+                                    <span aria-hidden="true">✎</span>
+                                </a>
+
+                                <button type="button" class="note-action note-action-delete"
+                                    (click)="confirmarExclusao(nota)" [attr.aria-label]="'Excluir ' + nota.titulo"
+                                    title="Excluir">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </article>
+                    } @empty {
+                    <div class="notes-column-empty">
+                        <span aria-hidden="true">◇</span>
+                        <p>Nenhuma nota ativa.</p>
+                    </div>
+                    }
+
+                </div>
+            </section>
+
+        </div>
+        }
+
+        <!-- Nenhuma nota encontrada -->
+        @else {
+        <div class="notes-state">
+            <div class="notes-loading-mark" aria-hidden="true">§</div>
+
+            <h3>Nenhuma anotação encontrada</h3>
+
+            <p>
+                Experimente alterar os filtros ou crie uma nova nota para o arquivo.
+            </p>
+
+            @if (termoPesquisa() || categoriaFiltro() !== 'todas') {
+            <button type="button" class="notes-retry-button" (click)="limparFiltros()">
+                Limpar filtros
+            </button>
+            } @else {
+            <a routerLink="/notas/cadastro" class="notes-retry-button">
+                Criar primeira nota
+            </a>
+            }
+        </div>
+        }
+
+        <!-- Rodapé do quadro -->
+        <footer class="notes-board-footer">
+            <span class="footer-rule"></span>
+            <p>Uma ideia registrada nunca se perde.</p>
+            <span class="footer-rule"></span>
+        </footer>
+    </section>
+
+    <!-- Modal de detalhes e modal de exclusão serão adicionados aqui -->
+
+</section>

@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { AuthShell } from './authentication/shell/auth-shell';
 import { E_ANONIMOGUARD, E_AUTENTICADOGUARD } from './authentication/auth.guard';
 import { CategoriaShell } from './components/categoria/shell/categoria-shell';
+import { NotaShell } from './components/nota/shell/nota-shell';
 
 export const routes: Routes = [
     {
@@ -41,6 +42,21 @@ export const routes: Routes = [
             }
 
 
+        ]
+
+    },
+    {
+        path: 'notas',
+        component: NotaShell,
+        canActivate: [E_AUTENTICADOGUARD],
+        canActivateChild: [E_AUTENTICADOGUARD],
+        children: [
+            {
+                path: 'listagem',
+                loadComponent: () =>
+                    import('./components/nota/listagem/nota-listagem')
+                        .then(m => m.NotaListagem)
+            },
         ]
     },
     {
