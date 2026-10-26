@@ -3,9 +3,10 @@ import { Menu } from "../menu/menu";
 import { AuthService } from "../../authentication/auth.service";
 import { RouterLink } from "@angular/router";
 import { AmbienteCinematografico } from "../../ambiente-cinematografico/ambiente-cinematografico";
+import { CursorPersonalizado } from "../../cursor-personalizado/cursor-personalizado";
 
 @Component({
-    imports: [RouterLink, Menu, AmbienteCinematografico],
+    imports: [RouterLink, Menu, AmbienteCinematografico, CursorPersonalizado],
     selector: 'app-home',
     templateUrl: './home.html'
 })

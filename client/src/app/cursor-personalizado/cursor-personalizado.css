@@ -1,0 +1,101 @@
+:host {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    pointer-events: none;
+}
+
+.cursor-personalizado {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 42px;
+    height: 42px;
+    opacity: 0;
+    pointer-events: none;
+    will-change: transform, opacity;
+}
+
+.cursor-personalizado__pena {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    filter: drop-shadow(0 2px 4px rgb(48 39 31 / 35%));
+    transform: translate(-8px, -8px) rotate(-35deg);
+    transform-origin: center;
+    transition:
+        filter 180ms ease,
+        transform 180ms ease;
+}
+
+.cursor-personalizado__brilho {
+    fill: rgb(198 166 109 / 12%);
+    stroke: rgb(184 154 90 / 35%);
+    stroke-width: 1;
+    transition:
+        fill 180ms ease,
+        stroke 180ms ease;
+}
+
+.cursor-personalizado__silhueta {
+    fill: #725331;
+    stroke: #30271F;
+    stroke-width: 1.5;
+    stroke-linejoin: round;
+}
+
+.cursor-personalizado__corpo {
+    fill: #C6A66D;
+    stroke: #8B704B;
+    stroke-width: 0.8;
+    stroke-linejoin: round;
+}
+
+.cursor-personalizado__nervura {
+    fill: none;
+    stroke: #F4EAD8;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+}
+
+.cursor-personalizado__detalhe {
+    fill: none;
+    stroke: #8B704B;
+    stroke-width: 1;
+    stroke-linecap: round;
+}
+
+.cursor-personalizado__ponta {
+    fill: #30271F;
+    stroke: #C6A66D;
+    stroke-width: 1;
+    stroke-linejoin: round;
+}
+
+.cursor-personalizado__detalhe-bronze {
+    fill: none;
+    stroke: #E3C58B;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+}
+
+/* Interação com botões e links */
+.cursor-personalizado.cursor-interativo .cursor-personalizado__brilho {
+    fill: rgb(198 166 109 / 45%);
+    stroke: #C6A66D;
+}
+
+.cursor-personalizado.cursor-interativo .cursor-personalizado__pena {
+    filter:
+        drop-shadow(0 0 4px rgb(198 166 109 / 75%)) drop-shadow(0 0 8px rgb(184 154 90 / 30%));
+    transform: translate(-8px, -8px) rotate(-30deg) scale(1.04);
+}
+
+@media (prefers-reduced-motion: reduce),
+(hover: none),
+(pointer: coarse) {
+    :host {
+        display: none;
+    }
+}

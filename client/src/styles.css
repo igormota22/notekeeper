@@ -884,3 +884,61 @@ body {
         display: none;
     }
 }
+
+/* =========================================
+   CURSOR PERSONALIZADO — NOTEKeeper
+   ========================================= */
+
+/* Somente a área que possui o cursor personalizado */
+[data-cursor-personalizado="ativo"] {
+    cursor: none;
+}
+
+/* Preserva o cursor de edição nos campos de texto */
+[data-cursor-personalizado="ativo"] input,
+[data-cursor-personalizado="ativo"] textarea,
+[data-cursor-personalizado="ativo"] [contenteditable="true"],
+[data-cursor-personalizado="ativo"] [contenteditable=""],
+[data-cursor-personalizado="ativo"] .cursor-texto {
+    cursor: text !important;
+}
+
+/* Preserva cursores específicos dos controles */
+[data-cursor-personalizado="ativo"] select,
+[data-cursor-personalizado="ativo"] input[type="checkbox"],
+[data-cursor-personalizado="ativo"] input[type="radio"],
+[data-cursor-personalizado="ativo"] input[type="range"] {
+    cursor: pointer !important;
+}
+
+/* Não ativa o efeito em dispositivos de toque */
+@media (hover: none),
+(pointer: coarse) {
+
+    [data-cursor-personalizado="ativo"],
+    [data-cursor-personalizado="ativo"] * {
+        cursor: auto !important;
+    }
+}
+
+/* Mantém o ponteiro convencional quando há preferência por movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+
+    [data-cursor-personalizado="ativo"],
+    [data-cursor-personalizado="ativo"] * {
+        cursor: auto !important;
+    }
+}
+
+/* Esconde o cursor nativo na área autenticada */
+[data-cursor-personalizado="ativo"],
+[data-cursor-personalizado="ativo"] * {
+    cursor: none !important;
+}
+
+/* Mantém o cursor de texto nos campos de digitação */
+[data-cursor-personalizado="ativo"] input,
+[data-cursor-personalizado="ativo"] textarea,
+[data-cursor-personalizado="ativo"] [contenteditable="true"] {
+    cursor: text !important;
+}

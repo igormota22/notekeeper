@@ -269,12 +269,14 @@
 
 @else {
 <!-- Arquivo do usuário autenticado -->
-<div class="arquivo-layout min-h-screen md:flex">
+<div class="arquivo-layout min-h-screen md:flex" data-cursor-personalizado="ativo">
+    <!-- Cursor personalizado -->
+    <app-cursor-personalizado></app-cursor-personalizado>
 
     <!-- Menu lateral independente -->
     <app-menu></app-menu>
 
-    <!-- Área principal com a máquina de escrever como fundo -->
+    <!-- Área principal -->
     <main class="arquivo-main min-w-0 flex-1">
 
         <!-- Fundo cinematográfico -->
