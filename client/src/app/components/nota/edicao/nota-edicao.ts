@@ -26,6 +26,7 @@ interface NotaForm {
     standalone: true,
     imports: [FormField, RouterLink],
     selector: 'app-nota-edicao',
+    styleUrl: '../nota-styles.css',
     templateUrl: './nota-edicao.html'
 })
 export class NotaEdicao {

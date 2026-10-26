@@ -5,6 +5,7 @@ import { CategoriaResponse } from '../categoria';
 @Component({
     selector: 'app-modal-exclusao',
     standalone: true,
+    styleUrl: '../categoria-styles.css',
     templateUrl: './modal-exclusao.html',
 })
 export class ModalExclusao {

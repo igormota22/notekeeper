@@ -5,6 +5,7 @@ import { Menu } from "../../menu/menu";
 @Component({
     imports: [RouterLinkActive, RouterLink, RouterOutlet, Menu],
     selector: 'app-categoria-shell',
+    styleUrl: '../categoria-styles.css',
     templateUrl: './categoria-shell.html'
 })
 

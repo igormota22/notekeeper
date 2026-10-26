@@ -6,6 +6,7 @@ import { CategoriaResponse } from '../categoria';
 @Component({
     selector: 'app-modal-categoria-detalhes',
     standalone: true,
+    styleUrl: '../categoria-styles.css',
     templateUrl: './modal-categoria-detalhes.html',
 })
 export class ModalCategoriaDetalhes {

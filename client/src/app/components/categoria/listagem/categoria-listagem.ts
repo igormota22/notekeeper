@@ -9,6 +9,7 @@ import { ModalCategoriaDetalhes } from "../modal-detalhes/modal-categoria-detalh
 @Component({
     imports: [ModalCategoriaDetalhes, ModalExclusao, RouterLink],
     selector: 'app-categoria-listagem',
+    styleUrl: '../categoria-styles.css',
     templateUrl: './categoria-listagem.html'
 })
 

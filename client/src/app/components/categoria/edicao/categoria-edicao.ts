@@ -19,6 +19,7 @@ interface CategoriaForm {
 @Component({
     selector: 'app-categoria-edicao',
     standalone: true,
+    styleUrl: '../categoria-styles.css',
     templateUrl: './categoria-edicao.html'
 })
 export class CategoriaEdicao implements OnInit {

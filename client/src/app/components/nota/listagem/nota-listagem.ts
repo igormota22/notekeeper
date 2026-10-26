@@ -22,6 +22,7 @@ import { ModalNotaDetalhes } from '../modal-detalhes/modal-nota-detalhes';
     selector: 'app-nota-listagem',
     standalone: true,
     imports: [RouterLink, ModalNotaExclusao, ModalNotaDetalhes],
+    styleUrl: '../nota-styles.css',
     templateUrl: './nota-listagem.html',
 })
 export class NotaListagem implements OnInit {

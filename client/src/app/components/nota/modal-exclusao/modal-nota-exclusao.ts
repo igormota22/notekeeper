@@ -5,6 +5,7 @@ import { NotaResponse } from '../nota';
 @Component({
     selector: 'app-modal-nota-exclusao',
     standalone: true,
+    styleUrl: '../nota-styles.css',
     templateUrl: './modal-nota-exclusao.html',
 })
 export class ModalNotaExclusao {

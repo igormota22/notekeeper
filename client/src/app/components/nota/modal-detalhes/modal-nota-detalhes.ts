@@ -4,6 +4,7 @@ import { NotaResponse } from '../nota';
 @Component({
     selector: 'app-modal-nota-detalhes',
     standalone: true,
+    styleUrl: '../nota-styles.css',
     templateUrl: './modal-nota-detalhes.html'
 })
 export class ModalNotaDetalhes {

@@ -24,6 +24,7 @@ interface NotaForm {
 @Component({
     imports: [FormField],
     selector: 'app-nota-cadastro',
+    styleUrl: '../nota-styles.css',
     templateUrl: './nota-cadastro.html'
 })
 export class NotaCadastro {

@@ -1,0 +1,3125 @@
+/* =========================================================
+   NOTEKEEPER — NOTAS
+   Fichário de madeira | Papel envelhecido | Bronze
+========================================================= */
+
+/* =========================================================
+   1. VARIÁVEIS E BASE
+========================================================= */
+
+:host {
+    display: block;
+    min-width: 0;
+
+    --nota-paper: var(--paper, #FFFCF5);
+    --nota-paper-aged: var(--paper-aged, #F5EAD6);
+    --nota-paper-dark: var(--paper-dark, #E9D9BB);
+    --nota-paper-line: var(--paper-line, #E9DFCB);
+
+    --nota-wood: var(--wood, #38281E);
+    --nota-wood-light: var(--wood-light, #4D392A);
+    --nota-wood-border: var(--wood-border, #6B5038);
+
+    --nota-ink: var(--ink, #4A382A);
+    --nota-ink-light: var(--ink-light, #786451);
+
+    --nota-gold: var(--gold, #B89A5A);
+    --nota-gold-light: var(--gold-light, #D8BB82);
+    --nota-bronze: var(--bronze, #A78352);
+
+    --nota-muted: var(--muted, #8B7A67);
+    --nota-border: var(--border, #D8C8AC);
+
+    --nota-shadow-wood:
+        var(--shadow-wood, 0 12px 30px rgb(0 0 0 / 20%));
+
+    --nota-ease:
+        var(--ease-editorial, cubic-bezier(.22, 1, .36, 1));
+
+    --nota-fast: var(--transition-fast, 160ms);
+    --nota-normal: var(--transition-normal, 260ms);
+
+    color: var(--nota-ink);
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+/* =========================================================
+   2. ANIMAÇÕES
+========================================================= */
+
+@keyframes notes-enter {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes notes-card-enter {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes notes-mark-enter {
+    from {
+        opacity: 0;
+        transform: scale(.85) rotate(-8deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+/* =========================================================
+   3. PÁGINA E CABEÇALHO
+========================================================= */
+
+.notes-page {
+    width: 100%;
+    min-width: 0;
+    padding: 30px 24px 48px;
+    color: var(--nota-ink);
+    animation: notes-enter 650ms var(--nota-ease) both;
+}
+
+.notes-intro {
+    animation: notes-enter 650ms var(--nota-ease) both;
+}
+
+.notes-intro h2 {
+    color: var(--nota-ink);
+    font-family: Georgia, "Times New Roman", serif;
+    line-height: 1.2;
+}
+
+.notes-intro p {
+    color: #756657;
+    line-height: 1.8;
+}
+
+/* Botão Nova nota */
+
+.notes-new-button {
+    display: inline-flex;
+    min-height: 48px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+    padding: 12px 17px;
+
+    border: 1px solid var(--nota-bronze);
+    background: #514033;
+    color: var(--nota-paper-aged);
+
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .035em;
+    text-decoration: none;
+
+    box-shadow: 0 3px 0 #34251C;
+
+    transition:
+        background var(--nota-normal) ease,
+        color var(--nota-normal) ease,
+        border-color var(--nota-normal) ease,
+        transform var(--nota-normal) ease,
+        box-shadow var(--nota-normal) ease;
+}
+
+.notes-new-button>span:first-child {
+    color: var(--nota-gold-light);
+    font-size: 21px;
+    font-weight: 400;
+}
+
+.notes-new-button>span:last-child {
+    color: var(--nota-gold-light);
+    transition: transform var(--nota-normal) ease;
+}
+
+.notes-new-button:hover {
+    transform: translateY(-2px);
+    border-color: var(--nota-gold-light);
+    background: #68513C;
+    color: #FFFCF5;
+    box-shadow: 0 5px 0 #34251C;
+}
+
+.notes-new-button:hover>span:last-child {
+    transform: translate(2px, -2px);
+}
+
+/* =========================================================
+   4. PAINEL DE MADEIRA
+========================================================= */
+
+/* Recupera o estilo compartilhado que existia no CSS global. */
+
+.notes-board {
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+
+    border: 1px solid var(--nota-wood-border);
+
+    background:
+        repeating-linear-gradient(2deg,
+            transparent 0,
+            transparent 22px,
+            rgb(15 10 6 / 10%) 23px,
+            transparent 25px),
+        linear-gradient(115deg,
+            #4B3526 0%,
+            var(--nota-wood) 35%,
+            #513A29 65%,
+            #34251C 100%);
+
+    box-shadow:
+        inset 0 1px 0 rgb(231 195 139 / 15%),
+        inset 0 0 35px rgb(0 0 0 / 18%),
+        var(--nota-shadow-wood);
+
+    animation: notes-enter 700ms 100ms var(--nota-ease) both;
+}
+
+/* Cabeçalho do quadro */
+
+.notes-board-heading {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    padding: 20px 24px;
+
+    border-bottom: 1px solid rgb(216 187 130 / 30%);
+}
+
+.notes-board-heading>div {
+    min-width: 0;
+}
+
+.notes-board-heading svg {
+    flex-shrink: 0;
+    color: var(--nota-gold-light);
+}
+
+.notes-board-stamp {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+
+    padding: 7px 10px;
+
+    border: 1px solid rgb(216 187 130 / 40%);
+    color: var(--nota-gold-light);
+
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: .15em;
+    white-space: nowrap;
+
+    transform: rotate(-2deg);
+}
+
+/* =========================================================
+   5. PESQUISA E FILTROS
+========================================================= */
+
+.notes-toolbar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 13px;
+
+    padding: 18px 24px;
+
+    border-bottom: 1px solid rgb(216 187 130 / 22%);
+}
+
+.notes-search {
+    display: flex;
+    min-width: 180px;
+    min-height: 44px;
+    flex: 1 1 220px;
+    align-items: center;
+    gap: 10px;
+
+    padding: 0 13px;
+
+    border: 1px solid #B9A17A;
+    background: var(--nota-paper);
+
+    transition:
+        border-color var(--nota-fast) ease,
+        box-shadow var(--nota-fast) ease;
+}
+
+.notes-search:focus-within {
+    border-color: var(--nota-gold);
+    box-shadow: 0 0 0 3px rgb(184 154 90 / 15%);
+}
+
+.notes-search svg {
+    flex-shrink: 0;
+    color: #8B704E;
+}
+
+.notes-search-input {
+    width: 100%;
+    min-width: 0;
+    min-height: 42px;
+
+    border: 0;
+    outline: none;
+    background: transparent;
+    color: var(--nota-ink);
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 13px;
+}
+
+.notes-search-input::placeholder {
+    color: #9B8A76;
+}
+
+.notes-search-input:focus-visible {
+    outline: none;
+}
+
+.notes-category-filter {
+    display: flex;
+    min-width: 170px;
+    flex: 0 1 220px;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.notes-category-filter label {
+    color: var(--nota-gold-light);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+}
+
+.notes-select {
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+    padding: 9px 11px;
+
+    border: 1px solid #B9A17A;
+    border-radius: 0;
+
+    background: var(--nota-paper);
+    color: var(--nota-ink);
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 12px;
+
+    transition:
+        border-color var(--nota-fast) ease,
+        box-shadow var(--nota-fast) ease;
+}
+
+.notes-select:focus {
+    border-color: var(--nota-gold);
+    box-shadow: 0 0 0 3px rgb(184 154 90 / 15%);
+    outline: none;
+}
+
+.notes-clear-filters {
+    align-self: flex-end;
+    min-height: 44px;
+    padding: 10px 13px;
+
+    border: 1px solid rgb(216 187 130 / 40%);
+    background: rgb(41 29 21 / 30%);
+    color: var(--nota-paper-aged);
+
+    font-size: 11px;
+    white-space: nowrap;
+
+    cursor: pointer;
+
+    transition:
+        background var(--nota-fast) ease,
+        color var(--nota-fast) ease,
+        border-color var(--nota-fast) ease;
+}
+
+.notes-clear-filters:hover {
+    border-color: var(--nota-gold);
+    background: var(--nota-gold);
+    color: var(--nota-wood);
+}
+
+/* =========================================================
+   6. RESUMO — SELETORES REAIS DO HTML
+========================================================= */
+
+.notes-summary {
+    display: flex;
+    min-width: 0;
+    align-items: stretch;
+    justify-content: space-around;
+    gap: 16px;
+
+    padding: 17px 24px;
+
+    border-bottom: 1px solid rgb(216 187 130 / 22%);
+}
+
+.summary-item {
+    display: flex;
+    min-width: 0;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    text-align: center;
+}
+
+.summary-number {
+    color: var(--nota-gold-light);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+}
+
+.summary-label {
+    color: #C5B69C;
+    font-size: 10px;
+    letter-spacing: .035em;
+}
+
+.summary-divider {
+    width: 1px;
+    flex: 0 0 1px;
+    align-self: stretch;
+    background: rgb(216 187 130 / 25%);
+}
+
+/* =========================================================
+   7. KANBAN — DUAS COLUNAS
+========================================================= */
+
+.notes-kanban {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 18px;
+
+    padding: 22px;
+
+    background: rgb(24 16 10 / 12%);
+}
+
+.notes-column {
+    min-width: 0;
+    overflow: hidden;
+
+    border: 1px solid #C9B797;
+    border-top: 3px solid var(--nota-bronze);
+
+    background: var(--nota-paper-aged);
+    color: var(--nota-ink);
+
+    box-shadow:
+        0 5px 12px rgb(0 0 0 / 18%),
+        inset 0 1px 0 rgb(255 255 255 / 55%);
+}
+
+.notes-column-pending {
+    border-top-color: #A78352;
+}
+
+.notes-column-progress {
+    border-top-color: #668265;
+}
+
+/* Cabeçalho de cada coluna */
+
+.notes-column-heading {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    padding: 15px 16px;
+
+    border-bottom: 1px solid #D8C8AC;
+
+    background:
+        linear-gradient(110deg,
+            #F0E4CB,
+            #E9D9BB);
+}
+
+.column-title-group {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    gap: 10px;
+}
+
+.column-title-group>div {
+    min-width: 0;
+}
+
+.column-title-group h3 {
+    margin: 0;
+    color: #4A382A;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.column-title-group p {
+    margin: 3px 0 0;
+    color: #8B7A67;
+    font-size: 10px;
+    line-height: 1.5;
+}
+
+.column-status-icon {
+    display: flex;
+    width: 32px;
+    height: 32px;
+    flex: 0 0 32px;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #C9B797;
+    background: rgb(255 252 245 / 70%);
+    color: #8B704E;
+
+    font-size: 17px;
+}
+
+.notes-column-progress .column-status-icon {
+    color: #557A56;
+}
+
+.column-count {
+    display: inline-flex;
+    min-width: 28px;
+    height: 28px;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+
+    padding-inline: 7px;
+
+    border: 1px solid #C9B797;
+    background: var(--nota-paper);
+    color: var(--nota-ink);
+
+    font-size: 11px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Conteúdo da coluna */
+
+.notes-column-content {
+    display: flex;
+    min-width: 0;
+    min-height: 145px;
+    flex-direction: column;
+    gap: 13px;
+
+    padding: 14px;
+}
+
+/* Estado vazio da coluna */
+
+.notes-column-empty {
+    display: flex;
+    min-height: 112px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    padding: 20px 12px;
+
+    border: 1px dashed #C9B797;
+    background: rgb(255 252 245 / 35%);
+    color: #8B7A67;
+
+    text-align: center;
+}
+
+.notes-column-empty>span {
+    color: #A78352;
+    font-size: 22px;
+}
+
+.notes-column-empty p {
+    margin: 0;
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+/* =========================================================
+   8. CARTÕES DAS NOTAS
+========================================================= */
+
+.note-card {
+    position: relative;
+    min-width: 0;
+    padding: 16px;
+
+    border: 1px solid #E0D2BA;
+
+    background:
+        repeating-linear-gradient(to bottom,
+            transparent 0,
+            transparent 30px,
+            rgb(169 146 111 / 7%) 31px),
+        var(--nota-paper);
+
+    color: var(--nota-ink);
+
+    box-shadow:
+        0 2px 5px rgb(63 45 30 / 5%),
+        0 4px 10px rgb(63 45 30 / 4%);
+
+    animation: notes-card-enter 400ms var(--nota-ease) both;
+
+    transition:
+        transform var(--nota-fast) ease,
+        border-color var(--nota-fast) ease,
+        box-shadow var(--nota-fast) ease;
+}
+
+.note-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--nota-gold);
+
+    box-shadow:
+        0 7px 17px rgb(63 45 30 / 10%),
+        0 0 0 1px rgb(184 154 90 / 8%);
+}
+
+.note-card-topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    margin-bottom: 12px;
+}
+
+.note-card-index {
+    color: #9B8566;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    overflow-wrap: anywhere;
+}
+
+.note-status-badge {
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    gap: 5px;
+
+    padding: 5px 8px;
+
+    border: 1px solid transparent;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: .04em;
+}
+
+.status-pending {
+    border-color: #D9C49C;
+    background: #F5EAD6;
+    color: #80643B;
+}
+
+.status-progress {
+    border-color: #BDD0B9;
+    background: #E8F0E5;
+    color: #486648;
+}
+
+.note-card-title {
+    margin: 0 0 9px;
+
+    color: var(--nota-wood);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.45;
+
+    overflow-wrap: anywhere;
+}
+
+.note-card-description {
+    display: -webkit-box;
+    overflow: hidden;
+
+    margin: 0 0 14px;
+
+    color: var(--nota-ink-light);
+    font-size: 12px;
+    line-height: 1.8;
+
+    overflow-wrap: anywhere;
+
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+}
+
+/* Categorias dentro do cartão */
+
+.note-card-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+
+    margin: 0 0 15px;
+}
+
+.note-category-tag {
+    display: inline-flex;
+    max-width: 100%;
+    align-items: center;
+
+    padding: 4px 7px;
+
+    border: 1px solid #E0D2BA;
+    background: #F5EAD6;
+    color: #786044;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 9px;
+    line-height: 1.5;
+
+    overflow-wrap: anywhere;
+}
+
+/* Rodapé dos cartões */
+
+.note-card-footer {
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    padding-top: 12px;
+    border-top: 1px solid var(--nota-paper-line);
+}
+
+.note-card-label {
+    color: #9B8A76;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: .12em;
+}
+
+.note-card-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Botões de ícone */
+
+.note-action {
+    display: inline-flex;
+    width: 33px;
+    height: 33px;
+    flex: 0 0 33px;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #D8C8AC;
+    background: var(--nota-paper);
+    color: #80694C;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 18px;
+    line-height: 1;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        background var(--nota-fast) ease,
+        border-color var(--nota-fast) ease,
+        color var(--nota-fast) ease,
+        transform var(--nota-fast) ease;
+}
+
+.note-action:hover {
+    transform: translateY(-2px);
+}
+
+.note-action-details:hover,
+.note-action-edit:hover {
+    border-color: var(--nota-gold);
+    background: #F0E4CB;
+    color: #38281E;
+}
+
+.note-action-delete {
+    border-color: #E2C4BC;
+    color: #A84F45;
+}
+
+.note-action-delete:hover {
+    border-color: #A84F45;
+    background: #F8E9E5;
+    color: #873B33;
+}
+
+/* =========================================================
+   9. ESTADOS — CARREGAMENTO, ERRO E VAZIO
+========================================================= */
+
+.notes-state {
+    display: flex;
+    min-height: 220px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    padding: 36px 24px;
+
+    color: #C5B69C;
+    text-align: center;
+}
+
+.notes-loading-mark {
+    display: flex;
+    width: 50px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgb(216 187 130 / 55%);
+    background: rgb(41 29 21 / 25%);
+    color: var(--nota-gold-light);
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 28px;
+
+    animation: notes-mark-enter 500ms var(--nota-ease) both;
+}
+
+.notes-state h3 {
+    margin: 0;
+
+    color: var(--nota-paper-aged);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 19px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.notes-state p {
+    max-width: 440px;
+    margin: 0;
+
+    color: #C5B69C;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.notes-state-error {
+    color: #FFE4DE;
+}
+
+.notes-state-error .notes-loading-mark {
+    border-color: #B96C60;
+    color: #F0B5A8;
+}
+
+.notes-state-error h3 {
+    color: #FFE4DE;
+}
+
+.notes-state-error p {
+    color: #E9C7BF;
+}
+
+/* Botão tentar novamente / criar primeira nota */
+
+.notes-retry-button {
+    display: inline-flex;
+    min-height: 42px;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 5px;
+    padding: 10px 16px;
+
+    border: 1px solid var(--nota-gold);
+    background: var(--nota-gold);
+    color: var(--nota-wood);
+
+    font-size: 11px;
+    font-weight: 600;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        background var(--nota-fast) ease,
+        color var(--nota-fast) ease,
+        border-color var(--nota-fast) ease;
+}
+
+.notes-retry-button:hover {
+    border-color: var(--nota-gold-light);
+    background: var(--nota-gold-light);
+}
+
+/* =========================================================
+   10. RODAPÉ DO QUADRO
+========================================================= */
+
+.notes-board-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    padding: 0 20px 22px;
+}
+
+.notes-board-footer p {
+    margin: 0;
+
+    color: var(--nota-gold-light);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 11px;
+    font-style: italic;
+    text-align: center;
+}
+
+.footer-rule {
+    width: 24px;
+    height: 1px;
+    flex-shrink: 0;
+    background: #8B704E;
+}
+
+/* =========================================================
+   11. FORMULÁRIO DE NOTAS
+========================================================= */
+
+.note-catalog-page {
+    width: 100%;
+    max-width: 960px;
+    margin-inline: auto;
+    padding: 32px 24px 48px;
+
+    color: var(--nota-ink);
+
+    animation: notes-enter 600ms var(--nota-ease) both;
+}
+
+.note-catalog-header {
+    margin-bottom: 26px;
+}
+
+.note-catalog-header h1 {
+    margin: 0;
+    color: var(--nota-wood);
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+    font-weight: 500;
+    line-height: 1.25;
+}
+
+.note-catalog-header p {
+    margin: 10px 0 0;
+    color: var(--nota-ink-light);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.note-catalog-form,
+.note-catalog-panel {
+    padding: 28px;
+
+    border: 1px solid #E0D2BA;
+
+    background:
+        repeating-linear-gradient(to bottom,
+            transparent 0,
+            transparent 35px,
+            rgb(169 146 111 / 5%) 36px),
+        var(--nota-paper);
+
+    box-shadow:
+        0 8px 24px rgb(63 45 30 / 6%),
+        0 2px 5px rgb(63 45 30 / 3%);
+}
+
+.note-catalog-form {
+    display: flex;
+    flex-direction: column;
+    gap: 23px;
+}
+
+.note-catalog-form label,
+.note-catalog-field label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--nota-ink);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.note-catalog-form input,
+.note-catalog-form select,
+.note-catalog-form textarea,
+.note-catalog-field input,
+.note-catalog-field select,
+.note-catalog-field textarea {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    padding: 12px 14px;
+
+    border: 1px solid #D8C8AC;
+    border-radius: 2px;
+
+    background: var(--nota-paper);
+    color: var(--nota-ink);
+
+    font-size: 14px;
+
+    transition:
+        border-color var(--nota-fast) ease,
+        box-shadow var(--nota-fast) ease;
+}
+
+.note-catalog-form input,
+.note-catalog-form select,
+.note-catalog-field input,
+.note-catalog-field select {
+    min-height: 46px;
+}
+
+.note-catalog-form textarea,
+.note-catalog-field textarea {
+    min-height: 150px;
+    resize: vertical;
+    line-height: 1.7;
+}
+
+.note-catalog-form input:focus,
+.note-catalog-form select:focus,
+.note-catalog-form textarea:focus,
+.note-catalog-field input:focus,
+.note-catalog-field select:focus,
+.note-catalog-field textarea:focus {
+    border-color: var(--nota-gold);
+    box-shadow: 0 0 0 3px rgb(184 154 90 / 14%);
+    outline: none;
+}
+
+.note-catalog-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.note-catalog-field {
+    min-width: 0;
+}
+
+.note-catalog-form .field-error,
+.note-catalog-field .field-error,
+.note-catalog-error {
+    margin: 7px 0 0;
+    color: #A84F45;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.note-catalog-form .field-hint,
+.note-catalog-field .field-hint {
+    display: block;
+    margin-top: 7px;
+    color: var(--nota-muted);
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.note-catalog-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.note-catalog-category {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 12px;
+
+    border: 1px solid #D8C8AC;
+    background: #F5EAD6;
+    color: #5D4936;
+
+    cursor: pointer;
+
+    transition:
+        border-color var(--nota-fast) ease,
+        background var(--nota-fast) ease;
+}
+
+.note-catalog-category:hover {
+    border-color: var(--nota-gold);
+}
+
+.note-catalog-category.selected,
+.note-catalog-category[aria-pressed="true"] {
+    border-color: var(--nota-bronze);
+    background: var(--nota-paper-dark);
+}
+
+.note-catalog-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    padding-top: 20px;
+    border-top: 1px solid var(--nota-paper-line);
+}
+
+.note-catalog-actions button,
+.note-catalog-actions a,
+.note-catalog-submit,
+.note-catalog-cancel {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 18px;
+
+    border: 1px solid var(--nota-bronze);
+    background: #514033;
+    color: var(--nota-paper-aged);
+
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        background var(--nota-fast) ease,
+        border-color var(--nota-fast) ease,
+        color var(--nota-fast) ease;
+}
+
+.note-catalog-actions button:hover,
+.note-catalog-submit:hover {
+    border-color: #8B7547;
+    background: #68513C;
+}
+
+.note-catalog-actions .note-catalog-cancel,
+.note-catalog-cancel {
+    border-color: #D8C8AC;
+    background: transparent;
+    color: #5D4936;
+}
+
+.note-catalog-actions .note-catalog-cancel:hover,
+.note-catalog-cancel:hover {
+    background: #F5EAD6;
+}
+
+.note-catalog-actions button:disabled,
+.note-catalog-submit:disabled {
+    cursor: not-allowed;
+    opacity: .55;
+}
+
+/* Botão cancelar — mesmo estilo do formulário de categorias */
+
+.note-catalog-buttons .note-catalog-button-cancel {
+    min-height: 48px;
+    padding: 12px 18px;
+    border: 1px solid #C6AE83;
+    background: transparent;
+    color: var(--nota-muted, #647084);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.note-catalog-buttons .note-catalog-button-cancel:hover:not(:disabled) {
+    border-color: #8B704E;
+    background: var(--nota-paper-dark, #E9D9BB);
+    color: var(--nota-ink-light, #334155);
+}
+
+.note-catalog-buttons .note-catalog-button-cancel:disabled {
+    cursor: not-allowed;
+    opacity: .6;
+}
+
+/* =========================================================
+   12. ESTADOS GERAIS E ACESSIBILIDADE
+========================================================= */
+
+.notes-page [hidden],
+.note-catalog-page [hidden] {
+    display: none !important;
+}
+
+.notes-page button:disabled,
+.note-catalog-page button:disabled {
+    cursor: not-allowed;
+    opacity: .55;
+}
+
+.notes-page button:focus-visible,
+.notes-page a:focus-visible,
+.note-catalog-page button:focus-visible,
+.note-catalog-page a:focus-visible {
+    outline: 2px solid var(--nota-gold-light);
+    outline-offset: 3px;
+}
+
+/* =========================================================
+   13. RESPONSIVIDADE — TABLETS
+========================================================= */
+
+@media (max-width: 900px) {
+    .notes-page {
+        padding: 24px 18px 36px;
+    }
+
+    .notes-kanban {
+        gap: 14px;
+        padding: 17px;
+    }
+
+    .notes-board-heading,
+    .notes-toolbar,
+    .notes-summary {
+        padding-right: 18px;
+        padding-left: 18px;
+    }
+
+    .notes-column-content {
+        padding: 11px;
+    }
+
+    .note-card {
+        padding: 13px;
+    }
+
+    .note-catalog-page {
+        padding: 26px 18px 36px;
+    }
+}
+
+/* =========================================================
+   14. RESPONSIVIDADE — CELULARES
+========================================================= */
+
+@media (max-width: 640px) {
+    .notes-page {
+        padding: 18px 10px 28px;
+    }
+
+    .notes-board-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 17px 15px;
+    }
+
+    .notes-board-stamp {
+        align-self: flex-start;
+    }
+
+    .notes-toolbar {
+        align-items: stretch;
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    .notes-search,
+    .notes-category-filter {
+        width: 100%;
+        flex-basis: auto;
+    }
+
+    .notes-clear-filters {
+        width: 100%;
+        align-self: stretch;
+    }
+
+    .notes-summary {
+        gap: 8px;
+        padding: 14px 10px;
+    }
+
+    .summary-number {
+        font-size: 21px;
+    }
+
+    .summary-label {
+        font-size: 9px;
+    }
+
+    .summary-divider {
+        margin-block: 4px;
+    }
+
+    .notes-kanban {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+        padding: 12px;
+    }
+
+    .notes-column-heading {
+        padding: 13px;
+    }
+
+    .notes-column-content {
+        min-height: 100px;
+        padding: 10px;
+    }
+
+    .note-card {
+        padding: 13px;
+    }
+
+    .note-card-footer {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .note-card-actions {
+        align-self: flex-end;
+    }
+
+    .notes-state {
+        min-height: 190px;
+        padding: 28px 16px;
+    }
+
+    .notes-board-footer {
+        gap: 8px;
+        padding: 0 10px 18px;
+    }
+
+    .notes-board-footer p {
+        font-size: 10px;
+    }
+
+    .footer-rule {
+        width: 15px;
+    }
+
+    .note-catalog-page {
+        padding: 20px 12px 32px;
+    }
+
+    .note-catalog-form,
+    .note-catalog-panel {
+        padding: 19px 15px;
+    }
+
+    .note-catalog-row {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 18px;
+    }
+
+    .note-catalog-actions {
+        align-items: stretch;
+        flex-direction: column-reverse;
+    }
+
+    .note-catalog-actions button,
+    .note-catalog-actions a {
+        width: 100%;
+    }
+}
+
+/* =========================================================
+   15. MOVIMENTO REDUZIDO
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .notes-page,
+    .notes-intro,
+    .notes-board,
+    .note-card,
+    .note-catalog-page,
+    .notes-loading-mark {
+        animation: none !important;
+    }
+
+    .notes-page *,
+    .note-catalog-page * {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+
+    .note-card:hover,
+    .notes-new-button:hover {
+        transform: none;
+    }
+}
+
+/* =========================================================
+   NOTEKEEPER — EDIÇÃO DE ANOTAÇÃO
+   Ficha editorial | Papel envelhecido | Bronze e madeira
+========================================================= */
+
+/* 1. Estrutura principal */
+
+.note-catalog-page {
+    --catalog-paper: var(--paper, #FFFCF5);
+    --catalog-paper-aged: var(--paper-aged, #F5EAD6);
+    --catalog-paper-dark: var(--paper-dark, #E9D9BB);
+    --catalog-paper-line: var(--paper-line, #E9DFCB);
+    --catalog-ink: var(--ink, #30271F);
+    --catalog-muted: var(--muted, #817665);
+    --catalog-bronze: var(--bronze, #8B7547);
+    --catalog-gold: var(--gold, #B89A5A);
+    --catalog-border: #DED2BB;
+    --catalog-shadow: 0 18px 55px rgb(61 45 24 / 9%);
+
+    min-height: 100vh;
+    padding: 0 28px 32px;
+    color: var(--catalog-ink);
+    background:
+        radial-gradient(ellipse at 8% 10%, rgb(184 154 90 / 8%), transparent 32%),
+        radial-gradient(ellipse at 92% 40%, rgb(139 117 71 / 6%), transparent 34%),
+        var(--page, #FAF8F2);
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+.note-catalog-page *,
+.note-catalog-page *::before,
+.note-catalog-page *::after {
+    box-sizing: border-box;
+}
+
+.note-catalog-main {
+    width: min(100%, 1040px);
+    margin: 0 auto;
+}
+
+/* 2. Cabeçalho e identidade */
+
+.note-catalog-header {
+    width: min(100%, 1200px);
+    min-height: 88px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--catalog-border);
+}
+
+.note-catalog-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.note-catalog-brand-icon {
+    display: grid;
+    width: 43px;
+    height: 43px;
+    place-items: center;
+    border: 1px solid var(--catalog-bronze);
+    color: var(--catalog-bronze);
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: -2px;
+    background:
+        linear-gradient(145deg, rgb(255 255 255 / 65%), transparent),
+        var(--catalog-paper-aged);
+    box-shadow: 3px 3px 0 rgb(139 117 71 / 10%);
+}
+
+.note-catalog-brand-name,
+.note-catalog-brand-subtitle {
+    display: block;
+}
+
+.note-catalog-brand-name {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.note-catalog-brand-subtitle {
+    margin-top: 5px;
+    color: var(--catalog-muted);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 9px;
+    letter-spacing: 2.3px;
+}
+
+/* 3. Introdução */
+
+.note-catalog-intro {
+    padding: 48px 0 30px;
+    animation: catalog-enter 500ms ease both;
+}
+
+.note-catalog-eyebrow,
+.note-catalog-overline,
+.note-catalog-small-label {
+    color: var(--catalog-bronze);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.note-catalog-intro h1 {
+    margin: 13px 0 10px;
+    color: var(--catalog-ink);
+    font-size: clamp(32px, 5vw, 47px);
+    font-weight: 400;
+    line-height: 1.12;
+    letter-spacing: -1.5px;
+}
+
+.note-catalog-intro h1>span {
+    color: var(--catalog-gold);
+}
+
+.note-catalog-intro>p {
+    max-width: 600px;
+    margin: 0;
+    color: var(--catalog-muted);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+/* 4. Cartão da ficha */
+
+.note-catalog-card {
+    position: relative;
+    overflow: hidden;
+    padding: 34px 38px 28px;
+    border: 1px solid var(--catalog-border);
+    background:
+        linear-gradient(rgb(255 252 245 / 94%), rgb(255 252 245 / 94%)),
+        repeating-linear-gradient(0deg,
+            transparent 0,
+            transparent 31px,
+            rgb(139 117 71 / 7%) 32px);
+    box-shadow: var(--catalog-shadow);
+    animation: catalog-enter 650ms ease both;
+}
+
+.note-catalog-card::before {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 4px;
+    background: linear-gradient(180deg,
+            var(--catalog-gold),
+            var(--catalog-bronze),
+            var(--catalog-paper-dark));
+    content: "";
+}
+
+.note-catalog-card-top {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.note-catalog-card-symbol {
+    display: grid;
+    flex: 0 0 48px;
+    width: 48px;
+    height: 48px;
+    place-items: center;
+    border: 1px solid var(--catalog-border);
+    background: var(--catalog-paper-aged);
+    color: var(--catalog-bronze);
+    font-size: 25px;
+}
+
+.note-catalog-card-heading {
+    min-width: 0;
+    flex: 1;
+}
+
+.note-catalog-card-heading h2 {
+    margin: 7px 0 5px;
+    color: var(--catalog-ink);
+    font-size: clamp(22px, 3vw, 29px);
+    font-weight: 400;
+    letter-spacing: -0.5px;
+}
+
+.note-catalog-card-heading p {
+    margin: 0;
+    color: var(--catalog-muted);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.note-catalog-stamp {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 11px 14px;
+    border: 1px solid rgb(139 117 71 / 48%);
+    color: var(--catalog-bronze);
+    transform: rotate(3deg);
+}
+
+.note-catalog-stamp span {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 8px;
+    letter-spacing: 2px;
+}
+
+.note-catalog-stamp strong {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+}
+
+.note-catalog-rule {
+    height: 1px;
+    margin: 27px 0 30px;
+    background: linear-gradient(90deg,
+            var(--catalog-gold),
+            var(--catalog-border) 55%,
+            transparent);
+}
+
+/* 5. Mensagem de erro */
+
+.note-catalog-alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    margin-bottom: 27px;
+    padding: 14px 16px;
+    border: 1px solid #D9A7A0;
+    background: #FBEEEB;
+    color: #8F3931;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.note-catalog-alert>span {
+    display: grid;
+    flex: 0 0 21px;
+    width: 21px;
+    height: 21px;
+    place-items: center;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* 6. Títulos das seções */
+
+.note-catalog-section-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 23px;
+}
+
+.note-catalog-section-label>span {
+    display: grid;
+    flex: 0 0 30px;
+    width: 30px;
+    height: 30px;
+    place-items: center;
+    border: 1px solid var(--catalog-border);
+    background: var(--catalog-paper-aged);
+    color: var(--catalog-bronze);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.note-catalog-section-label h3 {
+    margin: 0;
+    color: var(--catalog-ink);
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.note-catalog-section-label>div {
+    flex: 1;
+    height: 1px;
+    margin-left: 5px;
+    background: var(--catalog-paper-line);
+}
+
+.note-catalog-writing-label,
+.note-catalog-classification-label {
+    margin-top: 34px;
+}
+
+/* 7. Campos */
+
+.note-catalog-field {
+    min-width: 0;
+}
+
+.note-catalog-field>label,
+.note-catalog-description-heading>label {
+    display: block;
+    color: var(--catalog-ink);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.note-catalog-field input[type="text"] {
+    display: block;
+    width: 100%;
+    min-height: 48px;
+    margin-top: 10px;
+    padding: 12px 14px;
+    border: 1px solid var(--catalog-border);
+    border-radius: 0;
+    outline: none;
+    background: rgb(255 255 255 / 55%);
+    color: var(--catalog-ink);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    transition:
+        border-color 180ms ease,
+        box-shadow 180ms ease,
+        background-color 180ms ease;
+}
+
+.note-catalog-field input[type="text"]::placeholder,
+.note-catalog-paper textarea::placeholder {
+    color: #A69A87;
+    opacity: 1;
+}
+
+.note-catalog-field input[type="text"]:focus,
+.note-catalog-paper:focus-within {
+    border-color: var(--catalog-gold);
+    box-shadow: 0 0 0 3px rgb(184 154 90 / 12%);
+}
+
+.note-catalog-field-hint {
+    display: block;
+    margin-top: 9px;
+    color: var(--catalog-muted);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.note-catalog-field-error {
+    display: block;
+    margin-top: 8px;
+    color: #A33D34;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* 8. Editor de texto com aparência de papel */
+
+.note-catalog-description-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 10px;
+}
+
+.note-catalog-description-heading>span {
+    color: var(--catalog-muted);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    font-variant-numeric: tabular-nums;
+}
+
+.note-catalog-paper {
+    position: relative;
+    display: flex;
+    min-height: 220px;
+    border: 1px solid var(--catalog-border);
+    background:
+        repeating-linear-gradient(to bottom,
+            transparent 0,
+            transparent 30px,
+            rgb(139 117 71 / 13%) 31px,
+            transparent 32px),
+        #FFFEFA;
+    transition:
+        border-color 180ms ease,
+        box-shadow 180ms ease;
+}
+
+.note-catalog-paper-margin {
+    flex: 0 0 42px;
+    border-right: 1px solid rgb(171 103 85 / 24%);
+    background: rgb(245 234 214 / 35%);
+}
+
+.note-catalog-paper textarea {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    min-height: 220px;
+    padding: 10px 15px;
+    resize: vertical;
+    border: 0;
+    border-radius: 0;
+    outline: none;
+    background: transparent;
+    color: var(--catalog-ink);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 14px;
+    line-height: 32px;
+}
+
+.note-catalog-paper textarea:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* 9. Classificação: categorias e status */
+
+.note-catalog-classification {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.note-catalog-categories-panel {
+    min-width: 0;
+    padding: 22px;
+    border: 1px solid var(--catalog-border);
+    background: rgb(245 234 214 / 28%);
+}
+
+.note-catalog-small-label {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 1.6px;
+}
+
+.note-catalog-categories-panel h4 {
+    margin: 10px 0 7px;
+    color: var(--catalog-ink);
+    font-size: 21px;
+    font-weight: 400;
+}
+
+.note-catalog-category-description {
+    margin: 0;
+    color: var(--catalog-muted);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+.note-catalog-category-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.note-catalog-category-option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    min-height: 43px;
+    padding: 10px 12px;
+    border: 1px solid var(--catalog-border);
+    background: rgb(255 252 245 / 72%);
+    cursor: pointer;
+    transition:
+        border-color 180ms ease,
+        background-color 180ms ease,
+        box-shadow 180ms ease;
+}
+
+.note-catalog-category-option:hover {
+    border-color: var(--catalog-gold);
+    background: #FFFCF5;
+}
+
+.note-catalog-category-option.is-selected {
+    border-color: var(--catalog-bronze);
+    background: #F5EAD6;
+    box-shadow: inset 3px 0 0 var(--catalog-gold);
+}
+
+.note-catalog-category-option input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+.note-catalog-category-check {
+    position: relative;
+    display: grid;
+    flex: 0 0 17px;
+    width: 17px;
+    height: 17px;
+    place-items: center;
+    border: 1px solid #B9AA91;
+    background: #FFFCF5;
+}
+
+.note-catalog-category-option:has(input[type="radio"]) .note-catalog-category-check {
+    border-radius: 50%;
+}
+
+.note-catalog-category-option input:checked+.note-catalog-category-check {
+    border-color: var(--catalog-bronze);
+    background: var(--catalog-bronze);
+}
+
+.note-catalog-category-option input:checked+.note-catalog-category-check::after {
+    width: 8px;
+    height: 5px;
+    border-bottom: 2px solid white;
+    border-left: 2px solid white;
+    content: "";
+    transform: translateY(-1px) rotate(-45deg);
+}
+
+.note-catalog-category-option:has(input[type="radio"]:checked) .note-catalog-category-check::after {
+    width: 7px;
+    height: 7px;
+    border: 0;
+    border-radius: 50%;
+    background: white;
+    transform: none;
+}
+
+.note-catalog-category-option input:focus-visible+.note-catalog-category-check {
+    outline: 2px solid var(--catalog-gold);
+    outline-offset: 3px;
+}
+
+.note-catalog-category-name {
+    min-width: 0;
+    color: var(--catalog-ink);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+.note-catalog-status-panel {
+    background:
+        linear-gradient(rgb(245 234 214 / 35%), rgb(245 234 214 / 35%)),
+        var(--catalog-paper);
+}
+
+.note-catalog-no-categories {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 20px;
+    padding: 17px;
+    border: 1px dashed #CBBDA5;
+    background: rgb(255 252 245 / 65%);
+}
+
+.note-catalog-no-categories>span {
+    color: var(--catalog-bronze);
+    font-size: 22px;
+}
+
+.note-catalog-no-categories p {
+    margin: 0;
+    color: var(--catalog-muted);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.note-catalog-no-categories a {
+    color: var(--catalog-bronze);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: rgb(139 117 71 / 45%);
+    text-underline-offset: 4px;
+}
+
+.note-catalog-no-categories a:hover {
+    color: var(--catalog-ink);
+}
+
+/* 10. Rodapé do formulário e botões */
+
+.note-catalog-bottom-rule {
+    height: 1px;
+    margin: 34px 0 24px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--catalog-border) 12%,
+            var(--catalog-border) 88%,
+            transparent);
+}
+
+.note-catalog-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+}
+
+.note-catalog-actions>p {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin: 0;
+    color: var(--catalog-muted);
+    font-size: 12px;
+    font-style: italic;
+    line-height: 1.7;
+}
+
+.note-catalog-actions>p>span {
+    color: var(--catalog-gold);
+    font-style: normal;
+}
+
+.note-catalog-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.note-catalog-buttons button {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 11px 17px;
+    border: 1px solid transparent;
+    border-radius: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        color 180ms ease,
+        background-color 180ms ease,
+        border-color 180ms ease,
+        box-shadow 180ms ease,
+        transform 180ms ease;
+}
+
+.note-catalog-button-cancel {
+    border-color: var(--catalog-border) !important;
+    background: transparent;
+    color: var(--catalog-muted);
+}
+
+.note-catalog-button-cancel:hover {
+    border-color: var(--catalog-bronze) !important;
+    background: var(--catalog-paper-aged);
+    color: var(--catalog-ink);
+}
+
+.note-catalog-button-save {
+    border-color: #76603A !important;
+    background: #76603A;
+    color: #FFFCF5;
+    box-shadow: 3px 3px 0 rgb(118 96 58 / 13%);
+}
+
+.note-catalog-button-save:hover {
+    border-color: #55452D !important;
+    background: #55452D;
+    box-shadow: 4px 5px 0 rgb(118 96 58 / 16%);
+    transform: translateY(-1px);
+}
+
+.note-catalog-buttons button:focus-visible {
+    outline: 2px solid var(--catalog-gold);
+    outline-offset: 4px;
+}
+
+.note-catalog-buttons button:active {
+    transform: translateY(1px);
+}
+
+/* 11. Rodapé da página */
+
+.note-catalog-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 25px 0 0;
+    color: var(--catalog-muted);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+}
+
+.note-catalog-footer span:first-child {
+    color: var(--catalog-bronze);
+    font-weight: 700;
+}
+
+.note-catalog-footer span:nth-child(2) {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 11px;
+    font-style: italic;
+    letter-spacing: 0;
+}
+
+/* 12. Animação */
+
+@keyframes catalog-enter {
+    from {
+        opacity: 0;
+        transform: translateY(9px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 13. Responsividade */
+
+@media (max-width: 760px) {
+    .note-catalog-page {
+        padding: 0 18px 24px;
+    }
+
+    .note-catalog-header {
+        min-height: 75px;
+    }
+
+    .note-catalog-intro {
+        padding-top: 36px;
+    }
+
+    .note-catalog-card {
+        padding: 27px 24px 24px;
+    }
+
+    .note-catalog-stamp {
+        padding: 9px 10px;
+    }
+
+    .note-catalog-classification {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 15px;
+    }
+
+    .note-catalog-actions {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .note-catalog-buttons {
+        width: 100%;
+    }
+
+    .note-catalog-buttons button {
+        flex: 1;
+    }
+
+    .note-catalog-footer {
+        flex-wrap: wrap;
+    }
+
+    .note-catalog-footer span:nth-child(2) {
+        order: 3;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .note-catalog-page {
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+
+    .note-catalog-brand-name {
+        font-size: 12px;
+        letter-spacing: 2px;
+    }
+
+    .note-catalog-brand-subtitle {
+        font-size: 8px;
+        letter-spacing: 1.7px;
+    }
+
+    .note-catalog-intro h1 {
+        font-size: 33px;
+    }
+
+    .note-catalog-eyebrow {
+        font-size: 9px;
+        letter-spacing: 1.3px;
+    }
+
+    .note-catalog-card {
+        padding: 23px 16px 20px;
+    }
+
+    .note-catalog-card-top {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .note-catalog-card-symbol {
+        flex-basis: 40px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .note-catalog-card-heading {
+        flex-basis: calc(100% - 55px);
+    }
+
+    .note-catalog-card-heading h2 {
+        font-size: 22px;
+    }
+
+    .note-catalog-card-heading p {
+        font-size: 11px;
+    }
+
+    .note-catalog-stamp {
+        margin-left: auto;
+        transform: rotate(0);
+    }
+
+    .note-catalog-categories-panel {
+        padding: 17px;
+    }
+
+    .note-catalog-paper-margin {
+        flex-basis: 25px;
+    }
+
+    .note-catalog-paper textarea {
+        padding-right: 9px;
+        padding-left: 10px;
+        font-size: 13px;
+    }
+
+    .note-catalog-buttons {
+        align-items: stretch;
+        flex-direction: column-reverse;
+    }
+
+    .note-catalog-buttons button {
+        width: 100%;
+    }
+
+    .note-catalog-footer {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+}
+
+/* 14. Acessibilidade: respeita a preferência por menos animações */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .note-catalog-page *,
+    .note-catalog-page *::before,
+    .note-catalog-page *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* =========================================================
+   NOTEKEEPER — RESTAURAÇÃO DAS ANIMAÇÕES DO FORMULÁRIO
+   Entrada suave | Hover editorial | Foco | Seleção
+   Adicionar no FINAL de nota-styles.css
+========================================================= */
+
+/* 1. Entrada cinematográfica da página */
+
+.note-catalog-page {
+    animation: catalog-enter 650ms cubic-bezier(.22, 1, .36, 1) both;
+}
+
+.note-catalog-intro {
+    animation: catalog-fade-up 650ms 80ms cubic-bezier(.22, 1, .36, 1) both;
+}
+
+.note-catalog-card {
+    animation: catalog-card-enter 750ms 160ms cubic-bezier(.22, 1, .36, 1) both;
+}
+
+/* 2. Símbolo e carimbo */
+
+.note-catalog-card-symbol {
+    animation: paper-symbol-enter 650ms 250ms cubic-bezier(.22, 1, .36, 1) both;
+    transition:
+        transform 260ms cubic-bezier(.22, 1, .36, 1),
+        background-color 260ms ease,
+        border-color 260ms ease,
+        box-shadow 260ms ease;
+}
+
+.note-catalog-card-symbol:hover {
+    transform: translateY(-3px) rotate(-4deg);
+    border-color: var(--catalog-gold);
+    background-color: var(--catalog-paper-dark);
+    box-shadow: 3px 5px 0 rgb(139 117 71 / 12%);
+}
+
+.note-catalog-stamp {
+    transform-origin: center;
+    animation: catalog-stamp 750ms 400ms cubic-bezier(.22, 1, .36, 1) both;
+    transition:
+        color 240ms ease,
+        border-color 240ms ease,
+        background-color 240ms ease,
+        box-shadow 240ms ease;
+}
+
+.note-catalog-stamp:hover {
+    border-color: var(--catalog-gold);
+    background: rgb(184 154 90 / 8%);
+    color: var(--catalog-ink);
+    box-shadow: 0 3px 10px rgb(61 45 24 / 7%);
+}
+
+/* 3. Linhas decorativas */
+
+.note-catalog-rule {
+    transform-origin: left center;
+    animation: catalog-rule-reveal 800ms 300ms cubic-bezier(.22, 1, .36, 1) both;
+}
+
+.note-catalog-bottom-rule {
+    transform-origin: center;
+    animation: catalog-line-draw 700ms 150ms cubic-bezier(.22, 1, .36, 1) both;
+}
+
+.note-catalog-section-label {
+    animation: catalog-fade-up 550ms 100ms cubic-bezier(.22, 1, .36, 1) both;
+}
+
+.note-catalog-section-label>span {
+    transition:
+        transform 240ms cubic-bezier(.22, 1, .36, 1),
+        border-color 240ms ease,
+        background-color 240ms ease;
+}
+
+.note-catalog-section-label:hover>span {
+    transform: translateY(-2px) rotate(-3deg);
+    border-color: var(--catalog-gold);
+    background: var(--catalog-paper-dark);
+}
+
+/* 4. Campos: resposta visual ao passar o mouse e ao focar */
+
+.note-catalog-field input[type="text"],
+.note-catalog-field select,
+.note-catalog-field textarea,
+.note-catalog-paper {
+    transition:
+        border-color 220ms ease,
+        box-shadow 220ms ease,
+        background-color 220ms ease,
+        transform 220ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.note-catalog-field input[type="text"]:hover,
+.note-catalog-field select:hover,
+.note-catalog-field textarea:hover {
+    border-color: #B9A17A;
+    background-color: #FFFEFA;
+}
+
+.note-catalog-field input[type="text"]:focus,
+.note-catalog-field select:focus,
+.note-catalog-field textarea:focus {
+    border-color: var(--catalog-gold);
+    background-color: #FFFEFA;
+    box-shadow: 0 0 0 3px rgb(184 154 90 / 13%);
+    outline: none;
+}
+
+.note-catalog-paper:hover {
+    border-color: #B9A17A;
+}
+
+.note-catalog-paper:focus-within {
+    border-color: var(--catalog-gold);
+    box-shadow: 0 0 0 3px rgb(184 154 90 / 12%);
+}
+
+/* 5. Painéis de classificação */
+
+.note-catalog-categories-panel {
+    animation: catalog-fade-up 600ms 200ms cubic-bezier(.22, 1, .36, 1) both;
+    transition:
+        border-color 240ms ease,
+        box-shadow 240ms ease,
+        background-color 240ms ease;
+}
+
+.note-catalog-categories-panel:hover {
+    border-color: #C8B48E;
+    box-shadow: 0 5px 16px rgb(61 45 24 / 5%);
+}
+
+/* 6. Opções de categoria e status */
+
+.note-catalog-category-option {
+    transform: translateX(0);
+    transition:
+        transform 220ms cubic-bezier(.22, 1, .36, 1),
+        border-color 220ms ease,
+        background-color 220ms ease,
+        box-shadow 220ms ease;
+}
+
+.note-catalog-category-option:hover {
+    transform: translateX(3px);
+    border-color: var(--catalog-gold);
+    background-color: #FFFCF5;
+}
+
+.note-catalog-category-option.is-selected {
+    border-color: var(--catalog-bronze);
+    background-color: var(--catalog-paper-aged);
+    box-shadow: inset 3px 0 0 var(--catalog-gold);
+    animation: catalog-category-select 280ms cubic-bezier(.22, 1, .36, 1) both;
+}
+
+.note-catalog-category-check {
+    transition:
+        transform 220ms cubic-bezier(.22, 1, .36, 1),
+        border-color 220ms ease,
+        background-color 220ms ease,
+        box-shadow 220ms ease;
+}
+
+.note-catalog-category-option:hover .note-catalog-category-check {
+    transform: scale(1.06);
+    border-color: var(--catalog-gold);
+}
+
+.note-catalog-category-option input:checked+.note-catalog-category-check {
+    animation: catalog-check-draw 260ms cubic-bezier(.22, 1, .36, 1) both;
+}
+
+/* 7. Botões: elevação e brilho bronze */
+
+.note-catalog-buttons button,
+.note-catalog-actions>a,
+.note-catalog-actions>button {
+    position: relative;
+    overflow: hidden;
+    transition:
+        color 220ms ease,
+        background-color 220ms ease,
+        border-color 220ms ease,
+        box-shadow 220ms ease,
+        transform 220ms cubic-bezier(.22, 1, .36, 1);
+}
+
+.note-catalog-button-save:hover,
+.note-catalog-buttons button:not(.note-catalog-button-cancel):hover {
+    transform: translateY(-2px);
+    border-color: #55452D !important;
+    background-color: #55452D;
+    box-shadow: 4px 5px 0 rgb(118 96 58 / 16%);
+}
+
+.note-catalog-button-cancel:hover,
+.note-catalog-buttons button.note-catalog-button-cancel:hover {
+    transform: translateY(-1px);
+    border-color: var(--catalog-bronze) !important;
+    background-color: var(--catalog-paper-aged);
+    box-shadow: 0 3px 8px rgb(61 45 24 / 6%);
+}
+
+.note-catalog-buttons button:active {
+    transform: translateY(1px);
+    box-shadow: none;
+}
+
+/* 8. Mensagem de erro e categorias vazias */
+
+.note-catalog-alert {
+    animation: catalog-slide-down 400ms cubic-bezier(.22, 1, .36, 1) both;
+}
+
+.note-catalog-no-categories {
+    animation: catalog-fade-up 450ms 100ms cubic-bezier(.22, 1, .36, 1) both;
+}
+
+.note-catalog-no-categories a {
+    transition:
+        color 200ms ease,
+        text-decoration-color 200ms ease;
+}
+
+.note-catalog-no-categories a:hover {
+    color: var(--catalog-ink);
+    text-decoration-color: var(--catalog-gold);
+}
+
+/* 9. Movimento reduzido: respeita a configuração do usuário */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .note-catalog-page,
+    .note-catalog-intro,
+    .note-catalog-card,
+    .note-catalog-card-symbol,
+    .note-catalog-stamp,
+    .note-catalog-rule,
+    .note-catalog-bottom-rule,
+    .note-catalog-section-label,
+    .note-catalog-categories-panel,
+    .note-catalog-category-option.is-selected,
+    .note-catalog-alert,
+    .note-catalog-no-categories {
+        animation: none !important;
+    }
+
+    .note-catalog-page *,
+    .note-catalog-page *::before,
+    .note-catalog-page *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+
+    .note-catalog-card-symbol:hover,
+    .note-catalog-category-option:hover,
+    .note-catalog-button-save:hover,
+    .note-catalog-buttons button:hover {
+        transform: none;
+    }
+}
+
+/* =========================================================
+   NOTEKEEPER — MODAL DE DETALHES DA CATEGORIA
+   Arquivo pessoal | Papel envelhecido | Bronze e madeira
+========================================================= */
+
+/* 1. Fundo do modal */
+
+.archive-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 24px;
+
+    background: rgb(35 25 17 / 62%);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+
+    animation: archive-backdrop-enter 260ms ease both;
+}
+
+/* 2. Cartão principal */
+
+.archive-modal {
+    position: relative;
+    width: min(100%, 540px);
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+
+    padding: 30px 34px 25px;
+
+    border: 1px solid var(--nota-border, #D8C8AC);
+
+    background:
+        repeating-linear-gradient(to bottom,
+            transparent 0,
+            transparent 31px,
+            rgb(169 146 111 / 5%) 32px),
+        var(--nota-paper, #FFFCF5);
+
+    color: var(--nota-ink, #4A382A);
+
+    box-shadow:
+        0 24px 70px rgb(0 0 0 / 25%),
+        inset 0 1px 0 rgb(255 255 255 / 80%);
+
+    animation: archive-modal-enter 480ms cubic-bezier(.22, 1, .36, 1) both;
+}
+
+/* Filete decorativo lateral */
+
+.archive-modal::before {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 4px;
+
+    background: linear-gradient(180deg,
+            var(--nota-gold-light, #D8BB82),
+            var(--nota-bronze, #A78352),
+            var(--nota-paper-dark, #E9D9BB));
+
+    content: "";
+}
+
+/* 3. Cabeçalho */
+
+.modal-topline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    padding-bottom: 17px;
+
+    border-bottom: 1px solid var(--nota-paper-line, #E9DFCB);
+}
+
+.modal-topline>span {
+    color: var(--nota-bronze, #A78352);
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.7px;
+    line-height: 1.7;
+}
+
+/* Botão de fechar */
+
+.modal-close {
+    display: grid;
+    width: 35px;
+    height: 35px;
+    flex: 0 0 35px;
+    place-items: center;
+
+    border: 1px solid var(--nota-border, #D8C8AC);
+    background: transparent;
+    color: var(--nota-ink, #4A382A);
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 23px;
+    font-weight: 400;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        transform 220ms cubic-bezier(.22, 1, .36, 1),
+        color 220ms ease,
+        border-color 220ms ease,
+        background-color 220ms ease;
+}
+
+.modal-close:hover {
+    transform: rotate(90deg);
+    border-color: var(--nota-bronze, #A78352);
+    background: var(--nota-paper-aged, #F5EAD6);
+    color: #8A493E;
+}
+
+.modal-close:focus-visible,
+.modal-cancel:focus-visible {
+    outline: 2px solid var(--nota-gold, #B89A5A);
+    outline-offset: 4px;
+}
+
+/* 4. Símbolo central */
+
+.modal-symbol {
+    display: grid;
+    width: 62px;
+    height: 62px;
+    place-items: center;
+
+    margin: 27px auto 18px;
+
+    border: 1px solid var(--nota-border, #D8C8AC);
+
+    background:
+        linear-gradient(145deg,
+            rgb(255 255 255 / 65%),
+            transparent),
+        var(--nota-paper-aged, #F5EAD6);
+
+    color: var(--nota-bronze, #A78352);
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 35px;
+    line-height: 1;
+
+    box-shadow: 3px 3px 0 rgb(139 117 71 / 9%);
+
+    animation: archive-symbol-enter 600ms 100ms cubic-bezier(.22, 1, .36, 1) both;
+
+    transition:
+        transform 260ms cubic-bezier(.22, 1, .36, 1),
+        border-color 220ms ease,
+        background-color 220ms ease,
+        box-shadow 220ms ease;
+}
+
+.modal-symbol:hover {
+    transform: translateY(-3px) rotate(-4deg);
+    border-color: var(--nota-gold, #B89A5A);
+    background-color: var(--nota-paper-dark, #E9D9BB);
+    box-shadow: 4px 6px 0 rgb(139 117 71 / 12%);
+}
+
+/* 5. Título e descrição */
+
+.modal-eyebrow {
+    margin: 0 0 10px;
+
+    color: var(--nota-bronze, #A78352);
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.8px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.modal-title {
+    margin: 0;
+
+    color: var(--nota-wood, #38281E);
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(25px, 4vw, 32px);
+    font-weight: 400;
+    line-height: 1.25;
+    letter-spacing: -.5px;
+    text-align: center;
+}
+
+.modal-description {
+    max-width: 390px;
+    margin: 12px auto 25px;
+
+    color: var(--nota-ink-light, #786451);
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    line-height: 1.8;
+    text-align: center;
+}
+
+/* 6. Ficha com os dados da categoria */
+
+.modal-record {
+    padding: 21px 22px;
+
+    border: 1px solid var(--nota-border, #D8C8AC);
+
+    background:
+        repeating-linear-gradient(to bottom,
+            transparent 0,
+            transparent 29px,
+            rgb(169 146 111 / 6%) 30px),
+        rgb(245 234 214 / 42%);
+
+    transition:
+        border-color 240ms ease,
+        box-shadow 240ms ease,
+        background-color 240ms ease;
+}
+
+.modal-record:hover {
+    border-color: #C8B48E;
+    box-shadow: 0 5px 16px rgb(61 45 24 / 6%);
+}
+
+.record-label {
+    display: block;
+
+    color: var(--nota-muted, #8B7A67);
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    line-height: 1.7;
+}
+
+.record-title {
+    margin: 9px 0 0;
+
+    color: var(--nota-wood, #38281E);
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(20px, 4vw, 25px);
+    font-weight: 500;
+    line-height: 1.45;
+
+    overflow-wrap: anywhere;
+
+    transition: color 220ms ease;
+}
+
+.modal-record:hover .record-title {
+    color: #80613D;
+}
+
+/* Divisor */
+
+.record-divider {
+    height: 1px;
+    margin: 21px 0;
+
+    background: linear-gradient(90deg,
+            var(--nota-gold, #B89A5A),
+            var(--nota-paper-line, #E9DFCB) 65%,
+            transparent);
+
+    transform-origin: left center;
+    animation: archive-rule-enter 650ms 200ms cubic-bezier(.22, 1, .36, 1) both;
+}
+
+/* Identificador */
+
+.record-identifier {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+}
+
+.record-id {
+    max-width: 100%;
+
+    color: var(--nota-ink-light, #786451);
+
+    font-family: "Courier New", Courier, monospace;
+    font-size: 11px;
+    line-height: 1.7;
+    text-align: right;
+
+    overflow-wrap: anywhere;
+    user-select: text;
+}
+
+.modal-warning {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    margin-top: 18px;
+    color: var(--danger);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.modal-warning>span {
+    display: flex;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #C99A8D;
+    font-family: Georgia, serif;
+    font-weight: 700;
+}
+
+.modal-error {
+    margin-top: 12px;
+    padding: 10px 12px;
+    border: 1px solid #D8B7AC;
+    background: var(--danger-bg);
+    color: #75453B;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.modal-cancel,
+.modal-confirm {
+    display: flex;
+    min-height: 46px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background var(--transition-fast) ease, color var(--transition-fast) ease;
+}
+
+.modal-cancel {
+    flex: 1;
+    border: 1px solid #C8B99D;
+    color: #5E4B39;
+}
+
+.modal-cancel:hover:not(:disabled) {
+    background: #EDE0C5;
+}
+
+.modal-confirm {
+    flex: 1.4;
+    border: 1px solid #75453B;
+    background: #75453B;
+    color: #FFF1EC;
+}
+
+.modal-confirm:hover:not(:disabled) {
+    background: #60372F;
+}
+
+.modal-cancel:disabled,
+.modal-confirm:disabled {
+    cursor: not-allowed;
+    opacity: .6;
+}
+
+.modal-cancel:focus-visible,
+.modal-confirm:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+}
+
+/* 7. Rodapé editorial */
+
+.modal-footer {
+    padding: 21px 0 18px;
+    text-align: center;
+}
+
+.modal-footer p {
+    margin: 0;
+
+    color: var(--nota-muted, #8B7A67);
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 12px;
+    font-style: italic;
+    line-height: 1.7;
+}
+
+.modal-footer p::before,
+.modal-footer p::after {
+    display: inline-block;
+    width: 17px;
+    height: 1px;
+    margin: 0 9px;
+
+    background: var(--nota-gold, #B89A5A);
+    content: "";
+
+    vertical-align: middle;
+}
+
+
+/* 9. Animações de entrada */
+
+@keyframes archive-backdrop-enter {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes archive-modal-enter {
+    from {
+        opacity: 0;
+        transform: translateY(16px) scale(.985);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes archive-symbol-enter {
+    from {
+        opacity: 0;
+        transform: scale(.8) rotate(-8deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+@keyframes archive-rule-enter {
+    from {
+        transform: scaleX(0);
+        opacity: .4;
+    }
+
+    to {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+}
+
+/* 10. Responsividade */
+
+@media (max-width: 540px) {
+    .archive-modal-backdrop {
+        align-items: center;
+        padding: 14px;
+    }
+
+    .archive-modal {
+        max-height: calc(100vh - 28px);
+        padding: 23px 20px 19px;
+    }
+
+    .modal-topline>span {
+        max-width: 230px;
+        font-size: 8px;
+        letter-spacing: 1.2px;
+    }
+
+    .modal-symbol {
+        width: 54px;
+        height: 54px;
+        margin-top: 23px;
+        font-size: 30px;
+    }
+
+    .modal-description {
+        margin-bottom: 21px;
+        font-size: 11px;
+    }
+
+    .modal-record {
+        padding: 17px;
+    }
+
+    .record-id {
+        text-align: left;
+    }
+
+    .modal-footer p::before,
+    .modal-footer p::after {
+        width: 10px;
+        margin-inline: 5px;
+    }
+
+    .modal-cancel {
+        width: 100%;
+    }
+}
+
+/* 11. Acessibilidade */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .archive-modal-backdrop,
+    .archive-modal,
+    .modal-symbol,
+    .record-divider {
+        animation: none !important;
+    }
+
+    .archive-modal-backdrop *,
+    .archive-modal-backdrop *::before,
+    .archive-modal-backdrop *::after {
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+
+    .modal-close:hover,
+    .modal-symbol:hover,
+    .modal-cancel:hover,
+    .modal-cancel:hover,
+    .modal-confirm>span {
+        transform: none;
+    }
+}

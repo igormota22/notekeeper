@@ -5,6 +5,7 @@ import { RouterOutlet } from "@angular/router";
 @Component({
     imports: [RouterOutlet, Menu],
     selector: 'app-nota-shell',
+    styleUrl: '../nota-styles.css',
     templateUrl: './nota-shell.html'
 
 })

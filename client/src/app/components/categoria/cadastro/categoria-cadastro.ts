@@ -11,6 +11,7 @@ interface CategoriaForm {
 @Component({
     imports: [],
     selector: 'app-categoria-cadastro',
+    styleUrl: '../categoria-styles.css',
     templateUrl: './categoria-cadastro.html'
 })
 
