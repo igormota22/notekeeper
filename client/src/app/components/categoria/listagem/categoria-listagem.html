@@ -1,216 +1,333 @@
 <section class="archive-page space-y-8">
 
-    <!-- Cabeçalho -->
+    <!-- Cabeçalho da página -->
     <header class="archive-intro">
-        <div class="mb-3 flex items-center gap-3">
-            <span class="h-px w-10 bg-[#B89A5A]"></span>
-            <p class="text-[10px] font-semibold uppercase tracking-[0.25em] text-[#8B7547]">
-                NoteKeeper / Arquivo pessoal
-            </p>
+
+        <div class="mb-3 flex flex-wrap items-center gap-3">
+            <span class="font-serif text-sm font-semibold tracking-[0.22em] text-[#8B7547]">
+                NoteKeeper
+            </span>
+
+            <span class="h-px w-8 bg-[#B89A5A]"></span>
+
+            <span class="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#8A7966]">
+                Arquivo pessoal
+            </span>
         </div>
 
         <div class="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
-            <div>
-                <h2 class="font-serif text-3xl font-semibold text-[#4A382A] sm:text-4xl">
+
+            <div class="min-w-0">
+                <h2 class="break-words font-serif text-2xl font-semibold text-[#4A382A] sm:text-3xl lg:text-4xl">
                     Catálogo de categorias
                 </h2>
+
                 <p class="mt-3 max-w-xl text-sm leading-6 text-[#756657]">
-                    Cada assunto tem sua própria gaveta. Explore seu arquivo e encontre
-                    o lugar certo para cada ideia.
+                    Cada categoria organiza um conjunto de pensamentos, registros e
+                    fragmentos da sua história.
                 </p>
             </div>
 
-            <a routerLink="/categorias/cadastro" class="catalog-submit group">
+            <a routerLink="/categorias/cadastro"
+                class="catalog-submit group w-full justify-center sm:w-auto sm:shrink-0">
+                <span class="add-symbol flex h-7 w-7 shrink-0 items-center justify-center rounded-full"
+                    aria-hidden="true">
+                    +
+                </span>
 
-                <span class="add-symbol text-xl transition-transform duration-300 group-hover:rotate-90"
-                    aria-hidden="true">+</span>
-
-                Nova categoria
+                <span>Nova categoria</span>
             </a>
+
         </div>
     </header>
 
-    <!-- Identificação do arquivo -->
-    <div class="archive-heading flex flex-wrap items-center justify-between gap-3
-                border-y border-[#D8C9A8] py-4">
+    <!-- Cabeçalho do catálogo e quantidade -->
+    <div
+        class="archive-heading flex flex-col gap-3 border-y border-[#D8C9A8] py-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
 
-        <div class="flex items-center gap-3">
-            <span class="flex h-9 w-9 items-center justify-center
-                         border border-[#B89A5A]/50 bg-[#EDE4D2] text-[#8B7547]">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="h-5 w-5"
-                    aria-hidden="true">
-                    <rect x="3" y="4" width="18" height="16" rx="1" />
-                    <path d="M3 9h18M7 6.5h.01M10 6.5h.01" />
+        <div class="flex min-w-0 items-center gap-3">
+            <span
+                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#D8C9A8] bg-[#F5EAD6] text-[#8B7547]"
+                aria-hidden="true">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5z" />
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                    <path d="M8 7h8" />
+                    <path d="M8 11h8" />
                 </svg>
             </span>
 
-            <div>
-                <p class="text-xs font-semibold uppercase tracking-[0.15em] text-[#514033]">
-                    Arquivo de fichários
+            <div class="min-w-0">
+                <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[#4A382A]">
+                    Gavetas do arquivo
                 </p>
-                <p class="mt-1 text-xs text-[#8B7B69]">
-                    Índice geral de assuntos
+
+                <p class="mt-1 text-xs leading-5 text-[#8A7966]">
+                    Suas categorias, organizadas em um só lugar.
                 </p>
             </div>
         </div>
 
         @if (!carregando() && !mensagemErro()) {
-        <p class="archive-count text-xs text-[#8B7547]">
-            <span class="font-serif text-xl font-semibold">
-                {{ categorias().length.toString().padStart(2, '0') }}
+        <p class="archive-count flex flex-wrap items-baseline gap-x-1 gap-y-1 text-sm text-[#756657]">
+            <span class="font-serif text-2xl font-semibold text-[#8B7547]">
+                {{ categorias().length }}
             </span>
-            <span class="ml-2 uppercase tracking-[0.14em]">
-                {{ categorias().length === 1 ? 'ficha registrada' : 'fichas registradas' }}
+
+            <span>
+                {{ categorias().length === 1 ? 'categoria cadastrada' : 'categorias cadastradas' }}
             </span>
         </p>
         }
+
     </div>
 
-    <!-- Carregamento -->
+    <!-- Estado de carregamento -->
     @if (carregando()) {
-    <div class="archive-cabinet space-y-3 p-4 sm:p-6" aria-label="Carregando categorias">
-        @for (item of [1, 2, 3, 4]; track item) {
-        <div class="drawer-skeleton h-[86px] animate-pulse"></div>
+
+    <div class="archive-cabinet relative space-y-3 p-3 sm:p-5" aria-label="Carregando categorias" aria-live="polite">
+
+        <div class="cabinet-top mb-5 flex flex-wrap items-center justify-between gap-3 px-2 py-2">
+            <span class="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#D8BB82]">
+                Arquivo em consulta
+            </span>
+
+            <span class="text-[9px] uppercase tracking-[0.15em] text-[#B89A5A]">
+                Aguarde...
+            </span>
+        </div>
+
+        @for (item of [1, 2, 3]; track item) {
+        <div class="archive-drawer" aria-hidden="true">
+
+            <div class="drawer-number">
+                <span>{{ '0' + item }}</span>
+            </div>
+
+            <div class="drawer-face min-w-0">
+                <div class="drawer-label w-full">
+                    <div class="label-overline">ARQUIVO · FICHA</div>
+
+                    <div class="mt-3 h-4 max-w-48 animate-pulse rounded-sm bg-[#D8C9A8]/60"></div>
+                </div>
+
+                <div class="flex shrink-0 items-center gap-2">
+                    <div class="h-9 w-9 animate-pulse rounded-full bg-[#D8C9A8]/50"></div>
+                    <div class="h-9 w-9 animate-pulse rounded-full bg-[#D8C9A8]/50"></div>
+                    <div class="h-9 w-9 animate-pulse rounded-full bg-[#D8C9A8]/50"></div>
+                </div>
+            </div>
+
+            <div class="drawer-side"></div>
+
+        </div>
         }
+
+        <div class="cabinet-bottom mt-5 flex items-center justify-center gap-3 py-3">
+            <span class="text-center text-[9px] uppercase tracking-[0.18em] text-[#D8BB82]">
+                Consultando as fichas do arquivo...
+            </span>
+        </div>
+
     </div>
+
     }
 
-    <!-- Erro -->
+    <!-- Estado de erro -->
     @else if (mensagemErro()) {
-    <div class="border border-[#D8B7AC] bg-[#FBF1ED] p-6 sm:p-8" role="alert">
-        <p class="text-xs font-semibold uppercase tracking-[0.18em] text-[#75453B]">
-            Falha no arquivo
-        </p>
 
-        <h3 class="mt-2 font-serif text-2xl font-semibold text-[#75453B]">
-            Não foi possível consultar as fichas
+    <div class="empty-cabinet rounded-sm border border-[#D8C9A8] bg-[#F5EAD6] px-5 py-10 text-center sm:px-8"
+        role="alert">
+
+        <div
+            class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full border border-[#D8C9A8] bg-[#FFFCF5] text-[#8B7547]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                aria-hidden="true">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 8v4" />
+                <path d="M12 16h.01" />
+            </svg>
+        </div>
+
+        <h3 class="font-serif text-xl font-semibold text-[#4A382A] sm:text-2xl">
+            Não foi possível consultar o arquivo
         </h3>
 
-        <p class="mt-3 text-sm leading-6 text-[#805D55]">
+        <p class="mx-auto mt-3 max-w-lg break-words text-sm leading-6 text-[#756657]">
             {{ mensagemErro() }}
         </p>
 
-        <button type="button" (click)="exibirCategorias()" class="mt-5 border border-[#75453B] px-5 py-3 text-sm
-                       font-medium text-[#75453B] transition
-                       hover:bg-[#75453B] hover:text-white">
+        <button type="button" (click)="exibirCategorias()"
+            class="catalog-submit mx-auto mt-6 w-full justify-center sm:w-auto">
+            <span aria-hidden="true">↻</span>
             Tentar novamente
         </button>
+
     </div>
+
     }
 
-    <!-- Arquivo vazio -->
+    <!-- Estado vazio -->
     @else if (categorias().length === 0) {
-    <div class="archive-cabinet empty-cabinet px-5 py-14 text-center sm:px-10">
-        <div class="empty-drawer mx-auto flex h-24 w-32 items-center justify-center">
-            <div class="empty-label flex h-12 w-20 items-center justify-center">
-                <span class="font-serif text-3xl text-[#8B7547]">?</span>
-            </div>
+
+    <div class="empty-cabinet rounded-sm border border-[#D8C9A8] bg-[#F5EAD6] px-5 py-10 text-center sm:px-8 sm:py-14">
+
+        <div
+            class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full border border-[#D8C9A8] bg-[#FFFCF5] text-[#8B7547]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"
+                aria-hidden="true">
+                <path d="M3 7h7l2 2h9v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                <path d="M3 7V5a2 2 0 0 1 2-2h5l2 2h5" />
+                <path d="M12 12v5" />
+                <path d="M9.5 14.5h5" />
+            </svg>
         </div>
 
-        <p class="mt-7 text-[10px] font-semibold uppercase tracking-[0.25em] text-[#B89A5A]">
-            Primeiro registro
-        </p>
+        <span class="mb-3 block text-[9px] font-semibold uppercase tracking-[0.24em] text-[#8B7547]">
+            Um novo capítulo
+        </span>
 
-        <h3 class="mt-3 font-serif text-2xl font-semibold text-[#F5EAD6]">
-            O arquivo está vazio
+        <h3 class="font-serif text-xl font-semibold text-[#4A382A] sm:text-2xl">
+            Seu arquivo ainda está vazio
         </h3>
 
-        <p class="mx-auto mt-3 max-w-md text-sm leading-7 text-[#C5B69C]">
-            Todo grande arquivo começa com uma ficha.
-            Crie sua primeira categoria e dê um lugar às suas ideias.
+        <p class="mx-auto mt-3 max-w-md text-sm leading-6 text-[#756657]">
+            Crie sua primeira categoria e comece a organizar suas notas, ideias
+            e lembranças.
         </p>
 
-        <a routerLink="/categorias/cadastro" class="mt-7 inline-flex items-center gap-2 border border-[#B89A5A]
-                       bg-[#D8BB82] px-5 py-3 text-sm font-semibold
-                       text-[#29231D] transition hover:bg-[#E8C98E]">
-            <span aria-hidden="true">+</span>
+        <a routerLink="/categorias/cadastro" class="catalog-submit mx-auto mt-6 w-full justify-center sm:w-auto">
+            <span class="add-symbol" aria-hidden="true">+</span>
             Criar primeira categoria
         </a>
+
     </div>
+
     }
 
-    <!-- Gavetas -->
+    <!-- Armário com as categorias -->
     @else {
+
     <div class="archive-cabinet relative space-y-3 p-3 sm:p-5">
 
-        <div class="cabinet-top mb-5 flex items-center justify-between gap-3 px-2 py-2">
-            <span class="text-[9px] font-semibold uppercase tracking-[0.22em] text-[#D8BB82]">
-                Índice alfabético
-            </span>
-            <span class="text-[9px] uppercase tracking-[0.18em] text-[#B9A181]">
-                Coleção particular
-            </span>
-        </div>
+        <!-- Cabeçalho do armário -->
+        <div class="cabinet-top mb-4 flex flex-wrap items-center justify-between gap-3 px-2 py-2 sm:mb-5">
 
+            <div class="flex min-w-0 items-center gap-3">
+                <span class="h-3 w-3 shrink-0 rounded-full border border-[#D8BB82] bg-[#B89A5A]"
+                    aria-hidden="true"></span>
 
-        @for (categoria of categorias(); track $index) {
-        <article class="archive-drawer group" [style.animation-delay.ms]="$index * 90">
-
-            <div class="drawer-number" aria-hidden="true">
-                {{ ($index + 1).toString().padStart(2, '0') }}
+                <span class="text-[9px] font-semibold uppercase tracking-[0.2em] text-[#D8BB82]">
+                    Catálogo de fichas
+                </span>
             </div>
 
+            <span class="text-right text-[9px] uppercase tracking-[0.15em] text-[#B89A5A]">
+                Registro organizado
+            </span>
+
+        </div>
+
+        <!-- Fichas individuais -->
+        @for (categoria of categorias(); track categoria.id; let i = $index) {
+
+        <article class="archive-drawer group" [style.animation-delay.ms]="i * 90">
+
+            <!-- Número da ficha -->
+            <div class="drawer-number" aria-hidden="true">
+                <span>{{ (i + 1).toString().padStart(2, '0') }}</span>
+            </div>
+
+            <!-- Frente da gaveta -->
             <div class="drawer-face">
+
+                <!-- Identificação da categoria -->
                 <div class="drawer-label">
-                    <span class="label-overline">ARQUIVO · FICHA</span>
+                    <span class="label-overline">
+                        ARQUIVO · FICHA
+                    </span>
 
                     <h3 class="drawer-title break-words">
                         {{ categoria.titulo }}
                     </h3>
                 </div>
 
-                <div class="flex shrink-0 items-center gap-3">
-                    <!-- Botão Editar -->
-                    <a [routerLink]="['/categorias/edicao', categoria.id]" title="Editar categoria"
-                        aria-label="Editar categoria" class="drawer-action drawer-edit">
+                <!-- Ações responsivas -->
+                <div class="drawer-actions flex shrink-0 items-center justify-end gap-2 sm:gap-3">
 
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-                            stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" aria-hidden="true">
+                    <!-- Editar -->
+                    <a [routerLink]="['/categorias/edicao', categoria.id]"
+                        [attr.aria-label]="'Editar categoria ' + categoria.titulo" title="Editar categoria"
+                        class="drawer-action drawer-edit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true">
                             <path d="M12 20h9" />
-                            <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L9 17l-4 1 1-4Z" />
+                            <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L8 18l-4 1 1-4Z" />
                         </svg>
                     </a>
 
-                    <!-- Botão Excluir -->
-                    <button type="button" (click)="confirmarExclusao(categoria)" title="Excluir categoria"
-                        [attr.aria-label]="'Excluir categoria ' + categoria.titulo" class="drawer-action drawer-delete">
-
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-                            stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4" aria-hidden="true">
-
+                    <!-- Excluir -->
+                    <button type="button" (click)="confirmarExclusao(categoria)"
+                        [attr.aria-label]="'Excluir categoria ' + categoria.titulo" title="Excluir categoria"
+                        class="drawer-action drawer-delete">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true">
                             <path d="M3 6h18" />
                             <path d="M8 6V4h8v2" />
                             <path d="m19 6-1 14H6L5 6" />
-                            <path d="M10 11v5M14 11v5" />
+                            <path d="M10 11v5" />
+                            <path d="M14 11v5" />
                         </svg>
                     </button>
 
-                    <!-- Puxador decorativo -->
-                    <button type="button" class="drawer-handle" (click)="abrirDetalhes(categoria)"
-                        [attr.aria-label]="'Ver detalhes da categoria ' + categoria.titulo" title="Ver detalhes">
-
-                        <span class="drawer-handle-inner" aria-hidden="true"></span>
+                    <!-- Abrir detalhes -->
+                    <button type="button" (click)="abrirDetalhes(categoria)"
+                        [attr.aria-label]="'Ver detalhes da categoria ' + categoria.titulo"
+                        title="Ver detalhes da categoria" class="drawer-handle">
+                        <span class="drawer-handle-inner"></span>
                     </button>
+
                 </div>
+
             </div>
 
+            <!-- Lateral decorativa da gaveta -->
             <div class="drawer-side" aria-hidden="true"></div>
+
         </article>
+
         }
-        <div class="cabinet-bottom mt-5 flex items-center justify-center gap-3 py-3">
-            <span class="h-px w-8 bg-[#8B704E]"></span>
-            <span class="font-serif text-xs italic text-[#D8BB82]">
-                Every thought has a place.
+
+        <!-- Rodapé do armário -->
+        <div class="cabinet-bottom mt-4 flex flex-wrap items-center justify-center gap-3 px-2 py-3 text-center sm:mt-5">
+
+            <span class="h-px w-6 bg-[#B89A5A]" aria-hidden="true"></span>
+
+            <span class="text-[9px] uppercase tracking-[0.18em] text-[#D8BB82]">
+                Every thought has a place
             </span>
-            <span class="h-px w-8 bg-[#8B704E]"></span>
+
+            <span class="h-px w-6 bg-[#B89A5A]" aria-hidden="true"></span>
+
         </div>
+
     </div>
+
     }
 
+
+    <!-- Modal de confirmação de exclusão -->
     @if (categoriaSelecionada(); as categoria) {
     <app-modal-exclusao [categoria]="categoria" [carregando]="excluindo()" [mensagemErro]="mensagemErroExclusao()"
         (cancelar)="cancelarExclusao()" (confirmar)="excluirCategoria()" />
     }
+
+    <!-- Modal de detalhes da categoria -->
     @if (categoriaDetalheId(); as categoriaId) {
     @if (categorias().find(c => c.id === categoriaId); as categoria) {
     <app-modal-categoria-detalhes [categoria]="categoria" (fechar)="fecharDetalhes()" />
